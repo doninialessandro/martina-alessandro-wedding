@@ -22,8 +22,10 @@ function StorySection({ title, body, id }: StorySectionProps) {
         </ScrollReveal>
         <WordReveal
           text={body}
-          className="text-base md:text-lg leading-relaxed text-[#6B6B6B] font-serif"
+          className="text-base md:text-lg leading-relaxed font-serif"
           offset={0.1}
+          mutedColor="#D5CDC2"
+          activeColor="#6B6B6B"
         />
       </div>
     </section>

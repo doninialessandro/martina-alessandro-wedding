@@ -34,8 +34,10 @@ function PlatformCard({ name, subtitle, description, align = "left" }: PlatformC
 
           <WordReveal
             text={description}
-            className="text-base md:text-lg leading-relaxed text-[#6B6B6B] font-serif"
+            className="text-base md:text-lg leading-relaxed font-serif"
             offset={0.08}
+            mutedColor="#D5CDC2"
+            activeColor="#6B6B6B"
           />
         </div>
       </div>
@@ -95,8 +97,10 @@ function CallimacusSection() {
         </ScrollReveal>
         <WordReveal
           text="The combination of these components and the orchestra of agents they coordinate constitutes Callimacus, our platform, named after the great philologist of ancient times. Thanks to the dialogic interaction that continuously interweaves each contribution, Callimacus assists and guides all phases of website creation: it verifies, reconstructs, modifies, corrects, and optimizes the content."
-          className="text-base md:text-lg leading-relaxed text-[#6B6B6B] font-serif"
+          className="text-base md:text-lg leading-relaxed font-serif"
           offset={0.08}
+          mutedColor="#D5CDC2"
+          activeColor="#6B6B6B"
         />
       </div>
     </div>

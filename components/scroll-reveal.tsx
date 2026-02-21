@@ -3,20 +3,21 @@
 import { useScrollProgress } from "@/hooks/use-scroll-progress"
 
 /* ═══════════════════════════════════════════════════════════
-   ScrollReveal – scroll-linked opacity + transform
-   Drives reveal with rAF-backed progress for 60fps smoothness
+   ScrollReveal – scroll-linked clip + transform reveal
+   Content is always fully opaque; a clip-path mask slides
+   away to unveil it, keeping colors vibrant at all times.
    ═══════════════════════════════════════════════════════════ */
 
 interface ScrollRevealProps {
   children: React.ReactNode
   className?: string
-  start?: number          // progress at which reveal begins (0-1)
-  end?: number            // progress at which reveal completes (0-1)
-  translateY?: number     // px offset at progress=0
-  translateX?: number     // px horizontal offset at progress=0
-  scaleFrom?: number      // scale at progress=0
-  offset?: number         // viewport offset for trigger zone
-  rotate?: number         // degrees rotation at progress=0
+  start?: number
+  end?: number
+  translateY?: number
+  translateX?: number
+  scaleFrom?: number
+  offset?: number
+  rotate?: number
 }
 
 export function ScrollReveal({
@@ -33,23 +34,27 @@ export function ScrollReveal({
   const { ref, progress } = useScrollProgress(offset)
 
   const local = Math.min(1, Math.max(0, (progress - start) / (end - start)))
-  // Smooth ease-out quintic for a luxurious deceleration curve
+  // Smooth ease-out quartic
   const eased = 1 - Math.pow(1 - local, 4)
 
-  const opacity = eased
   const y = translateY * (1 - eased)
   const x = translateX * (1 - eased)
   const s = scaleFrom + (1 - scaleFrom) * eased
   const r = rotate * (1 - eased)
+
+  // clip-path: reveal from bottom to top
+  // At eased=0 the clip hides the element; at eased=1 fully visible
+  const clipTop = 100 * (1 - eased)         // 100 -> 0
+  const clip = `inset(${clipTop}% 0% 0% 0%)`
 
   return (
     <div
       ref={ref}
       className={className}
       style={{
-        opacity,
+        clipPath: clip,
         transform: `translate3d(${x}px, ${y}px, 0) scale(${s}) rotate(${r}deg)`,
-        willChange: "transform, opacity",
+        willChange: "clip-path, transform",
       }}
     >
       {children}
@@ -58,36 +63,48 @@ export function ScrollReveal({
 }
 
 /* ═══════════════════════════════════════════════════════════
-   WordReveal – each word fades from dim to full as you scroll
-   Creates a "text painting" scrollytelling effect
+   WordReveal – each word transitions from a muted color to
+   its full color as you scroll, keeping text always readable.
+   No opacity changes — colors are always vibrant.
    ═══════════════════════════════════════════════════════════ */
 
 interface WordRevealProps {
   text: string
   className?: string
   offset?: number
+  mutedColor?: string   // the starting "unrevealed" color
+  activeColor?: string  // the final "revealed" color
 }
 
-export function WordReveal({ text, className = "", offset = 0.08 }: WordRevealProps) {
+export function WordReveal({
+  text,
+  className = "",
+  offset = 0.08,
+  mutedColor = "#D5CDC2",
+  activeColor = "#6B6B6B",
+}: WordRevealProps) {
   const { ref, progress } = useScrollProgress(offset)
   const words = text.split(" ")
 
   return (
-    <p ref={ref} className={className} style={{ willChange: "opacity" }}>
+    <p ref={ref} className={className} style={{ willChange: "color" }}>
       {words.map((word, i) => {
         const wordStart = (i / words.length) * 0.55
         const wordEnd = wordStart + 0.3
         const wordProgress = Math.min(1, Math.max(0, (progress - wordStart) / (wordEnd - wordStart)))
-        // Ease-out quad for each word
+        // Ease-out quad
         const eased = 1 - Math.pow(1 - wordProgress, 2)
+
+        const color = eased <= 0.01
+          ? mutedColor
+          : eased >= 0.99
+            ? activeColor
+            : interpolateColor(mutedColor, activeColor, eased)
 
         return (
           <span
             key={i}
-            style={{
-              opacity: 0.12 + 0.88 * eased,
-              transition: "opacity 0.06s linear",
-            }}
+            style={{ color, transition: "color 0.12s ease-out" }}
           >
             {word}{" "}
           </span>
@@ -97,15 +114,34 @@ export function WordReveal({ text, className = "", offset = 0.08 }: WordRevealPr
   )
 }
 
+/** Simple hex color interpolation */
+function interpolateColor(from: string, to: string, t: number): string {
+  const f = hexToRgb(from)
+  const tC = hexToRgb(to)
+  const r = Math.round(f.r + (tC.r - f.r) * t)
+  const g = Math.round(f.g + (tC.g - f.g) * t)
+  const b = Math.round(f.b + (tC.b - f.b) * t)
+  return `rgb(${r}, ${g}, ${b})`
+}
+
+function hexToRgb(hex: string) {
+  const h = hex.replace("#", "")
+  return {
+    r: parseInt(h.substring(0, 2), 16),
+    g: parseInt(h.substring(2, 4), 16),
+    b: parseInt(h.substring(4, 6), 16),
+  }
+}
+
 /* ═══════════════════════════════════════════════════════════
-   ParallaxFade – hero-style element that drifts up and fades
-   out as user scrolls past it (exit parallax)
+   ParallaxFade – hero element that drifts up and scales down
+   as user scrolls past. Uses clip instead of opacity.
    ═══════════════════════════════════════════════════════════ */
 
 interface ParallaxFadeProps {
   children: React.ReactNode
   className?: string
-  speed?: number    // multiplier for parallax drift (default 0.35)
+  speed?: number
 }
 
 export function ParallaxFade({
@@ -115,20 +151,21 @@ export function ParallaxFade({
 }: ParallaxFadeProps) {
   const { ref, progress } = useScrollProgress(0)
 
-  // progress 0-0.5: fully visible, 0.5-1: fades and drifts up
   const fadeStart = 0.35
   const fadeProg = Math.min(1, Math.max(0, (progress - fadeStart) / (1 - fadeStart)))
-  const opacity = 1 - fadeProg
   const y = -fadeProg * 80 * speed
+  const s = 1 - fadeProg * 0.08
+  // Clip from top as user scrolls away
+  const clipBottom = fadeProg * 40
 
   return (
     <div
       ref={ref}
       className={className}
       style={{
-        opacity,
-        transform: `translate3d(0, ${y}px, 0)`,
-        willChange: "transform, opacity",
+        clipPath: `inset(0% 0% ${clipBottom}% 0%)`,
+        transform: `translate3d(0, ${y}px, 0) scale(${s})`,
+        willChange: "clip-path, transform",
       }}
     >
       {children}
