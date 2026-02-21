@@ -7,7 +7,7 @@ export function LocationSection() {
     <section className="py-24 md:py-40 px-8 sm:px-12 md:px-16">
       <div className="max-w-[1000px] mx-auto">
 
-        <ScrollReveal translateY={40} start={0} end={0.35}>
+        <ScrollReveal translateY={18} start={0} end={0.35}>
           <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-20 md:mb-28">
             Location
           </h2>
@@ -16,7 +16,7 @@ export function LocationSection() {
         <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
           {/* Info */}
           <div className="flex-1">
-            <ScrollReveal translateY={30} start={0} end={0.35} offset={0.1}>
+            <ScrollReveal translateY={14} start={0} end={0.35} offset={0.1}>
               <h3 className="text-2xl md:text-3xl font-serif font-normal text-[#1A1A1A] mb-3">
                 Villa Castelbarco Pindemonte Rezzonico
               </h3>
@@ -30,7 +30,7 @@ export function LocationSection() {
           </div>
 
           {/* Map with decorative flower corners */}
-          <ScrollReveal className="flex-1 w-full" translateY={40} start={0} end={0.4} offset={0.1} effect="slide">
+          <ScrollReveal className="flex-1 w-full" translateY={18} start={0} end={0.4} offset={0.1} effect="slide">
             <div className="relative">
               {/* Decorative flower SVGs overlapping the map corners */}
               {/* Top-left */}

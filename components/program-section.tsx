@@ -17,7 +17,7 @@ export function ProgramSection() {
 
         {/* Mobile: stacked layout */}
         <div className="md:hidden">
-          <ScrollReveal translateY={40} start={0} end={0.35}>
+          <ScrollReveal translateY={18} start={0} end={0.35}>
             <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-4">
               Il programma
             </h2>
@@ -34,7 +34,7 @@ export function ProgramSection() {
           {/* Left — sticky title */}
           <div className="md:w-[280px] lg:w-[320px] shrink-0">
             <div className="sticky top-[40vh]">
-              <ScrollReveal translateY={40} start={0} end={0.35}>
+              <ScrollReveal translateY={18} start={0} end={0.35}>
                 <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif mb-4">
                   Il programma
                 </h2>
@@ -66,7 +66,7 @@ function Timeline() {
         {timelineItems.map((item, i) => {
           const isLeft = i % 2 === 0
           return (
-            <ScrollReveal key={i} translateY={30} start={0} end={0.4} offset={0.1}>
+            <ScrollReveal key={i} translateY={14} start={0} end={0.4} offset={0.1}>
               <div className="relative grid grid-cols-[1fr_auto_1fr] items-start gap-x-4 md:gap-x-8">
                 {/* Left column */}
                 {isLeft ? (

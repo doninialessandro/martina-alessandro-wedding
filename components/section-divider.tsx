@@ -5,8 +5,9 @@ import { useScrollProgress } from "@/hooks/use-scroll-progress"
 export function SectionDivider() {
   const { ref, progress } = useScrollProgress(0.3)
 
-  // Ease-out cubic for a luxurious expansion
-  const eased = 1 - Math.pow(1 - Math.min(1, progress / 0.6), 3)
+  // Gentle ease-in-out for a soft expansion
+  const t = Math.min(1, progress / 0.7)
+  const eased = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2
   const width = eased * 64  // max 64px
   const opacity = eased
 

@@ -24,7 +24,7 @@ export function OurStorySection() {
 
         {/* Mobile: stacked layout */}
         <div className="md:hidden">
-          <ScrollReveal translateY={40} start={0} end={0.35}>
+          <ScrollReveal translateY={18} start={0} end={0.35}>
             <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-20">
               La nostra storia
             </h2>
@@ -33,17 +33,17 @@ export function OurStorySection() {
           <div className="flex flex-col gap-24">
             {storyBlocks.map((block, index) => (
               <div key={index}>
-                <ScrollReveal translateY={30} start={0} end={0.35} offset={0.1}>
+                <ScrollReveal translateY={14} start={0} end={0.35} offset={0.1}>
                   <h3 className="text-2xl font-serif font-normal text-[#1A1A1A] mb-4">
                     {block.title}
                   </h3>
                 </ScrollReveal>
-                <ScrollReveal translateY={30} start={0.05} end={0.4} offset={0.1}>
+                <ScrollReveal translateY={14} start={0.05} end={0.4} offset={0.1}>
                   <p className="text-base leading-relaxed font-serif text-[#4A4440] mb-8">
                     {block.body}
                   </p>
                 </ScrollReveal>
-                <ScrollReveal translateY={40} start={0} end={0.4} offset={0.1} effect="slide">
+                <ScrollReveal translateY={18} start={0} end={0.4} offset={0.1} effect="slide">
                   <div className="w-full aspect-[4/5] bg-[#F2F0EB] flex items-center justify-center">
                     <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif">
                       Foto {index + 1}
@@ -60,7 +60,7 @@ export function OurStorySection() {
           {/* Left — sticky title */}
           <div className="md:w-[280px] lg:w-[320px] shrink-0">
             <div className="sticky top-[40vh]">
-              <ScrollReveal translateY={40} start={0} end={0.35}>
+              <ScrollReveal translateY={18} start={0} end={0.35}>
                 <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif mb-4">
                   La nostra storia
                 </h2>
@@ -76,18 +76,18 @@ export function OurStorySection() {
             {storyBlocks.map((block, index) => (
               <div key={index} className="flex flex-col gap-8">
                 <div>
-                  <ScrollReveal translateY={30} start={0} end={0.35} offset={0.1}>
+                  <ScrollReveal translateY={14} start={0} end={0.35} offset={0.1}>
                     <h3 className="text-2xl md:text-3xl font-serif font-normal text-[#1A1A1A] mb-4">
                       {block.title}
                     </h3>
                   </ScrollReveal>
-                  <ScrollReveal translateY={30} start={0.05} end={0.4} offset={0.1}>
+                  <ScrollReveal translateY={14} start={0.05} end={0.4} offset={0.1}>
                     <p className="text-base md:text-lg leading-relaxed font-serif text-[#4A4440]">
                       {block.body}
                     </p>
                   </ScrollReveal>
                 </div>
-                <ScrollReveal translateY={40} start={0} end={0.4} offset={0.1} effect="slide">
+                <ScrollReveal translateY={18} start={0} end={0.4} offset={0.1} effect="slide">
                   <div className="w-full aspect-[3/4] bg-[#F2F0EB] flex items-center justify-center">
                     <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif">
                       Foto {index + 1}

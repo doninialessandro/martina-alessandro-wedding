@@ -16,14 +16,14 @@ export function RsvpSection() {
     <section className="py-24 md:py-40 px-8 sm:px-12 md:px-16">
       <div className="max-w-[480px] mx-auto">
 
-        <ScrollReveal translateY={40} start={0} end={0.35}>
+        <ScrollReveal translateY={18} start={0} end={0.35}>
           <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-20 md:mb-28">
             RSVP
           </h2>
         </ScrollReveal>
 
         {submitted ? (
-          <ScrollReveal translateY={20} start={0} end={0.3} effect="slide">
+          <ScrollReveal translateY={10} start={0} end={0.3} effect="slide">
             <div className="text-center">
               <p className="text-xl font-serif text-[#1A1A1A] mb-2">Grazie!</p>
               <p className="text-base font-serif text-[#4A4440]">
@@ -32,7 +32,7 @@ export function RsvpSection() {
             </div>
           </ScrollReveal>
         ) : (
-          <ScrollReveal translateY={30} start={0} end={0.4} offset={0.1}>
+          <ScrollReveal translateY={14} start={0} end={0.4} offset={0.1}>
             <form onSubmit={handleSubmit} className="flex flex-col gap-10">
 
               {/* Nome e Cognome */}

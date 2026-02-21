@@ -45,8 +45,8 @@ export function HeroSection() {
         {/* Desktop: side-by-side row */}
         <div className="hidden md:flex items-center justify-center gap-12 lg:gap-16">
           <h1
-            className={`font-serif text-[#1A1A1A] uppercase tracking-[0.2em] text-xl lg:text-2xl xl:text-3xl transition-all duration-[1400ms] ease-out ${
-              loaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+            className={`font-serif text-[#1A1A1A] uppercase tracking-[0.2em] text-xl lg:text-2xl xl:text-3xl transition-all duration-[2000ms] ease-in-out ${
+              loaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
             }`}
             style={{ fontWeight: 400, lineHeight: 1.1, textAlign: "right", flex: "1 1 0%" }}
           >
@@ -54,7 +54,7 @@ export function HeroSection() {
           </h1>
 
           <div
-            className={`shrink-0 transition-opacity duration-[2000ms] ease-out ${
+            className={`shrink-0 transition-opacity duration-[2800ms] ease-in-out ${
               loaded ? "opacity-100" : "opacity-0"
             }`}
           >
@@ -62,8 +62,8 @@ export function HeroSection() {
           </div>
 
           <h1
-            className={`font-serif text-[#1A1A1A] uppercase tracking-[0.2em] text-xl lg:text-2xl xl:text-3xl transition-all duration-[1400ms] ease-out delay-200 ${
-              loaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
+            className={`font-serif text-[#1A1A1A] uppercase tracking-[0.2em] text-xl lg:text-2xl xl:text-3xl transition-all duration-[2000ms] ease-in-out delay-300 ${
+              loaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
             }`}
             style={{ fontWeight: 400, lineHeight: 1.1, textAlign: "left", flex: "1 1 0%" }}
           >
@@ -74,7 +74,7 @@ export function HeroSection() {
         {/* Mobile: flower on top, names stacked below */}
         <div className="flex md:hidden flex-col items-center gap-10 w-full">
           <div
-            className={`transition-opacity duration-[2000ms] ease-out ${
+            className={`transition-opacity duration-[2800ms] ease-in-out ${
               loaded ? "opacity-100" : "opacity-0"
             }`}
           >
@@ -82,8 +82,8 @@ export function HeroSection() {
           </div>
 
           <h1
-            className={`font-serif text-[#1A1A1A] uppercase tracking-[0.2em] text-xl text-center transition-all duration-[1400ms] ease-out delay-300 ${
-              loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            className={`font-serif text-[#1A1A1A] uppercase tracking-[0.2em] text-xl text-center transition-all duration-[2000ms] ease-in-out delay-400 ${
+              loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
             }`}
             style={{ fontWeight: 400, lineHeight: 1.4 }}
           >
@@ -95,7 +95,7 @@ export function HeroSection() {
 
       {/* Countdown — bottom-right, small and light */}
       <div
-        className={`absolute bottom-8 right-8 sm:bottom-10 sm:right-10 md:bottom-12 md:right-12 flex flex-col items-start transition-opacity duration-[2000ms] ease-out delay-500 ${
+        className={`absolute bottom-8 right-8 sm:bottom-10 sm:right-10 md:bottom-12 md:right-12 flex flex-col items-start transition-opacity duration-[2800ms] ease-in-out delay-700 ${
           loaded ? "opacity-100" : "opacity-0"
         }`}
       >

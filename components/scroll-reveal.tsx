@@ -26,8 +26,8 @@ export function ScrollReveal({
   children,
   className = "",
   start = 0,
-  end = 0.4,
-  translateY = 50,
+  end = 0.5,
+  translateY = 24,
   translateX = 0,
   offset = 0.08,
   scaleFrom = 1,
@@ -37,8 +37,10 @@ export function ScrollReveal({
   const { ref, progress } = useScrollProgress(offset)
 
   const local = Math.min(1, Math.max(0, (progress - start) / (end - start)))
-  // Smooth ease-out quartic
-  const eased = 1 - Math.pow(1 - local, 4)
+  // Gentle ease-in-out cubic
+  const eased = local < 0.5
+    ? 4 * local * local * local
+    : 1 - Math.pow(-2 * local + 2, 3) / 2
 
   const y = translateY * (1 - eased)
   const x = translateX * (1 - eased)
@@ -108,11 +110,13 @@ export function WordReveal({
   return (
     <p ref={ref} className={className} style={{ willChange: "color" }}>
       {words.map((word, i) => {
-        const wordStart = (i / words.length) * 0.55
-        const wordEnd = wordStart + 0.3
+        const wordStart = (i / words.length) * 0.5
+        const wordEnd = wordStart + 0.4
         const wordProgress = Math.min(1, Math.max(0, (progress - wordStart) / (wordEnd - wordStart)))
-        // Ease-out quad
-        const eased = 1 - Math.pow(1 - wordProgress, 2)
+        // Gentle ease-in-out quad
+        const eased = wordProgress < 0.5
+          ? 2 * wordProgress * wordProgress
+          : 1 - Math.pow(-2 * wordProgress + 2, 2) / 2
 
         const color = eased <= 0.01
           ? mutedColor
@@ -123,7 +127,7 @@ export function WordReveal({
         return (
           <span
             key={i}
-            style={{ color, transition: "color 0.12s ease-out" }}
+            style={{ color, transition: "color 0.35s ease-in-out" }}
           >
             {word}{" "}
           </span>
@@ -170,12 +174,15 @@ export function ParallaxFade({
 }: ParallaxFadeProps) {
   const { ref, progress } = useScrollProgress(0)
 
-  const fadeStart = 0.4
+  const fadeStart = 0.45
   const fadeProg = Math.min(1, Math.max(0, (progress - fadeStart) / (1 - fadeStart)))
-  const y = -fadeProg * 60 * speed
-  const s = 1 - fadeProg * 0.05
-  // Use opacity only for exit — no clip-path so the flower is never cropped
-  const opacity = 1 - fadeProg * 0.8
+  // Gentle ease-in-out
+  const easedFade = fadeProg < 0.5
+    ? 2 * fadeProg * fadeProg
+    : 1 - Math.pow(-2 * fadeProg + 2, 2) / 2
+  const y = -easedFade * 30 * speed
+  const s = 1 - easedFade * 0.03
+  const opacity = 1 - easedFade * 0.6
 
   return (
     <div
