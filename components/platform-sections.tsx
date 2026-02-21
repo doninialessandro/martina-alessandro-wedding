@@ -51,7 +51,7 @@ function PlatformCard({ name, subtitle, description, align = "left" }: PlatformC
 export function PlatformSections() {
   return (
     <section id="platform" className="relative">
-      <ThreadLine />
+      <ThreadLine height={90} />
 
       <PlatformCard
         name="Socrates"
@@ -60,7 +60,7 @@ export function PlatformSections() {
         align="left"
       />
 
-      <ThreadLine />
+      <ThreadLine height={70} />
 
       <PlatformCard
         name="Demosthenes"
@@ -69,7 +69,7 @@ export function PlatformSections() {
         align="right"
       />
 
-      <ThreadLine />
+      <ThreadLine height={80} />
 
       <PlatformCard
         name="The Dioscuri"
@@ -78,7 +78,7 @@ export function PlatformSections() {
         align="left"
       />
 
-      <ThreadLine />
+      <ThreadLine height={70} />
 
       <PlatformCard
         name="Thamyr"
@@ -87,7 +87,7 @@ export function PlatformSections() {
         align="right"
       />
 
-      <ThreadLine />
+      <ThreadLine height={80} />
 
       <PlatformCard
         name="Theano"
@@ -96,7 +96,7 @@ export function PlatformSections() {
         align="left"
       />
 
-      <ThreadLine />
+      <ThreadLine height={90} />
 
       <CallimacusSection />
     </section>

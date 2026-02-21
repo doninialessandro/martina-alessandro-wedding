@@ -16,29 +16,23 @@ export default function Home() {
       <SiteHeader />
       <HeroSection />
 
-      {/* Continuous thread flowing through sections */}
-      <ThreadLine />
+      <ThreadLine height={100} />
       <BeginningsSection />
-      <ThreadLine />
+      <ThreadLine height={80} />
       <CreativitySection />
-      <ThreadLine />
+      <ThreadLine height={80} />
       <NewGenerationSection />
-      <ThreadLine />
+      <ThreadLine height={100} />
 
-      {/* Platform components */}
       <PlatformSections />
 
-      {/* First project */}
       <FirstProjectSection />
 
-      {/* Contact */}
-      <ThreadLine />
+      <ThreadLine height={80} />
       <ContactSection />
 
-      {/* Share */}
       <ShareSection />
 
-      {/* Footer */}
       <SiteFooter />
     </main>
   )

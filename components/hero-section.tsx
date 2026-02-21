@@ -12,112 +12,111 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
       <div className="absolute inset-0 bg-[#FAF9F6]" />
 
-      <div className="relative z-10 flex flex-col items-center w-full max-w-[1200px] mx-auto">
+      {/* ——— Main hero content ——— */}
+      <div className="relative z-10 flex flex-col items-center w-full">
 
-        {/* ——— MOBILE layout: flower above, stacked title ——— */}
-        <div className="flex flex-col items-center md:hidden">
-          {/* Flower */}
-          <div
-            className={`mb-10 transition-opacity duration-[1500ms] ease-out ${
-              loaded ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <MonolineFlower size={120} animate={true} showThread={false} />
-          </div>
+        {/* ——— DESKTOP: Human — Flower — AI in a single row ——— */}
+        <div className="hidden md:flex items-center justify-center w-full px-10 lg:px-16">
 
-          {/* Title stacked */}
-          <h1
-            className={`font-serif text-[#1A1A1A] text-center text-[2.5rem] leading-[1.05] tracking-[-0.01em] transition-all duration-1000 delay-300 ${
-              loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
-            style={{ fontWeight: 400 }}
-          >
-            Human<br />
-            <span className="italic">Artificial</span><br />
-            Intelligence
-          </h1>
-        </div>
-
-        {/* ——— DESKTOP layout: "Human" — flower — "Artificial Intelligence" inline ——— */}
-        <div className="hidden md:flex items-center justify-center w-full">
-
-          {/* "Human" — right-aligned toward center */}
-          <div className="flex-1 flex justify-end">
-            <h1
-              className={`font-serif text-[#1A1A1A] text-right text-6xl lg:text-[5.5rem] xl:text-[6.5rem] tracking-[-0.02em] transition-all duration-1000 delay-200 ${
-                loaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-6"
+          {/* "Human" — pushed toward the outer left */}
+          <div className="flex-1 flex justify-end pr-10 lg:pr-16 xl:pr-20">
+            <span
+              className={`font-serif text-[#1A1A1A] text-lg lg:text-xl xl:text-2xl tracking-[0.15em] uppercase transition-all duration-1000 delay-300 ${
+                loaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
               }`}
               style={{ fontWeight: 400, lineHeight: 1 }}
             >
               Human
-            </h1>
+            </span>
           </div>
 
-          {/* Flower — fixed center column */}
+          {/* Flower — large, centered */}
           <div
-            className={`mx-8 lg:mx-12 shrink-0 transition-opacity duration-[1500ms] ease-out ${
+            className={`shrink-0 transition-opacity duration-[1800ms] ease-out ${
               loaded ? "opacity-100" : "opacity-0"
             }`}
           >
-            <MonolineFlower size={130} animate={true} showThread={false} />
+            <MonolineFlower size={220} animate={true} showThread={false} />
           </div>
 
-          {/* "Artificial Intelligence" — left-aligned from center, stacked */}
-          <div className="flex-1 flex justify-start">
-            <h1
-              className={`font-serif text-[#1A1A1A] text-left text-6xl lg:text-[5.5rem] xl:text-[6.5rem] tracking-[-0.02em] transition-all duration-1000 delay-[400ms] ${
-                loaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-6"
+          {/* "AI" — pushed toward the outer right */}
+          <div className="flex-1 flex justify-start pl-10 lg:pl-16 xl:pl-20">
+            <span
+              className={`font-serif text-[#1A1A1A] text-lg lg:text-xl xl:text-2xl tracking-[0.15em] uppercase transition-all duration-1000 delay-500 ${
+                loaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
               }`}
               style={{ fontWeight: 400, lineHeight: 1 }}
             >
-              Artificial<br />Intelligence
-            </h1>
+              AI
+            </span>
           </div>
         </div>
 
-        {/* Subtitle */}
-        <p
-          className={`mt-10 md:mt-14 text-base md:text-lg text-[#6B6B6B] font-serif italic tracking-[0.04em] text-center transition-all duration-1000 delay-700 ${
-            loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
-        >
-          Our platform for a new generation of websites
-        </p>
+        {/* ——— MOBILE: stacked — flower on top, words below ——— */}
+        <div className="flex flex-col items-center md:hidden px-6">
+
+          {/* Flower — large and prominent */}
+          <div
+            className={`mb-10 transition-opacity duration-[1800ms] ease-out ${
+              loaded ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <MonolineFlower size={160} animate={true} showThread={false} />
+          </div>
+
+          {/* "Human" left, "AI" right */}
+          <div className="flex items-center justify-center w-full gap-12">
+            <span
+              className={`font-serif text-[#1A1A1A] text-base tracking-[0.15em] uppercase transition-all duration-1000 delay-300 ${
+                loaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-6"
+              }`}
+              style={{ fontWeight: 400 }}
+            >
+              Human
+            </span>
+            <span
+              className={`font-serif text-[#1A1A1A] text-base tracking-[0.15em] uppercase transition-all duration-1000 delay-500 ${
+                loaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-6"
+              }`}
+              style={{ fontWeight: 400 }}
+            >
+              AI
+            </span>
+          </div>
+        </div>
       </div>
 
-      {/* Thread dropping from center of hero into page below */}
+      {/* ——— Thread line extending down from hero ——— */}
       <div
-        className="relative z-10 mt-12"
+        className="relative z-10 mt-16 md:mt-20 flex justify-center"
         style={{
           opacity: loaded ? 1 : 0,
-          transition: "opacity 1.5s ease-out 2s",
+          transition: "opacity 1s ease-out 2.5s",
         }}
       >
-        <div
-          className="w-px mx-auto bg-[#E0DCD5] origin-top"
-          style={{
-            height: 80,
-            transform: loaded ? "scaleY(1)" : "scaleY(0)",
-            transition: "transform 2s cubic-bezier(0.33,1,0.68,1) 2.2s",
-          }}
-        />
-      </div>
-
-      {/* Scroll indicator */}
-      <div
-        className={`absolute bottom-10 left-1/2 -translate-x-1/2 z-10 transition-all duration-1000 delay-[1400ms] ${
-          loaded ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        <div className="flex flex-col items-center gap-3">
-          <span className="text-[10px] tracking-[0.3em] uppercase text-[#6B6B6B] font-serif">
-            Scroll
-          </span>
-          <div className="w-px h-8 bg-[#C4A882] opacity-60" />
-        </div>
+        <svg
+          width="1"
+          height="120"
+          viewBox="0 0 1 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="overflow-visible"
+        >
+          <line
+            x1="0.5" y1="0" x2="0.5" y2="120"
+            stroke="#D5CDC2"
+            strokeWidth="1"
+            strokeLinecap="round"
+            style={{
+              strokeDasharray: 120,
+              strokeDashoffset: loaded ? 0 : 120,
+              transition: "stroke-dashoffset 2s cubic-bezier(0.33,1,0.68,1) 2.8s",
+            }}
+          />
+        </svg>
       </div>
     </section>
   )
