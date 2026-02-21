@@ -14,13 +14,11 @@ export function FirstProjectSection() {
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         {/* Small flower accent */}
         <div
-          className={`flex justify-center mb-12 transition-all duration-[1500ms] ease-out ${
-            isInView ? "opacity-100 scale-100" : "opacity-0 scale-[0.85]"
+          className={`flex justify-center mb-12 transition-opacity duration-[1500ms] ease-out ${
+            isInView ? "opacity-100" : "opacity-0"
           }`}
         >
-          <div className="animate-spin-slow">
-            <MonolineFlower size={80} animate={true} color="#C4A882" />
-          </div>
+          <MonolineFlower size={80} animate={true} />
         </div>
 
         <h3
