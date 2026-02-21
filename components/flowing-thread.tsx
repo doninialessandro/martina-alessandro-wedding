@@ -70,10 +70,10 @@ export function FlowingThread() {
     Only C (cubic bezier) commands — no straight lines.
   */
   const d = [
-    // Start from center at hero bottom — directly below the flower stem tip
-    "M 200 95",
-    // Continue straight down briefly, same direction as stem
-    "C 200 100, 200 105, 202 115",
+    // Start from center just below the hero fold
+    "M 200 100",
+    // Continue down gently
+    "C 200 105, 200 110, 202 120",
     // Gentle drift right through first story section
     "C 206 135, 250 155, 275 175",
     // Sweep left through creativity section
