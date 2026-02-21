@@ -1,57 +1,47 @@
 "use client"
 
-import { useInView } from "@/hooks/use-in-view"
+import { ScrollReveal } from "./scroll-reveal"
 import { MonolineFlower } from "./monoline-flower"
 
 export function FirstProjectSection() {
-  const { ref, isInView } = useInView()
-
   return (
-    <section ref={ref} className="py-24 md:py-40 px-8 sm:px-12 md:px-16 relative overflow-hidden">
-      {/* Background accent */}
+    <section className="py-28 md:py-44 px-8 sm:px-12 md:px-16 relative overflow-hidden">
       <div className="absolute inset-0 bg-[#F0EDE8]/40" />
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
-        {/* Small flower accent */}
-        <div
-          className={`flex justify-center mb-12 transition-opacity duration-[1000ms] ease-out ${
-            isInView ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <MonolineFlower size={80} animate={true} />
-        </div>
+        <ScrollReveal translateY={0} scaleFrom={0.85} start={0} end={0.35}>
+          <div className="flex justify-center mb-12">
+            <MonolineFlower size={80} animate={true} />
+          </div>
+        </ScrollReveal>
 
-        <h3
-          className={`text-sm tracking-[0.3em] uppercase text-[#6B6B6B] font-serif mb-6 transition-all duration-[1000ms] ease-out ${
-            isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
-          Our first project
-        </h3>
+        <ScrollReveal translateY={40} start={0.05} end={0.35}>
+          <h3 className="text-sm tracking-[0.3em] uppercase text-[#6B6B6B] font-serif mb-6">
+            Our first project
+          </h3>
+        </ScrollReveal>
 
-        <a
-          href="https://brunellocucinelli.ai"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`inline-block text-2xl md:text-4xl font-serif text-[#1A1A1A] border-b border-[#C4A882] pb-1 transition-all duration-[1000ms] ease-out delay-200 hover:opacity-60 ${
-            isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
-          brunellocucinelli.ai
-        </a>
-
-        <div
-          className={`mt-8 transition-all duration-[1000ms] ease-out delay-[400ms] ${
-            isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
+        <ScrollReveal translateY={50} start={0.1} end={0.4}>
           <a
-            href="#"
-            className="text-sm tracking-[0.15em] uppercase text-[#6B6B6B] font-serif border-b border-[#E0DCD5] pb-0.5 hover:text-[#1A1A1A] hover:border-[#C4A882] transition-all"
+            href="https://brunellocucinelli.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block text-2xl md:text-4xl font-serif text-[#1A1A1A] border-b border-[#C4A882] pb-1 hover:opacity-60 transition-opacity"
           >
-            Press release
+            brunellocucinelli.ai
           </a>
-        </div>
+        </ScrollReveal>
+
+        <ScrollReveal translateY={40} start={0.15} end={0.45}>
+          <div className="mt-8">
+            <a
+              href="#"
+              className="text-sm tracking-[0.15em] uppercase text-[#6B6B6B] font-serif border-b border-[#E0DCD5] pb-0.5 hover:text-[#1A1A1A] hover:border-[#C4A882] transition-all"
+            >
+              Press release
+            </a>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   )
