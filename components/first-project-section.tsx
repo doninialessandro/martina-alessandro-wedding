@@ -5,11 +5,11 @@ import { MonolineFlower } from "./monoline-flower"
 
 export function FirstProjectSection() {
   return (
-    <section className="py-28 md:py-44 px-8 sm:px-12 md:px-16 relative overflow-hidden">
+    <section className="py-28 md:py-44 px-8 sm:px-12 md:px-16 relative">
       <div className="absolute inset-0 bg-[#F0EDE8]/40" />
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
-        <ScrollReveal translateY={0} scaleFrom={0.85} start={0} end={0.35}>
+        <ScrollReveal translateY={30} scaleFrom={0.9} start={0} end={0.35} effect="slide">
           <div className="flex justify-center mb-12">
             <MonolineFlower size={80} animate={true} />
           </div>

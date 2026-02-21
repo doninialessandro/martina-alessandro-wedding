@@ -18,6 +18,8 @@ interface ScrollRevealProps {
   scaleFrom?: number
   offset?: number
   rotate?: number
+  /** "clip" uses clip-path (great for text); "slide" uses only transform (never crops content) */
+  effect?: "clip" | "slide"
 }
 
 export function ScrollReveal({
@@ -30,6 +32,7 @@ export function ScrollReveal({
   offset = 0.08,
   scaleFrom = 1,
   rotate = 0,
+  effect = "clip",
 }: ScrollRevealProps) {
   const { ref, progress } = useScrollProgress(offset)
 
@@ -42,9 +45,25 @@ export function ScrollReveal({
   const s = scaleFrom + (1 - scaleFrom) * eased
   const r = rotate * (1 - eased)
 
+  if (effect === "slide") {
+    // No clip-path — content is always fully visible, just slides into place
+    return (
+      <div
+        ref={ref}
+        className={className}
+        style={{
+          opacity: eased,
+          transform: `translate3d(${x}px, ${y}px, 0) scale(${s}) rotate(${r}deg)`,
+          willChange: "opacity, transform",
+        }}
+      >
+        {children}
+      </div>
+    )
+  }
+
   // clip-path: reveal from bottom to top
-  // At eased=0 the clip hides the element; at eased=1 fully visible
-  const clipTop = 100 * (1 - eased)         // 100 -> 0
+  const clipTop = 100 * (1 - eased)
   const clip = `inset(${clipTop}% 0% 0% 0%)`
 
   return (
@@ -151,21 +170,21 @@ export function ParallaxFade({
 }: ParallaxFadeProps) {
   const { ref, progress } = useScrollProgress(0)
 
-  const fadeStart = 0.35
+  const fadeStart = 0.4
   const fadeProg = Math.min(1, Math.max(0, (progress - fadeStart) / (1 - fadeStart)))
-  const y = -fadeProg * 80 * speed
-  const s = 1 - fadeProg * 0.08
-  // Clip from top as user scrolls away
-  const clipBottom = fadeProg * 40
+  const y = -fadeProg * 60 * speed
+  const s = 1 - fadeProg * 0.05
+  // Use opacity only for exit — no clip-path so the flower is never cropped
+  const opacity = 1 - fadeProg * 0.8
 
   return (
     <div
       ref={ref}
       className={className}
       style={{
-        clipPath: `inset(0% 0% ${clipBottom}% 0%)`,
+        opacity,
         transform: `translate3d(0, ${y}px, 0) scale(${s})`,
-        willChange: "clip-path, transform",
+        willChange: "opacity, transform",
       }}
     >
       {children}

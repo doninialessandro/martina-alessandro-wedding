@@ -137,9 +137,10 @@ export function MonolineFlower({
         ref={svgRef}
         width={size}
         height={size}
-        viewBox="0 0 200 205"
+        viewBox="-6 -6 212 217"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        overflow="visible"
         aria-hidden="true"
       >
         <defs>
