@@ -117,8 +117,8 @@ export function MonolineFlower({
       case "stem": return "url(#flowerStemGrad)"
       case "center": return "url(#flowerCenterGrad)"
       case "petal": return "url(#flowerPetalGrad)"
-      case "detail": return "#9A8A70"
-      default: return "#6B6B6B"
+      case "detail": return "#5C4A2E"
+      default: return "#3D3225"
     }
   }
 
@@ -145,20 +145,20 @@ export function MonolineFlower({
       >
         <defs>
           <linearGradient id="flowerStemGrad" x1="50%" y1="100%" x2="50%" y2="0%">
-            <stop offset="0%" stopColor="#7A6B55" />
-            <stop offset="50%" stopColor="#6B5B45" />
-            <stop offset="100%" stopColor="#5C4E3C" />
+            <stop offset="0%" stopColor="#4A3D2E" />
+            <stop offset="50%" stopColor="#3D3225" />
+            <stop offset="100%" stopColor="#2E2518" />
           </linearGradient>
           <radialGradient id="flowerCenterGrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#8B7355" />
-            <stop offset="50%" stopColor="#7A6545" />
-            <stop offset="100%" stopColor="#5C4E3C" />
+            <stop offset="0%" stopColor="#5C4A2E" />
+            <stop offset="50%" stopColor="#4A3B22" />
+            <stop offset="100%" stopColor="#3A2E18" />
           </radialGradient>
           <linearGradient id="flowerPetalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#D4B896" />
-            <stop offset="35%" stopColor="#C4A882" />
-            <stop offset="70%" stopColor="#B09570" />
-            <stop offset="100%" stopColor="#8B7355" />
+            <stop offset="0%" stopColor="#A07840" />
+            <stop offset="35%" stopColor="#8B6530" />
+            <stop offset="70%" stopColor="#7A5528" />
+            <stop offset="100%" stopColor="#5C4020" />
           </linearGradient>
         </defs>
 

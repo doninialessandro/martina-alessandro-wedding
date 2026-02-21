@@ -24,7 +24,7 @@ export function ContactSection() {
           </h2>
         </ScrollReveal>
         <ScrollReveal translateY={40} start={0.05} end={0.35}>
-          <p className="text-base md:text-lg text-[#6B6B6B] font-serif text-center mb-14">
+          <p className="text-base md:text-lg text-[#4A4440] font-serif text-center mb-14">
             For more information or inquiries, please feel free to contact us.
           </p>
         </ScrollReveal>
@@ -35,7 +35,7 @@ export function ContactSection() {
               <h3 className="text-2xl font-serif text-[#1A1A1A] mb-3">
                 Thank you for reaching out!
               </h3>
-              <p className="text-base text-[#6B6B6B] font-serif">
+              <p className="text-base text-[#4A4440] font-serif">
                 Our team will be in contact with you shortly.
               </p>
             </div>
@@ -45,7 +45,7 @@ export function ContactSection() {
             <form onSubmit={handleSubmit} className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <label htmlFor="firstName" className="block text-xs tracking-[0.2em] uppercase text-[#6B6B6B] font-serif mb-3">
+                  <label htmlFor="firstName" className="block text-xs tracking-[0.2em] uppercase text-[#4A4440] font-serif mb-3">
                     First name
                   </label>
                   <input
@@ -57,7 +57,7 @@ export function ContactSection() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="lastName" className="block text-xs tracking-[0.2em] uppercase text-[#6B6B6B] font-serif mb-3">
+                  <label htmlFor="lastName" className="block text-xs tracking-[0.2em] uppercase text-[#4A4440] font-serif mb-3">
                     Last name
                   </label>
                   <input
@@ -71,7 +71,7 @@ export function ContactSection() {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-xs tracking-[0.2em] uppercase text-[#6B6B6B] font-serif mb-3">
+                <label htmlFor="email" className="block text-xs tracking-[0.2em] uppercase text-[#4A4440] font-serif mb-3">
                   Email
                 </label>
                 <input
@@ -84,7 +84,7 @@ export function ContactSection() {
               </div>
 
               <div>
-                <label htmlFor="organization" className="block text-xs tracking-[0.2em] uppercase text-[#6B6B6B] font-serif mb-3">
+                <label htmlFor="organization" className="block text-xs tracking-[0.2em] uppercase text-[#4A4440] font-serif mb-3">
                   Organization / Company / Institution
                 </label>
                 <input
@@ -96,7 +96,7 @@ export function ContactSection() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-xs tracking-[0.2em] uppercase text-[#6B6B6B] font-serif mb-3">
+                <label htmlFor="message" className="block text-xs tracking-[0.2em] uppercase text-[#4A4440] font-serif mb-3">
                   Message
                 </label>
                 <textarea
@@ -126,7 +126,7 @@ export function ContactSection() {
                     </svg>
                   )}
                 </button>
-                <label className="text-sm text-[#6B6B6B] font-serif leading-relaxed">
+                <label className="text-sm text-[#4A4440] font-serif leading-relaxed">
                   <span className="text-xs tracking-[0.15em] uppercase">Privacy</span>
                   <br />
                   By submitting this form, you agree to our{" "}

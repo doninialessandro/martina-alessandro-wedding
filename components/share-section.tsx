@@ -7,7 +7,7 @@ export function ShareSection() {
     <section className="py-16 md:py-24 px-8 sm:px-12 md:px-16">
       <ScrollReveal translateY={30} start={0} end={0.35}>
         <div className="max-w-2xl mx-auto text-center">
-          <h3 className="text-sm tracking-[0.3em] uppercase text-[#6B6B6B] font-serif mb-8">
+          <h3 className="text-sm tracking-[0.3em] uppercase text-[#4A4440] font-serif mb-8">
             Share
           </h3>
           <div className="flex items-center justify-center gap-10">

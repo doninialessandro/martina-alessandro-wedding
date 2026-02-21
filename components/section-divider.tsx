@@ -13,7 +13,7 @@ export function SectionDivider() {
   return (
     <div ref={ref} className="flex justify-center py-4">
       <div
-        className="h-px bg-[#D5CDC2]"
+        className="h-px bg-[#8A7E72]"
         style={{
           width: `${width}px`,
           opacity,

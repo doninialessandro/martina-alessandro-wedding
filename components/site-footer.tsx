@@ -29,28 +29,28 @@ export function SiteFooter() {
           <div className="flex flex-wrap items-center justify-center gap-8 mb-10">
             <button
               onClick={() => setPrivacyOpen(true)}
-              className="text-xs tracking-[0.15em] uppercase text-[#6B6B6B] font-serif hover:text-[#1A1A1A] transition-colors"
+              className="text-xs tracking-[0.15em] uppercase text-[#4A4440] font-serif hover:text-[#1A1A1A] transition-colors"
             >
               Privacy Policy
             </button>
             <span className="text-[#E0DCD5]">|</span>
             <button
               onClick={() => setLegalOpen(true)}
-              className="text-xs tracking-[0.15em] uppercase text-[#6B6B6B] font-serif hover:text-[#1A1A1A] transition-colors"
+              className="text-xs tracking-[0.15em] uppercase text-[#4A4440] font-serif hover:text-[#1A1A1A] transition-colors"
             >
               Legal
             </button>
             <span className="text-[#E0DCD5]">|</span>
             <a
               href="mailto:more@solomei.ai"
-              className="text-xs tracking-[0.15em] uppercase text-[#6B6B6B] font-serif hover:text-[#1A1A1A] transition-colors"
+              className="text-xs tracking-[0.15em] uppercase text-[#4A4440] font-serif hover:text-[#1A1A1A] transition-colors"
             >
               more@solomei.ai
             </a>
           </div>
 
           {/* Copyright */}
-          <p className="text-center text-xs text-[#6B6B6B] font-serif tracking-wide">
+          <p className="text-center text-xs text-[#4A4440] font-serif tracking-wide">
             Solomei AI S.r.l. — Piazzetta dei Sapienti 1, 06073 Solomeo, Perugia
           </p>
         </div>

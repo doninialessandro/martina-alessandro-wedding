@@ -16,7 +16,7 @@ export function FirstProjectSection() {
         </ScrollReveal>
 
         <ScrollReveal translateY={40} start={0.05} end={0.35}>
-          <h3 className="text-sm tracking-[0.3em] uppercase text-[#6B6B6B] font-serif mb-6">
+          <h3 className="text-sm tracking-[0.3em] uppercase text-[#4A4440] font-serif mb-6">
             Our first project
           </h3>
         </ScrollReveal>
@@ -36,7 +36,7 @@ export function FirstProjectSection() {
           <div className="mt-8">
             <a
               href="#"
-              className="text-sm tracking-[0.15em] uppercase text-[#6B6B6B] font-serif border-b border-[#E0DCD5] pb-0.5 hover:text-[#1A1A1A] hover:border-[#C4A882] transition-all"
+              className="text-sm tracking-[0.15em] uppercase text-[#4A4440] font-serif border-b border-[#E0DCD5] pb-0.5 hover:text-[#1A1A1A] hover:border-[#C4A882] transition-all"
             >
               Press release
             </a>
