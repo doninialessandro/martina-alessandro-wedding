@@ -18,18 +18,16 @@ export function HeroSection() {
 
       {/* Flower illustration replacing yarn ball */}
       <div
-        className={`relative z-10 mb-12 transition-all duration-[2000ms] ease-out ${
-          loaded ? "opacity-100 scale-100" : "opacity-0 scale-75"
+        className={`relative z-10 mb-12 transition-all duration-[1500ms] ease-out ${
+          loaded ? "opacity-100 scale-100" : "opacity-0 scale-[0.85]"
         }`}
       >
-        <div className="animate-float">
-          <div className="animate-spin-slow">
-            <MonolineFlower
-              size={180}
-              animate={true}
-              color="#1A1A1A"
-            />
-          </div>
+        <div className="animate-spin-slow">
+          <MonolineFlower
+            size={180}
+            animate={true}
+            color="#1A1A1A"
+          />
         </div>
       </div>
 

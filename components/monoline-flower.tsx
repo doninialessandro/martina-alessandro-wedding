@@ -24,9 +24,10 @@ export function MonolineFlower({
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true)
+          observer.disconnect()
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.3 }
     )
     if (svgRef.current) observer.observe(svgRef.current)
     return () => observer.disconnect()
@@ -54,7 +55,7 @@ export function MonolineFlower({
         style={{
           strokeDasharray: 75.4,
           strokeDashoffset: isVisible ? 0 : 75.4,
-          transition: "stroke-dashoffset 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+          transition: "stroke-dashoffset 0.8s cubic-bezier(0.33, 1, 0.68, 1)",
         }}
       />
       {/* Petals - 6 petals arranged radially */}
@@ -77,7 +78,7 @@ export function MonolineFlower({
             style={{
               strokeDasharray: pathLength,
               strokeDashoffset: isVisible ? 0 : pathLength,
-              transition: `stroke-dashoffset 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${0.15 * (i + 1)}s`,
+              transition: `stroke-dashoffset 0.6s cubic-bezier(0.33, 1, 0.68, 1) ${0.06 * (i + 1)}s`,
             }}
           />
         )
@@ -103,7 +104,7 @@ export function MonolineFlower({
             style={{
               strokeDasharray: pathLength,
               strokeDashoffset: isVisible ? 0 : pathLength,
-              transition: `stroke-dashoffset 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${0.1 * (i + 1) + 0.8}s`,
+              transition: `stroke-dashoffset 0.5s cubic-bezier(0.33, 1, 0.68, 1) ${0.04 * (i + 1) + 0.4}s`,
             }}
           />
         )
@@ -118,7 +119,7 @@ export function MonolineFlower({
         style={{
           strokeDasharray: 85,
           strokeDashoffset: isVisible ? 0 : 85,
-          transition: "stroke-dashoffset 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.4s",
+          transition: "stroke-dashoffset 0.6s cubic-bezier(0.33, 1, 0.68, 1) 0.7s",
         }}
       />
       {/* Leaf left */}
@@ -131,7 +132,7 @@ export function MonolineFlower({
         style={{
           strokeDasharray: 65,
           strokeDashoffset: isVisible ? 0 : 65,
-          transition: "stroke-dashoffset 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.8s",
+          transition: "stroke-dashoffset 0.5s cubic-bezier(0.33, 1, 0.68, 1) 0.9s",
         }}
       />
       {/* Leaf right */}
@@ -144,7 +145,7 @@ export function MonolineFlower({
         style={{
           strokeDasharray: 65,
           strokeDashoffset: isVisible ? 0 : 65,
-          transition: "stroke-dashoffset 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 2s",
+          transition: "stroke-dashoffset 0.5s cubic-bezier(0.33, 1, 0.68, 1) 1s",
         }}
       />
     </svg>
