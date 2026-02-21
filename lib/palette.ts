@@ -29,8 +29,8 @@ export const palette = {
   peachLight: "#F5D5C5",
 
   /** Cream / ivory – page background, panels, cards */
-  cream: "#FAF8F2",
-  creamDark: "#F3F0E8",
+  cream: "#FDFCFA",
+  creamDark: "#F8F7F4",
 
   /** Neutrals – text, borders, dividers */
   text: "#1A1A1A",

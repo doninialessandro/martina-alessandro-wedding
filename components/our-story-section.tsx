@@ -44,7 +44,7 @@ export function OurStorySection() {
                   </p>
                 </ScrollReveal>
                 <ScrollReveal translateY={40} start={0} end={0.4} offset={0.1} effect="slide">
-                  <div className="w-full aspect-[4/5] bg-[#EDE8DA] flex items-center justify-center">
+                  <div className="w-full aspect-[4/5] bg-[#F2F0EB] flex items-center justify-center">
                     <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif">
                       Foto {index + 1}
                     </span>
@@ -88,7 +88,7 @@ export function OurStorySection() {
                   </ScrollReveal>
                 </div>
                 <ScrollReveal translateY={40} start={0} end={0.4} offset={0.1} effect="slide">
-                  <div className="w-full aspect-[3/4] bg-[#EDE8DA] flex items-center justify-center">
+                  <div className="w-full aspect-[3/4] bg-[#F2F0EB] flex items-center justify-center">
                     <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif">
                       Foto {index + 1}
                     </span>

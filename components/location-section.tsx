@@ -76,7 +76,7 @@ export function LocationSection() {
                 <path d="M39 39 C35 37,33 35,30 30 C35 33,37 35,39 39Z" stroke="#8E9E8C" strokeWidth="0.8" fill="none" />
               </svg>
 
-              <div className="w-full aspect-[4/3] bg-[#EDE8DA] overflow-hidden rounded-2xl">
+              <div className="w-full aspect-[4/3] bg-[#F2F0EB] overflow-hidden rounded-2xl">
                 <iframe
                   title="Villa Castelbarco Pindemonte Rezzonico"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2786.654!2d9.4435!3d45.7120!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786be2d1a3c7b5d%3A0x1234567890abcdef!2sVilla+Castelbarco+Pindemonte+Rezzonico!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit"

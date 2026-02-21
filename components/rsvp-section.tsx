@@ -87,7 +87,7 @@ export function RsvpSection() {
                     onClick={() => setAttending(true)}
                     className={`px-6 py-2 text-sm font-serif tracking-[0.15em] uppercase border transition-colors ${
                       attending === true
-                        ? "border-[#8E9E8C] bg-[#8E9E8C] text-[#FAF8F2]"
+                        ? "border-[#8E9E8C] bg-[#8E9E8C] text-[#FDFCFA]"
                         : "border-[#D5CCBC] text-[#4A4440] hover:border-[#8E9E8C]"
                     }`}
                   >
@@ -98,7 +98,7 @@ export function RsvpSection() {
                     onClick={() => setAttending(false)}
                     className={`px-6 py-2 text-sm font-serif tracking-[0.15em] uppercase border transition-colors ${
                       attending === false
-                        ? "border-[#8E9E8C] bg-[#8E9E8C] text-[#FAF8F2]"
+                        ? "border-[#8E9E8C] bg-[#8E9E8C] text-[#FDFCFA]"
                         : "border-[#D5CCBC] text-[#4A4440] hover:border-[#8E9E8C]"
                     }`}
                   >
@@ -110,7 +110,7 @@ export function RsvpSection() {
               {/* Submit */}
               <button
                 type="submit"
-                className="mt-4 self-start px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase border border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#FAF8F2] transition-colors"
+                className="mt-4 self-start px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase border border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#FDFCFA] transition-colors"
               >
                 Conferma
               </button>
