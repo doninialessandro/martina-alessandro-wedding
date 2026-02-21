@@ -45,10 +45,10 @@ export function HeroSection() {
         {/* Desktop: side-by-side row */}
         <div className="hidden md:flex items-center justify-center gap-12 lg:gap-16">
           <h1
-            className={`font-serif text-[#1A1A1A] uppercase tracking-[0.2em] text-xl lg:text-2xl xl:text-3xl transition-all duration-[2000ms] ease-in-out ${
+            className={`text-[#0E0E0E] text-3xl lg:text-4xl xl:text-5xl transition-all duration-[2000ms] ease-in-out ${
               loaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
             }`}
-            style={{ fontWeight: 400, lineHeight: 1.1, textAlign: "right", flex: "1 1 0%" }}
+            style={{ fontFamily: "var(--font-great-vibes), cursive", fontWeight: 400, lineHeight: 1.1, textAlign: "right", flex: "1 1 0%" }}
           >
             Martina
           </h1>
