@@ -13,10 +13,9 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6">
-      {/* Background subtle pattern */}
       <div className="absolute inset-0 bg-[#FAF9F6]" />
 
-      {/* Flower illustration replacing yarn ball */}
+      {/* Flower illustration — draws on, no rotation */}
       <div
         className={`relative z-10 mb-12 transition-opacity duration-[1500ms] ease-out ${
           loaded ? "opacity-100" : "opacity-0"
@@ -25,15 +24,17 @@ export function HeroSection() {
         <MonolineFlower
           size={180}
           animate={true}
+          showThread={true}
         />
       </div>
 
       {/* Title */}
       <div className="relative z-10 text-center max-w-3xl">
         <h1
-          className={`text-4xl md:text-6xl lg:text-7xl font-serif font-normal text-[#1A1A1A] leading-tight tracking-[-0.01em] transition-all duration-1000 delay-300 ${
+          className={`text-4xl md:text-6xl lg:text-7xl font-serif text-[#1A1A1A] leading-tight tracking-[-0.01em] transition-all duration-1000 delay-300 ${
             loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
+          style={{ fontWeight: 400 }}
         >
           Human Artificial Intelligence
         </h1>

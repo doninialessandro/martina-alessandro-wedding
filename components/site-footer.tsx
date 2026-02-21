@@ -15,7 +15,7 @@ export function SiteFooter() {
         <div className="max-w-[1400px] mx-auto">
           {/* Top section with flower */}
           <div className="flex justify-center mb-12">
-            <MonolineFlower size={48} animate={false} color="#C4A882" />
+            <MonolineFlower size={48} animate={false} />
           </div>
 
           {/* Logo */}

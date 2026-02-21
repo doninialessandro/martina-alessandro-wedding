@@ -84,16 +84,6 @@ html {
   display: none;
 }
 
-/* Flower draw animation */
-@keyframes drawLine {
-  from {
-    stroke-dashoffset: var(--path-length);
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
 @keyframes fadeInUp {
   from {
     opacity: 0;

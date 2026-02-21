@@ -1,6 +1,7 @@
 "use client"
 
 import { useInView } from "@/hooks/use-in-view"
+import { ThreadLine } from "./thread-line"
 
 interface PlatformCardProps {
   name: string
@@ -20,9 +21,10 @@ function PlatformCard({ name, subtitle, description, align = "left" }: PlatformC
       <div className="max-w-[1000px] mx-auto">
         <div className={`max-w-2xl ${align === "right" ? "md:ml-auto" : ""}`}>
           <h2
-            className={`text-3xl md:text-5xl font-serif font-normal text-[#1A1A1A] mb-3 transition-all duration-[800ms] ${
+            className={`text-3xl md:text-5xl font-serif text-[#1A1A1A] mb-3 transition-all duration-[800ms] ${
               isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
             }`}
+            style={{ fontWeight: 400 }}
           >
             {name}
           </h2>
@@ -49,10 +51,7 @@ function PlatformCard({ name, subtitle, description, align = "left" }: PlatformC
 export function PlatformSections() {
   return (
     <section id="platform" className="relative">
-      {/* Divider */}
-      <div className="flex justify-center py-8">
-        <div className="w-px h-20 bg-[#E0DCD5]" />
-      </div>
+      <ThreadLine />
 
       <PlatformCard
         name="Socrates"
@@ -61,9 +60,7 @@ export function PlatformSections() {
         align="left"
       />
 
-      <div className="flex justify-center">
-        <div className="w-px h-16 bg-[#E0DCD5]" />
-      </div>
+      <ThreadLine />
 
       <PlatformCard
         name="Demosthenes"
@@ -72,9 +69,7 @@ export function PlatformSections() {
         align="right"
       />
 
-      <div className="flex justify-center">
-        <div className="w-px h-16 bg-[#E0DCD5]" />
-      </div>
+      <ThreadLine />
 
       <PlatformCard
         name="The Dioscuri"
@@ -83,9 +78,7 @@ export function PlatformSections() {
         align="left"
       />
 
-      <div className="flex justify-center">
-        <div className="w-px h-16 bg-[#E0DCD5]" />
-      </div>
+      <ThreadLine />
 
       <PlatformCard
         name="Thamyr"
@@ -94,9 +87,7 @@ export function PlatformSections() {
         align="right"
       />
 
-      <div className="flex justify-center">
-        <div className="w-px h-16 bg-[#E0DCD5]" />
-      </div>
+      <ThreadLine />
 
       <PlatformCard
         name="Theano"
@@ -105,9 +96,7 @@ export function PlatformSections() {
         align="left"
       />
 
-      <div className="flex justify-center">
-        <div className="w-px h-16 bg-[#E0DCD5]" />
-      </div>
+      <ThreadLine />
 
       <CallimacusSection />
     </section>
@@ -121,9 +110,10 @@ function CallimacusSection() {
     <div ref={ref} className="py-20 md:py-32 px-6 text-center">
       <div className="max-w-3xl mx-auto">
         <h2
-          className={`text-3xl md:text-5xl font-serif font-normal text-[#1A1A1A] mb-8 transition-all duration-[800ms] ${
+          className={`text-3xl md:text-5xl font-serif text-[#1A1A1A] mb-8 transition-all duration-[800ms] ${
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           }`}
+          style={{ fontWeight: 400 }}
         >
           Callimacus
         </h2>

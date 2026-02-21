@@ -8,6 +8,7 @@ import { FirstProjectSection } from "@/components/first-project-section"
 import { ContactSection } from "@/components/contact-section"
 import { ShareSection } from "@/components/share-section"
 import { SiteFooter } from "@/components/site-footer"
+import { ThreadLine } from "@/components/thread-line"
 
 export default function Home() {
   return (
@@ -15,21 +16,14 @@ export default function Home() {
       <SiteHeader />
       <HeroSection />
 
-      {/* Story / About sections */}
-      <div className="relative">
-        <div className="flex justify-center">
-          <div className="w-px h-24 bg-[#E0DCD5]" />
-        </div>
-        <BeginningsSection />
-        <div className="flex justify-center">
-          <div className="w-px h-24 bg-[#E0DCD5]" />
-        </div>
-        <CreativitySection />
-        <div className="flex justify-center">
-          <div className="w-px h-24 bg-[#E0DCD5]" />
-        </div>
-        <NewGenerationSection />
-      </div>
+      {/* Continuous thread flowing through sections */}
+      <ThreadLine />
+      <BeginningsSection />
+      <ThreadLine />
+      <CreativitySection />
+      <ThreadLine />
+      <NewGenerationSection />
+      <ThreadLine />
 
       {/* Platform components */}
       <PlatformSections />
@@ -38,9 +32,7 @@ export default function Home() {
       <FirstProjectSection />
 
       {/* Contact */}
-      <div className="flex justify-center">
-        <div className="w-px h-24 bg-[#E0DCD5]" />
-      </div>
+      <ThreadLine />
       <ContactSection />
 
       {/* Share */}
