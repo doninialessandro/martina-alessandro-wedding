@@ -9,21 +9,22 @@ interface StorySectionProps {
 }
 
 function StorySection({ title, children, id }: StorySectionProps) {
-  const { ref, isInView } = useInView()
+  const { ref, isInView } = useInView(0.1)
 
   return (
-    <section id={id} ref={ref} className="py-24 md:py-36 px-6">
+    <section id={id} ref={ref} className="py-24 md:py-36 px-8 sm:px-12 md:px-16">
       <div className="max-w-3xl mx-auto">
         <h2
-          className={`text-2xl md:text-3xl font-serif font-normal text-[#1A1A1A] mb-8 md:mb-12 transition-all duration-[800ms] ${
-            isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          className={`text-2xl md:text-3xl font-serif text-[#1A1A1A] mb-8 md:mb-12 transition-all duration-[1000ms] ease-out ${
+            isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
+          style={{ fontWeight: 400 }}
         >
           {title}
         </h2>
         <div
-          className={`transition-all duration-[800ms] delay-200 ${
-            isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          className={`transition-all duration-[1000ms] ease-out delay-300 ${
+            isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
           {children}

@@ -10,17 +10,17 @@ interface PlatformCardProps {
 }
 
 function PlatformCard({ name, subtitle, description, align = "left" }: PlatformCardProps) {
-  const { ref, isInView } = useInView()
+  const { ref, isInView } = useInView(0.1)
 
   return (
     <div
       ref={ref}
-      className={`py-20 md:py-32 px-6 ${align === "right" ? "md:text-right" : "md:text-left"}`}
+      className={`py-20 md:py-32 px-8 sm:px-12 md:px-16 ${align === "right" ? "md:text-right" : "md:text-left"}`}
     >
       <div className="max-w-[1000px] mx-auto">
         <div className={`max-w-2xl ${align === "right" ? "md:ml-auto" : ""}`}>
           <h2
-            className={`text-3xl md:text-5xl font-serif text-[#1A1A1A] mb-3 transition-all duration-[800ms] ${
+            className={`text-3xl md:text-5xl font-serif text-[#1A1A1A] mb-3 transition-all duration-[1000ms] ease-out ${
               isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
             }`}
             style={{ fontWeight: 400 }}
@@ -28,14 +28,14 @@ function PlatformCard({ name, subtitle, description, align = "left" }: PlatformC
             {name}
           </h2>
           <h3
-            className={`text-lg md:text-xl font-serif italic text-[#C4A882] mb-8 transition-all duration-[800ms] delay-100 ${
+            className={`text-lg md:text-xl font-serif italic text-[#C4A882] mb-8 transition-all duration-[1000ms] ease-out delay-150 ${
               isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
             {subtitle}
           </h3>
           <p
-            className={`text-base md:text-lg leading-relaxed text-[#6B6B6B] font-serif transition-all duration-[800ms] delay-200 ${
+            className={`text-base md:text-lg leading-relaxed text-[#6B6B6B] font-serif transition-all duration-[1000ms] ease-out delay-300 ${
               isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
@@ -91,13 +91,13 @@ export function PlatformSections() {
 }
 
 function CallimacusSection() {
-  const { ref, isInView } = useInView()
+  const { ref, isInView } = useInView(0.1)
 
   return (
-    <div ref={ref} className="py-20 md:py-32 px-6 text-center">
+    <div ref={ref} className="py-20 md:py-32 px-8 sm:px-12 md:px-16 text-center">
       <div className="max-w-3xl mx-auto">
         <h2
-          className={`text-3xl md:text-5xl font-serif text-[#1A1A1A] mb-8 transition-all duration-[800ms] ${
+          className={`text-3xl md:text-5xl font-serif text-[#1A1A1A] mb-8 transition-all duration-[1000ms] ease-out ${
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           }`}
           style={{ fontWeight: 400 }}
@@ -105,7 +105,7 @@ function CallimacusSection() {
           Callimacus
         </h2>
         <p
-          className={`text-base md:text-lg leading-relaxed text-[#6B6B6B] font-serif transition-all duration-[800ms] delay-200 ${
+          className={`text-base md:text-lg leading-relaxed text-[#6B6B6B] font-serif transition-all duration-[1000ms] ease-out delay-300 ${
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >

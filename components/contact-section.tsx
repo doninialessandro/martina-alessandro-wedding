@@ -15,17 +15,17 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" ref={ref} className="py-24 md:py-40 px-6">
+    <section id="contact" ref={ref} className="py-24 md:py-40 px-8 sm:px-12 md:px-16">
       <div className="max-w-2xl mx-auto">
         <h2
-          className={`text-3xl md:text-5xl font-serif font-normal text-[#1A1A1A] mb-4 text-center transition-all duration-[800ms] ${
+          className={`text-3xl md:text-5xl font-serif font-normal text-[#1A1A1A] mb-4 text-center transition-all duration-[1000ms] ease-out ${
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           }`}
         >
           {"Let's keep in touch"}
         </h2>
         <p
-          className={`text-base md:text-lg text-[#6B6B6B] font-serif text-center mb-14 transition-all duration-[800ms] delay-100 ${
+          className={`text-base md:text-lg text-[#6B6B6B] font-serif text-center mb-14 transition-all duration-[1000ms] ease-out delay-200 ${
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -46,7 +46,7 @@ export function ContactSection() {
         ) : (
           <form
             onSubmit={handleSubmit}
-            className={`space-y-8 transition-all duration-[800ms] delay-200 ${
+            className={`space-y-8 transition-all duration-[1000ms] ease-out delay-300 ${
               isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >

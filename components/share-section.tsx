@@ -6,9 +6,9 @@ export function ShareSection() {
   const { ref, isInView } = useInView()
 
   return (
-    <section ref={ref} className="py-16 md:py-24 px-6">
+    <section ref={ref} className="py-16 md:py-24 px-8 sm:px-12 md:px-16">
       <div
-        className={`max-w-2xl mx-auto text-center transition-all duration-[800ms] ${
+        className={`max-w-2xl mx-auto text-center transition-all duration-[1000ms] ease-out ${
           isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}
       >
