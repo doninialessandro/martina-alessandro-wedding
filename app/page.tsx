@@ -1,15 +1,15 @@
-import { HeroSection } from "@/components/hero-section"
-import { OurStorySection } from "@/components/our-story-section"
-import { ProgramSection } from "@/components/program-section"
-import { LocationSection } from "@/components/location-section"
-import { RsvpSection } from "@/components/rsvp-section"
-import { ListaNozzeSection } from "@/components/lista-nozze-section"
-import { SiteFooter } from "@/components/site-footer"
-import { SectionDivider } from "@/components/section-divider"
+import { HeroSection } from '@/components/hero-section'
+import { ListaNozzeSection } from '@/components/lista-nozze-section'
+import { LocationSection } from '@/components/location-section'
+import { OurStorySection } from '@/components/our-story-section'
+import { ProgramSection } from '@/components/program-section'
+import { RsvpSection } from '@/components/rsvp-section'
+import { SectionDivider } from '@/components/section-divider'
+import { SiteFooter } from '@/components/site-footer'
 
 export default function Home() {
   return (
-    <main className="relative bg-background text-foreground overflow-x-hidden">
+    <main className="relative overflow-x-hidden bg-background text-foreground">
       <HeroSection />
       <SectionDivider />
       <OurStorySection />

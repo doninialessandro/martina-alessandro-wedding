@@ -1,35 +1,35 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #FDFCFA;
-  --foreground: #1A1A1A;
-  --card: #FDFCFA;
-  --card-foreground: #1A1A1A;
-  --popover: #FDFCFA;
-  --popover-foreground: #1A1A1A;
-  --primary: #1A1A1A;
-  --primary-foreground: #FDFCFA;
-  --secondary: #F8F7F4;
-  --secondary-foreground: #1A1A1A;
-  --muted: #F8F7F4;
-  --muted-foreground: #4A4440;
-  --accent: #8E9E8C;
-  --accent-foreground: #1A1A1A;
-  --destructive: #B91C1C;
-  --destructive-foreground: #FDFCFA;
-  --border: #D5CCBC;
-  --input: #D5CCBC;
-  --ring: #8E9E8C;
+  --background: #fdfcfa;
+  --foreground: #1a1a1a;
+  --card: #fdfcfa;
+  --card-foreground: #1a1a1a;
+  --popover: #fdfcfa;
+  --popover-foreground: #1a1a1a;
+  --primary: #1a1a1a;
+  --primary-foreground: #fdfcfa;
+  --secondary: #f8f7f4;
+  --secondary-foreground: #1a1a1a;
+  --muted: #f8f7f4;
+  --muted-foreground: #4a4440;
+  --accent: #8e9e8c;
+  --accent-foreground: #1a1a1a;
+  --destructive: #b91c1c;
+  --destructive-foreground: #fdfcfa;
+  --border: #d5ccbc;
+  --input: #d5ccbc;
+  --ring: #8e9e8c;
   --radius: 0rem;
 }
 
 @theme inline {
-  --font-sans: var(--font-eb-garamond), 'Georgia', serif;
-  --font-serif: var(--font-eb-garamond), 'Georgia', serif;
-  --font-mono: 'Geist Mono', monospace;
+  --font-sans: var(--font-eb-garamond), "Georgia", serif;
+  --font-serif: var(--font-eb-garamond), "Georgia", serif;
+  --font-mono: "Geist Mono", monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -71,8 +71,8 @@ html {
 
 /* Custom selection color */
 ::selection {
-  background: #8E9E8C;
-  color: #FDFCFA;
+  background: #8e9e8c;
+  color: #fdfcfa;
 }
 
 /* Hide scrollbar but allow scrolling */
@@ -96,8 +96,12 @@ html {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .animate-fade-in-up {
@@ -108,8 +112,6 @@ html {
   animation: fadeIn 0.6s ease forwards;
 }
 
-
-
 /* Privacy/Legal overlay */
 .overlay-scrollbar::-webkit-scrollbar {
   width: 6px;
@@ -118,7 +120,7 @@ html {
   background: transparent;
 }
 .overlay-scrollbar::-webkit-scrollbar-thumb {
-  background: #8E9E8C;
+  background: #8e9e8c;
   border-radius: 3px;
 }
 
@@ -127,7 +129,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #FDFCFA inset;
-  -webkit-text-fill-color: #1A1A1A;
+  -webkit-box-shadow: 0 0 0px 1000px #fdfcfa inset;
+  -webkit-text-fill-color: #1a1a1a;
   transition: background-color 5000s ease-in-out 0s;
 }

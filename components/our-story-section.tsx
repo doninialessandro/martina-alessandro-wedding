@@ -1,23 +1,23 @@
-"use client"
+'use client'
 
-import { useScrollytelling } from "@/hooks/use-scrollytelling"
-import { ScrollReveal } from "./scroll-reveal"
+import { useScrollytelling } from '@/hooks/use-scrollytelling'
+import { ScrollReveal } from './scroll-reveal'
 
 const storyBlocks = [
   {
-    title: "Come ci siamo conosciuti",
+    title: 'Come ci siamo conosciuti',
     body: "[Testo da inserire — racconta come vi siete incontrati per la prima volta, il luogo, le circostanze, cosa vi ha colpito l'uno dell'altra.]",
-    photo: "Foto 1",
+    photo: 'Foto 1',
   },
   {
-    title: "Il primo appuntamento",
-    body: "[Testo da inserire — il vostro primo vero appuntamento, dove siete andati, cosa avete fatto, le emozioni di quella giornata.]",
-    photo: "Foto 2",
+    title: 'Il primo appuntamento',
+    body: '[Testo da inserire — il vostro primo vero appuntamento, dove siete andati, cosa avete fatto, le emozioni di quella giornata.]',
+    photo: 'Foto 2',
   },
   {
-    title: "La proposta",
-    body: "[Testo da inserire — il momento della proposta di matrimonio, come è avvenuta, le parole dette, la reazione.]",
-    photo: "Foto 3",
+    title: 'La proposta',
+    body: '[Testo da inserire — il momento della proposta di matrimonio, come è avvenuta, le parole dette, la reazione.]',
+    photo: 'Foto 3',
   },
 ]
 
@@ -27,7 +27,6 @@ export function OurStorySection() {
   return (
     <section className="py-24 md:py-40 px-8 sm:px-12 md:px-16">
       <div className="max-w-[1100px] mx-auto">
-
         {/* Mobile: stacked layout (no sticky) */}
         <div className="md:hidden">
           <ScrollReveal translateY={18} start={0} end={0.35}>
@@ -37,8 +36,8 @@ export function OurStorySection() {
           </ScrollReveal>
 
           <div className="flex flex-col gap-24">
-            {storyBlocks.map((block, index) => (
-              <div key={index}>
+            {storyBlocks.map((block, _index) => (
+              <div key={block.title}>
                 <ScrollReveal translateY={14} start={0} end={0.35} offset={0.1}>
                   <h3 className="text-2xl font-serif font-normal text-[#1A1A1A] mb-4">
                     {block.title}
@@ -74,7 +73,7 @@ export function OurStorySection() {
             <div className="flex-1">
               {storyBlocks.map((block, index) => (
                 <div
-                  key={index}
+                  key={block.title}
                   ref={setItemRef(index)}
                   className="min-h-[70vh] flex items-center"
                 >
@@ -82,7 +81,7 @@ export function OurStorySection() {
                     className="py-12"
                     style={{
                       opacity: activeIndex === index ? 1 : 0.2,
-                      transition: "opacity 0.5s ease-in-out",
+                      transition: 'opacity 0.5s ease-in-out',
                     }}
                   >
                     <h3 className="text-2xl md:text-3xl font-serif font-normal text-[#1A1A1A] mb-4">
@@ -102,11 +101,11 @@ export function OurStorySection() {
                 <div className="relative w-full aspect-[3/4]">
                   {storyBlocks.map((block, index) => (
                     <div
-                      key={index}
+                      key={block.title}
                       className="absolute inset-0 bg-[#F2F0EB] flex items-center justify-center"
                       style={{
                         opacity: activeIndex === index ? 1 : 0,
-                        transition: "opacity 0.6s ease-in-out",
+                        transition: 'opacity 0.6s ease-in-out',
                       }}
                     >
                       <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif">
@@ -119,7 +118,6 @@ export function OurStorySection() {
             </div>
           </div>
         </div>
-
       </div>
     </section>
   )

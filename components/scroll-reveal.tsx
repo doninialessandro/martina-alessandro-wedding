@@ -1,6 +1,6 @@
-"use client"
+'use client'
 
-import { useScrollProgress } from "@/hooks/use-scroll-progress"
+import { useScrollProgress } from '@/hooks/use-scroll-progress'
 
 /* ═══════════════════════════════════════════════════════════
    ScrollReveal – scroll-linked clip + transform reveal
@@ -19,12 +19,12 @@ interface ScrollRevealProps {
   offset?: number
   rotate?: number
   /** "clip" uses clip-path (great for text); "slide" uses only transform (never crops content) */
-  effect?: "clip" | "slide"
+  effect?: 'clip' | 'slide'
 }
 
 export function ScrollReveal({
   children,
-  className = "",
+  className = '',
   start = 0,
   end = 0.5,
   translateY = 24,
@@ -32,22 +32,20 @@ export function ScrollReveal({
   offset = 0.08,
   scaleFrom = 1,
   rotate = 0,
-  effect = "clip",
+  effect = 'clip',
 }: ScrollRevealProps) {
   const { ref, progress } = useScrollProgress(offset)
 
   const local = Math.min(1, Math.max(0, (progress - start) / (end - start)))
   // Gentle ease-in-out cubic
-  const eased = local < 0.5
-    ? 4 * local * local * local
-    : 1 - Math.pow(-2 * local + 2, 3) / 2
+  const eased = local < 0.5 ? 4 * local * local * local : 1 - (-2 * local + 2) ** 3 / 2
 
   const y = translateY * (1 - eased)
   const x = translateX * (1 - eased)
   const s = scaleFrom + (1 - scaleFrom) * eased
   const r = rotate * (1 - eased)
 
-  if (effect === "slide") {
+  if (effect === 'slide') {
     // No clip-path — content is always fully visible, just slides into place
     return (
       <div
@@ -56,7 +54,7 @@ export function ScrollReveal({
         style={{
           opacity: eased,
           transform: `translate3d(${x}px, ${y}px, 0) scale(${s}) rotate(${r}deg)`,
-          willChange: "opacity, transform",
+          willChange: 'opacity, transform',
         }}
       >
         {children}
@@ -75,7 +73,7 @@ export function ScrollReveal({
       style={{
         clipPath: clip,
         transform: `translate3d(${x}px, ${y}px, 0) scale(${s}) rotate(${r}deg)`,
-        willChange: "clip-path, transform",
+        willChange: 'clip-path, transform',
       }}
     >
       {children}
@@ -93,43 +91,46 @@ interface WordRevealProps {
   text: string
   className?: string
   offset?: number
-  mutedColor?: string   // the starting "unrevealed" color
-  activeColor?: string  // the final "revealed" color
+  mutedColor?: string // the starting "unrevealed" color
+  activeColor?: string // the final "revealed" color
 }
 
 export function WordReveal({
   text,
-  className = "",
+  className = '',
   offset = 0.08,
-  mutedColor = "#D5CCBC",
-  activeColor = "#3A3530",
+  mutedColor = '#D5CCBC',
+  activeColor = '#3A3530',
 }: WordRevealProps) {
   const { ref, progress } = useScrollProgress(offset)
-  const words = text.split(" ")
+  const words = text.split(' ')
 
   return (
-    <p ref={ref} className={className} style={{ willChange: "color" }}>
+    <p ref={ref} className={className} style={{ willChange: 'color' }}>
       {words.map((word, i) => {
         const wordStart = (i / words.length) * 0.5
         const wordEnd = wordStart + 0.4
-        const wordProgress = Math.min(1, Math.max(0, (progress - wordStart) / (wordEnd - wordStart)))
+        const wordProgress = Math.min(
+          1,
+          Math.max(0, (progress - wordStart) / (wordEnd - wordStart))
+        )
         // Gentle ease-in-out quad
-        const eased = wordProgress < 0.5
-          ? 2 * wordProgress * wordProgress
-          : 1 - Math.pow(-2 * wordProgress + 2, 2) / 2
+        const eased =
+          wordProgress < 0.5
+            ? 2 * wordProgress * wordProgress
+            : 1 - (-2 * wordProgress + 2) ** 2 / 2
 
-        const color = eased <= 0.01
-          ? mutedColor
-          : eased >= 0.99
-            ? activeColor
-            : interpolateColor(mutedColor, activeColor, eased)
+        const color =
+          eased <= 0.01
+            ? mutedColor
+            : eased >= 0.99
+              ? activeColor
+              : interpolateColor(mutedColor, activeColor, eased)
 
         return (
-          <span
-            key={i}
-            style={{ color, transition: "color 0.35s ease-in-out" }}
-          >
-            {word}{" "}
+          // biome-ignore lint/suspicious/noArrayIndexKey: composite word-index key is stable for static text splits
+          <span key={`${word}-${i}`} style={{ color, transition: 'color 0.35s ease-in-out' }}>
+            {word}{' '}
           </span>
         )
       })}
@@ -148,7 +149,7 @@ function interpolateColor(from: string, to: string, t: number): string {
 }
 
 function hexToRgb(hex: string) {
-  const h = hex.replace("#", "")
+  const h = hex.replace('#', '')
   return {
     r: parseInt(h.substring(0, 2), 16),
     g: parseInt(h.substring(2, 4), 16),
@@ -167,19 +168,13 @@ interface ParallaxFadeProps {
   speed?: number
 }
 
-export function ParallaxFade({
-  children,
-  className = "",
-  speed = 0.35,
-}: ParallaxFadeProps) {
+export function ParallaxFade({ children, className = '', speed = 0.35 }: ParallaxFadeProps) {
   const { ref, progress } = useScrollProgress(0)
 
   const fadeStart = 0.45
   const fadeProg = Math.min(1, Math.max(0, (progress - fadeStart) / (1 - fadeStart)))
   // Gentle ease-in-out
-  const easedFade = fadeProg < 0.5
-    ? 2 * fadeProg * fadeProg
-    : 1 - Math.pow(-2 * fadeProg + 2, 2) / 2
+  const easedFade = fadeProg < 0.5 ? 2 * fadeProg * fadeProg : 1 - (-2 * fadeProg + 2) ** 2 / 2
   const y = -easedFade * 30 * speed
   const s = 1 - easedFade * 0.03
   const opacity = 1 - easedFade * 0.6
@@ -191,7 +186,7 @@ export function ParallaxFade({
       style={{
         opacity,
         transform: `translate3d(0, ${y}px, 0) scale(${s})`,
-        willChange: "opacity, transform",
+        willChange: 'opacity, transform',
       }}
     >
       {children}
