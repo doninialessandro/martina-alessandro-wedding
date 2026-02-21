@@ -70,28 +70,28 @@ export function FlowingThread() {
     Only C (cubic bezier) commands — no straight lines.
   */
   const d = [
-    // Start from dead center (flower stem base) at ~top 50vh
-    "M 200 60",
-    // Gentle drift right
-    "C 200 80, 240 100, 270 130",
-    // Sweep left through story sections
-    "C 310 170, 160 190, 110 230",
+    // Start from center at hero bottom — directly below the flower stem tip
+    "M 200 95",
+    // Continue straight down briefly, same direction as stem
+    "C 200 100, 200 105, 202 115",
+    // Gentle drift right through first story section
+    "C 206 135, 250 155, 275 175",
+    // Sweep left through creativity section
+    "C 310 200, 150 230, 110 265",
+    // Curve right through new generation
+    "C 65 305, 290 335, 330 370",
+    // Sweep left into platform sections
+    "C 370 410, 120 440, 75 480",
     // Curve right
-    "C 60 270, 280 300, 320 340",
+    "C 25 520, 310 550, 345 590",
     // Sweep left
-    "C 360 380, 130 400, 80 440",
-    // Curve right into platform
-    "C 30 480, 300 510, 340 550",
-    // Sweep left
-    "C 380 590, 110 620, 70 660",
+    "C 385 630, 100 660, 65 700",
     // Curve right
-    "C 30 700, 310 730, 350 770",
+    "C 25 740, 320 770, 350 810",
     // Sweep left
-    "C 390 810, 100 840, 60 880",
-    // Curve right
-    "C 20 920, 320 940, 300 970",
+    "C 385 850, 95 880, 60 920",
     // Drift back to center at bottom
-    "C 280 990, 210 998, 200 1000",
+    "C 30 955, 190 975, 200 1000",
   ].join(" ")
 
   const drawn = pathLength > 0 ? pathLength * (1 - progress) : pathLength
@@ -112,11 +112,13 @@ export function FlowingThread() {
       >
         <defs>
           <linearGradient id="threadGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#8B7355" />
-            <stop offset="15%" stopColor="#C4A882" />
+            <stop offset="0%" stopColor="#7A6B55" />
+            <stop offset="5%" stopColor="#8B7355" />
+            <stop offset="20%" stopColor="#C4A882" />
             <stop offset="50%" stopColor="#D5CDC2" />
-            <stop offset="85%" stopColor="#C4A882" />
-            <stop offset="100%" stopColor="#8B7355" />
+            <stop offset="80%" stopColor="#C4A882" />
+            <stop offset="95%" stopColor="#8B7355" />
+            <stop offset="100%" stopColor="#7A6B55" />
           </linearGradient>
         </defs>
         <path

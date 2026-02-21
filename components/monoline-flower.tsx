@@ -182,17 +182,29 @@ export function MonolineFlower({
         })}
       </svg>
 
-      {/* Thread continuing downward from stem, appears after flower finishes drawing */}
+      {/* Thin stroke line continuing from stem tip downward — bridges to the FlowingThread */}
       {showThread && (
-        <div
-          className="w-px bg-[#E0DCD5] origin-top"
-          style={{
-            height: 80,
-            transform: isVisible ? "scaleY(1)" : "scaleY(0)",
-            opacity: isVisible ? 1 : 0,
-            transition: `transform 1.5s cubic-bezier(0.33,1,0.68,1) ${totalDrawTime.toFixed(1)}s, opacity 0.8s ease ${totalDrawTime.toFixed(1)}s`,
-          }}
-        />
+        <svg
+          width="2"
+          height="120"
+          viewBox="0 0 2 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="block"
+          aria-hidden="true"
+        >
+          <line
+            x1="1" y1="0" x2="1" y2="120"
+            stroke="#8B7355"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            style={{
+              strokeDasharray: 120,
+              strokeDashoffset: isVisible ? 0 : 120,
+              transition: `stroke-dashoffset 1.5s cubic-bezier(0.33,1,0.68,1) ${totalDrawTime.toFixed(1)}s`,
+            }}
+          />
+        </svg>
       )}
     </div>
   )

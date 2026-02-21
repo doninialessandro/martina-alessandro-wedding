@@ -33,7 +33,7 @@ export function HeroSection() {
             loaded ? "opacity-100" : "opacity-0"
           }`}
         >
-          <MonolineFlower size={280} animate={true} showThread={false} />
+          <MonolineFlower size={280} animate={true} showThread={true} />
         </div>
 
         {/* "Alessandro" — small, pushed to right edge */}
@@ -56,7 +56,7 @@ export function HeroSection() {
             loaded ? "opacity-100" : "opacity-0"
           }`}
         >
-          <MonolineFlower size={200} animate={true} showThread={false} />
+          <MonolineFlower size={200} animate={true} showThread={true} />
         </div>
 
         {/* Names on either side */}
