@@ -24,30 +24,59 @@ export function ProgramSection() {
           </p>
         </ScrollReveal>
 
-        {/* Vertical timeline */}
+        {/* Vertical timeline — alternating left/right */}
         <div className="relative">
           {/* Center line */}
           <div className="absolute left-1/2 -translate-x-px top-0 bottom-0 w-px bg-[#D5CCBC]" aria-hidden="true" />
 
           <div className="flex flex-col gap-16 md:gap-20">
-            {timelineItems.map((item, i) => (
-              <ScrollReveal key={i} translateY={30} start={0} end={0.4} offset={0.1}>
-                <div className="relative flex flex-col items-center text-center">
-                  {/* Dot */}
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#8E9E8C] mb-5 relative z-10" />
+            {timelineItems.map((item, i) => {
+              const isLeft = i % 2 === 0
+              return (
+                <ScrollReveal key={i} translateY={30} start={0} end={0.4} offset={0.1}>
+                  <div className="relative grid grid-cols-[1fr_auto_1fr] items-start gap-x-4 md:gap-x-8">
+                    {/* Left column */}
+                    {isLeft ? (
+                      <div className="flex flex-col items-end text-right pr-1">
+                        <span className="text-xs tracking-[0.2em] uppercase text-[#8E9E8C] font-serif mb-1">
+                          {item.time}
+                        </span>
+                        <h3 className="text-xl md:text-2xl font-serif font-normal text-[#1A1A1A] mb-1">
+                          {item.title}
+                        </h3>
+                        <p className="text-sm font-serif text-[#4A4440]">
+                          {item.description}
+                        </p>
+                      </div>
+                    ) : (
+                      <div />
+                    )}
 
-                  <span className="text-xs tracking-[0.2em] uppercase text-[#8E9E8C] font-serif mb-2">
-                    {item.time}
-                  </span>
-                  <h3 className="text-xl md:text-2xl font-serif font-normal text-[#1A1A1A] mb-1">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm font-serif text-[#4A4440]">
-                    {item.description}
-                  </p>
-                </div>
-              </ScrollReveal>
-            ))}
+                    {/* Center dot */}
+                    <div className="flex justify-center pt-1">
+                      <div className="w-2.5 h-2.5 rounded-full bg-[#8E9E8C] relative z-10" />
+                    </div>
+
+                    {/* Right column */}
+                    {!isLeft ? (
+                      <div className="flex flex-col items-start text-left pl-1">
+                        <span className="text-xs tracking-[0.2em] uppercase text-[#8E9E8C] font-serif mb-1">
+                          {item.time}
+                        </span>
+                        <h3 className="text-xl md:text-2xl font-serif font-normal text-[#1A1A1A] mb-1">
+                          {item.title}
+                        </h3>
+                        <p className="text-sm font-serif text-[#4A4440]">
+                          {item.description}
+                        </p>
+                      </div>
+                    ) : (
+                      <div />
+                    )}
+                  </div>
+                </ScrollReveal>
+              )
+            })}
           </div>
         </div>
       </div>
