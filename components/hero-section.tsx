@@ -93,31 +93,31 @@ export function HeroSection() {
 
       </ParallaxFade>
 
-      {/* Countdown — bottom-right, minimal */}
+      {/* Countdown — bottom center, vertically aligned */}
       <div
-        className={`absolute bottom-8 right-8 sm:bottom-10 sm:right-10 md:bottom-12 md:right-12 transition-opacity duration-[2000ms] ease-out delay-500 ${
+        className={`absolute bottom-8 sm:bottom-10 md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center transition-opacity duration-[2000ms] ease-out delay-500 ${
           loaded ? "opacity-100" : "opacity-0"
         }`}
       >
-        <p className="text-[10px] sm:text-xs tracking-[0.15em] uppercase text-[#8E9E8C] font-serif mb-1">
+        <p className="text-[10px] sm:text-xs tracking-[0.2em] uppercase text-[#8E9E8C] font-serif mb-3 text-center">
           18 Settembre 2026
         </p>
-        <div className="flex items-baseline gap-3 sm:gap-4 font-serif text-[#4A4440]">
-          <span className="flex flex-col items-center">
-            <span className="text-sm sm:text-base tabular-nums">{String(days).padStart(2, "0")}</span>
-            <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.1em] text-[#8E9E8C]">giorni</span>
+        <div className="flex items-start justify-center gap-4 sm:gap-5 font-serif text-[#4A4440]">
+          <span className="flex flex-col items-center min-w-[36px]">
+            <span className="text-sm sm:text-base tabular-nums leading-none">{String(days).padStart(2, "0")}</span>
+            <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.1em] text-[#8E9E8C] mt-1">giorni</span>
           </span>
-          <span className="flex flex-col items-center">
-            <span className="text-sm sm:text-base tabular-nums">{String(hours).padStart(2, "0")}</span>
-            <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.1em] text-[#8E9E8C]">ore</span>
+          <span className="flex flex-col items-center min-w-[36px]">
+            <span className="text-sm sm:text-base tabular-nums leading-none">{String(hours).padStart(2, "0")}</span>
+            <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.1em] text-[#8E9E8C] mt-1">ore</span>
           </span>
-          <span className="flex flex-col items-center">
-            <span className="text-sm sm:text-base tabular-nums">{String(minutes).padStart(2, "0")}</span>
-            <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.1em] text-[#8E9E8C]">min</span>
+          <span className="flex flex-col items-center min-w-[36px]">
+            <span className="text-sm sm:text-base tabular-nums leading-none">{String(minutes).padStart(2, "0")}</span>
+            <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.1em] text-[#8E9E8C] mt-1">min</span>
           </span>
-          <span className="flex flex-col items-center">
-            <span className="text-sm sm:text-base tabular-nums">{String(seconds).padStart(2, "0")}</span>
-            <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.1em] text-[#8E9E8C]">sec</span>
+          <span className="flex flex-col items-center min-w-[36px]">
+            <span className="text-sm sm:text-base tabular-nums leading-none">{String(seconds).padStart(2, "0")}</span>
+            <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.1em] text-[#8E9E8C] mt-1">sec</span>
           </span>
         </div>
       </div>
