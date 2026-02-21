@@ -3,44 +3,47 @@
 import { useEffect, useRef, useState, useCallback } from "react"
 
 /**
- * Returns a progress value from 0 to 1 as an element scrolls
- * through the viewport.  0 = element bottom has just entered
- * the viewport bottom, 1 = element top has reached the viewport
- * top.  Values are clamped [0,1].
+ * High-performance scroll progress hook.
+ * Returns a 0-1 value driven by rAF for smooth 60fps animation.
  *
- * `offset` shifts the trigger zone:
- *   offset = 0   -> animation starts when element enters viewport bottom
- *   offset = 0.2 -> animation starts when element is 20% above viewport bottom
+ * progress = 0 : element bottom just entered viewport bottom
+ * progress = 1 : element top reached viewport top
  */
-export function useScrollProgress(offset = 0.15) {
+export function useScrollProgress(offset = 0.12) {
   const ref = useRef<HTMLDivElement>(null)
   const [progress, setProgress] = useState(0)
+  const rafId = useRef(0)
+  const ticking = useRef(false)
 
-  const handleScroll = useCallback(() => {
+  const update = useCallback(() => {
     const el = ref.current
     if (!el) return
     const rect = el.getBoundingClientRect()
     const winH = window.innerHeight
-
-    // Start when element bottom is `offset` fraction from viewport bottom
     const start = winH * (1 - offset)
-    // End when element top reaches the viewport top + offset
     const end = winH * offset
-
-    // raw: 0 when rect.top == start, 1 when rect.top == end
     const raw = (start - rect.top) / (start - end)
     setProgress(Math.min(1, Math.max(0, raw)))
+    ticking.current = false
   }, [offset])
 
-  useEffect(() => {
-    handleScroll()
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    window.addEventListener("resize", handleScroll, { passive: true })
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
-      window.removeEventListener("resize", handleScroll)
+  const onScroll = useCallback(() => {
+    if (!ticking.current) {
+      ticking.current = true
+      rafId.current = requestAnimationFrame(update)
     }
-  }, [handleScroll])
+  }, [update])
+
+  useEffect(() => {
+    update()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    window.addEventListener("resize", onScroll, { passive: true })
+    return () => {
+      window.removeEventListener("scroll", onScroll)
+      window.removeEventListener("resize", onScroll)
+      cancelAnimationFrame(rafId.current)
+    }
+  }, [onScroll, update])
 
   return { ref, progress }
 }

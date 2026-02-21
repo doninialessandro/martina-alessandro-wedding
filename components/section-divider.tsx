@@ -1,16 +1,24 @@
 "use client"
 
-import { useInView } from "@/hooks/use-in-view"
+import { useScrollProgress } from "@/hooks/use-scroll-progress"
 
 export function SectionDivider() {
-  const { ref, isInView } = useInView(0.5)
+  const { ref, progress } = useScrollProgress(0.3)
+
+  // Ease-out cubic for a luxurious expansion
+  const eased = 1 - Math.pow(1 - Math.min(1, progress / 0.6), 3)
+  const width = eased * 64  // max 64px
+  const opacity = eased
 
   return (
-    <div ref={ref} className="flex justify-center py-2">
+    <div ref={ref} className="flex justify-center py-4">
       <div
-        className={`h-px bg-[#E0DCD5] transition-all duration-[1200ms] ease-out ${
-          isInView ? "w-16 opacity-100" : "w-0 opacity-0"
-        }`}
+        className="h-px bg-[#D5CDC2]"
+        style={{
+          width: `${width}px`,
+          opacity,
+          willChange: "width, opacity",
+        }}
       />
     </div>
   )
