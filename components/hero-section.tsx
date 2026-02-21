@@ -12,17 +12,17 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden px-6 md:px-12 lg:px-20">
+    <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden px-8 md:px-16 lg:px-24 xl:px-32 py-12">
 
-      {/* ——— Main hero row: HUMAN — flower — AI ——— */}
-      <div className="flex items-center justify-center gap-8 md:gap-14 lg:gap-20 w-full max-w-[1100px]">
+      {/* ——— Main hero row: name — flower — name ——— */}
+      <div className="flex items-center justify-center gap-6 md:gap-12 lg:gap-16 w-full max-w-[1000px]">
 
         {/* "Martina" — uppercase, tracked, right-aligned toward center */}
         <h1
-          className={`font-serif text-[#1A1A1A] uppercase tracking-[0.25em] text-2xl md:text-4xl lg:text-5xl xl:text-6xl transition-all duration-[1400ms] ease-out ${
+          className={`font-serif text-[#1A1A1A] uppercase tracking-[0.2em] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl transition-all duration-[1400ms] ease-out ${
             loaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
           }`}
-          style={{ fontWeight: 400, lineHeight: 1, textAlign: "right", flex: "1 1 0%" }}
+          style={{ fontWeight: 400, lineHeight: 1.1, textAlign: "right", flex: "1 1 0%" }}
         >
           Martina
         </h1>
@@ -39,16 +39,16 @@ export function HeroSection() {
           </div>
           {/* Mobile */}
           <div className="block md:hidden">
-            <MonolineFlower size={140} animate={true} showThread={false} />
+            <MonolineFlower size={120} animate={true} showThread={false} />
           </div>
         </div>
 
         {/* "Alessandro" — uppercase, tracked, left-aligned toward center */}
         <h1
-          className={`font-serif text-[#1A1A1A] uppercase tracking-[0.25em] text-2xl md:text-4xl lg:text-5xl xl:text-6xl transition-all duration-[1400ms] ease-out delay-200 ${
+          className={`font-serif text-[#1A1A1A] uppercase tracking-[0.2em] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl transition-all duration-[1400ms] ease-out delay-200 ${
             loaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
           }`}
-          style={{ fontWeight: 400, lineHeight: 1, textAlign: "left", flex: "1 1 0%" }}
+          style={{ fontWeight: 400, lineHeight: 1.1, textAlign: "left", flex: "1 1 0%" }}
         >
           Alessandro
         </h1>
