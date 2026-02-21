@@ -18,10 +18,17 @@ export function SiteFooter() {
             <MonolineFlower size={48} animate={false} />
           </div>
 
-          {/* Logo */}
-          <div className="text-center mb-10">
+          {/* Names */}
+          <div className="text-center mb-4">
             <span className="text-sm tracking-[0.3em] uppercase text-[#1A1A1A] font-serif">
-              Solomei AI
+              Martina & Alessandro
+            </span>
+          </div>
+
+          {/* Date */}
+          <div className="text-center mb-10">
+            <span className="text-xs tracking-[0.2em] uppercase text-[#8E9E8C] font-serif">
+              18 Settembre 2026
             </span>
           </div>
 
@@ -40,19 +47,7 @@ export function SiteFooter() {
             >
               Legal
             </button>
-            <span className="text-[#D5CCBC]">|</span>
-            <a
-              href="mailto:more@solomei.ai"
-              className="text-xs tracking-[0.15em] uppercase text-[#4A4440] font-serif hover:text-[#1A1A1A] transition-colors"
-            >
-              more@solomei.ai
-            </a>
           </div>
-
-          {/* Copyright */}
-          <p className="text-center text-xs text-[#4A4440] font-serif tracking-wide">
-            Solomei AI S.r.l. — Piazzetta dei Sapienti 1, 06073 Solomeo, Perugia
-          </p>
         </div>
       </footer>
 

@@ -4,8 +4,33 @@ import { useEffect, useState } from "react"
 import { MonolineFlower } from "./monoline-flower"
 import { ParallaxFade } from "./scroll-reveal"
 
+function useCountdown(targetDate: Date) {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+
+  useEffect(() => {
+    function calc() {
+      const now = new Date().getTime()
+      const diff = targetDate.getTime() - now
+      if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 }
+      return {
+        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((diff / (1000 * 60)) % 60),
+        seconds: Math.floor((diff / 1000) % 60),
+      }
+    }
+    setTimeLeft(calc())
+    const interval = setInterval(() => setTimeLeft(calc()), 1000)
+    return () => clearInterval(interval)
+  }, [targetDate])
+
+  return timeLeft
+}
+
 export function HeroSection() {
   const [loaded, setLoaded] = useState(false)
+  const weddingDate = new Date("2026-09-18T16:00:00+02:00")
+  const { days, hours, minutes, seconds } = useCountdown(weddingDate)
 
   useEffect(() => {
     const timer = setTimeout(() => setLoaded(true), 100)
@@ -17,9 +42,8 @@ export function HeroSection() {
 
       <ParallaxFade speed={0.5} className="w-full max-w-[1000px]">
 
-        {/* ——— Desktop: side-by-side row ——— */}
+        {/* Desktop: side-by-side row */}
         <div className="hidden md:flex items-center justify-center gap-12 lg:gap-16">
-
           <h1
             className={`font-serif text-[#1A1A1A] uppercase tracking-[0.2em] text-xl lg:text-2xl xl:text-3xl transition-all duration-[1400ms] ease-out ${
               loaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
@@ -47,9 +71,8 @@ export function HeroSection() {
           </h1>
         </div>
 
-        {/* ——— Mobile: flower on top, names stacked below ——— */}
+        {/* Mobile: flower on top, names stacked below */}
         <div className="flex md:hidden flex-col items-center gap-10 w-full">
-
           <div
             className={`transition-opacity duration-[2000ms] ease-out ${
               loaded ? "opacity-100" : "opacity-0"
@@ -69,6 +92,35 @@ export function HeroSection() {
         </div>
 
       </ParallaxFade>
+
+      {/* Countdown — bottom-right, minimal */}
+      <div
+        className={`absolute bottom-8 right-8 sm:bottom-10 sm:right-10 md:bottom-12 md:right-12 transition-opacity duration-[2000ms] ease-out delay-500 ${
+          loaded ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <p className="text-[10px] sm:text-xs tracking-[0.15em] uppercase text-[#8E9E8C] font-serif mb-1">
+          18 Settembre 2026
+        </p>
+        <div className="flex items-baseline gap-3 sm:gap-4 font-serif text-[#4A4440]">
+          <span className="flex flex-col items-center">
+            <span className="text-sm sm:text-base tabular-nums">{String(days).padStart(2, "0")}</span>
+            <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.1em] text-[#8E9E8C]">giorni</span>
+          </span>
+          <span className="flex flex-col items-center">
+            <span className="text-sm sm:text-base tabular-nums">{String(hours).padStart(2, "0")}</span>
+            <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.1em] text-[#8E9E8C]">ore</span>
+          </span>
+          <span className="flex flex-col items-center">
+            <span className="text-sm sm:text-base tabular-nums">{String(minutes).padStart(2, "0")}</span>
+            <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.1em] text-[#8E9E8C]">min</span>
+          </span>
+          <span className="flex flex-col items-center">
+            <span className="text-sm sm:text-base tabular-nums">{String(seconds).padStart(2, "0")}</span>
+            <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.1em] text-[#8E9E8C]">sec</span>
+          </span>
+        </div>
+      </div>
     </section>
   )
 }

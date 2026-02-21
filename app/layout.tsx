@@ -11,12 +11,17 @@ const ebGaramond = EB_Garamond({
 })
 
 export const metadata: Metadata = {
-  title: 'Solomei AI | Human Artificial Intelligence',
-  description: 'Our platform for a new generation of websites. Combining human creativity with artificial intelligence.',
+  title: 'Martina & Alessandro — 18 Settembre 2026',
+  description: 'Sito ufficiale del matrimonio di Martina e Alessandro, 18 Settembre 2026 — Villa Castelbarco Pindemonte Rezzonico, Imbersago (LC)',
+  openGraph: {
+    title: 'Martina & Alessandro — 18 Settembre 2026',
+    description: 'Sito ufficiale del matrimonio di Martina e Alessandro, 18 Settembre 2026 — Villa Castelbarco Pindemonte Rezzonico, Imbersago (LC)',
+    type: 'website',
+  },
 }
 
 export const viewport: Viewport = {
-  themeColor: '#FAF9F6',
+  themeColor: '#FAF8F2',
   width: 'device-width',
   initialScale: 1,
 }
@@ -27,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={ebGaramond.variable}>
+    <html lang="it" className={ebGaramond.variable}>
       <body className="font-serif antialiased">
         {children}
         <Analytics />
