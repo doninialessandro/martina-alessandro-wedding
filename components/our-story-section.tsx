@@ -1,28 +1,34 @@
 "use client"
 
+import { useScrollytelling } from "@/hooks/use-scrollytelling"
 import { ScrollReveal } from "./scroll-reveal"
 
 const storyBlocks = [
   {
     title: "Come ci siamo conosciuti",
     body: "[Testo da inserire — racconta come vi siete incontrati per la prima volta, il luogo, le circostanze, cosa vi ha colpito l'uno dell'altra.]",
+    photo: "Foto 1",
   },
   {
     title: "Il primo appuntamento",
     body: "[Testo da inserire — il vostro primo vero appuntamento, dove siete andati, cosa avete fatto, le emozioni di quella giornata.]",
+    photo: "Foto 2",
   },
   {
     title: "La proposta",
     body: "[Testo da inserire — il momento della proposta di matrimonio, come è avvenuta, le parole dette, la reazione.]",
+    photo: "Foto 3",
   },
 ]
 
 export function OurStorySection() {
+  const { activeIndex, setItemRef } = useScrollytelling(storyBlocks.length)
+
   return (
     <section className="py-24 md:py-40 px-8 sm:px-12 md:px-16">
       <div className="max-w-[1100px] mx-auto">
 
-        {/* Mobile: stacked layout */}
+        {/* Mobile: stacked layout (no sticky) */}
         <div className="md:hidden">
           <ScrollReveal translateY={18} start={0} end={0.35}>
             <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-20">
@@ -46,7 +52,7 @@ export function OurStorySection() {
                 <ScrollReveal translateY={18} start={0} end={0.4} offset={0.1} effect="slide">
                   <div className="w-full aspect-[4/5] bg-[#F2F0EB] flex items-center justify-center">
                     <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif">
-                      Foto {index + 1}
+                      {block.photo}
                     </span>
                   </div>
                 </ScrollReveal>
@@ -55,47 +61,62 @@ export function OurStorySection() {
           </div>
         </div>
 
-        {/* Desktop: sticky left title + scrolling right content */}
-        <div className="hidden md:flex md:flex-row gap-16 lg:gap-24">
-          {/* Left — sticky title */}
-          <div className="md:w-[280px] lg:w-[320px] shrink-0">
-            <div className="sticky top-[40vh]">
-              <ScrollReveal translateY={18} start={0} end={0.35}>
-                <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif mb-4">
-                  La nostra storia
-                </h2>
-                <p className="text-base leading-relaxed font-serif text-[#4A4440]">
-                  I momenti che ci hanno portato fin qui.
-                </p>
-              </ScrollReveal>
-            </div>
-          </div>
+        {/* Desktop: scrollytelling — left text scrolls, right photo stays sticky */}
+        <div className="hidden md:block">
+          <ScrollReveal translateY={18} start={0} end={0.35}>
+            <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif mb-20">
+              La nostra storia
+            </h2>
+          </ScrollReveal>
 
-          {/* Right — scrolling story blocks */}
-          <div className="flex-1 flex flex-col gap-36">
-            {storyBlocks.map((block, index) => (
-              <div key={index} className="flex flex-col gap-8">
-                <div>
-                  <ScrollReveal translateY={14} start={0} end={0.35} offset={0.1}>
+          <div className="flex flex-row gap-16 lg:gap-24">
+            {/* Left — text blocks that scroll, dim when inactive */}
+            <div className="flex-1">
+              {storyBlocks.map((block, index) => (
+                <div
+                  key={index}
+                  ref={setItemRef(index)}
+                  className="min-h-[70vh] flex items-center"
+                >
+                  <div
+                    className="py-12"
+                    style={{
+                      opacity: activeIndex === index ? 1 : 0.2,
+                      transition: "opacity 0.5s ease-in-out",
+                    }}
+                  >
                     <h3 className="text-2xl md:text-3xl font-serif font-normal text-[#1A1A1A] mb-4">
                       {block.title}
                     </h3>
-                  </ScrollReveal>
-                  <ScrollReveal translateY={14} start={0.05} end={0.4} offset={0.1}>
                     <p className="text-base md:text-lg leading-relaxed font-serif text-[#4A4440]">
                       {block.body}
                     </p>
-                  </ScrollReveal>
-                </div>
-                <ScrollReveal translateY={18} start={0} end={0.4} offset={0.1} effect="slide">
-                  <div className="w-full aspect-[3/4] bg-[#F2F0EB] flex items-center justify-center">
-                    <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif">
-                      Foto {index + 1}
-                    </span>
                   </div>
-                </ScrollReveal>
+                </div>
+              ))}
+            </div>
+
+            {/* Right — sticky photo that crossfades based on active block */}
+            <div className="w-[380px] lg:w-[420px] shrink-0">
+              <div className="sticky top-[15vh] h-[70vh] flex items-center">
+                <div className="relative w-full aspect-[3/4]">
+                  {storyBlocks.map((block, index) => (
+                    <div
+                      key={index}
+                      className="absolute inset-0 bg-[#F2F0EB] flex items-center justify-center"
+                      style={{
+                        opacity: activeIndex === index ? 1 : 0,
+                        transition: "opacity 0.6s ease-in-out",
+                      }}
+                    >
+                      <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif">
+                        {block.photo}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
 
