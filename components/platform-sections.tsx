@@ -20,21 +20,21 @@ function PlatformCard({ name, subtitle, description, align = "left" }: PlatformC
       <div className="max-w-[1000px] mx-auto">
         <div className={`max-w-2xl ${align === "right" ? "md:ml-auto" : ""}`}>
           <h2
-            className={`text-3xl md:text-5xl font-serif font-normal text-[#1A1A1A] mb-3 transition-all duration-800 ${
+            className={`text-3xl md:text-5xl font-serif font-normal text-[#1A1A1A] mb-3 transition-all duration-[800ms] ${
               isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
             }`}
           >
             {name}
           </h2>
           <h3
-            className={`text-lg md:text-xl font-serif italic text-[#C4A882] mb-8 transition-all duration-800 delay-100 ${
+            className={`text-lg md:text-xl font-serif italic text-[#C4A882] mb-8 transition-all duration-[800ms] delay-100 ${
               isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
             {subtitle}
           </h3>
           <p
-            className={`text-base md:text-lg leading-relaxed text-[#6B6B6B] font-serif transition-all duration-800 delay-200 ${
+            className={`text-base md:text-lg leading-relaxed text-[#6B6B6B] font-serif transition-all duration-[800ms] delay-200 ${
               isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
@@ -121,14 +121,14 @@ function CallimacusSection() {
     <div ref={ref} className="py-20 md:py-32 px-6 text-center">
       <div className="max-w-3xl mx-auto">
         <h2
-          className={`text-3xl md:text-5xl font-serif font-normal text-[#1A1A1A] mb-8 transition-all duration-800 ${
+          className={`text-3xl md:text-5xl font-serif font-normal text-[#1A1A1A] mb-8 transition-all duration-[800ms] ${
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           }`}
         >
           Callimacus
         </h2>
         <p
-          className={`text-base md:text-lg leading-relaxed text-[#6B6B6B] font-serif transition-all duration-800 delay-200 ${
+          className={`text-base md:text-lg leading-relaxed text-[#6B6B6B] font-serif transition-all duration-[800ms] delay-200 ${
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >

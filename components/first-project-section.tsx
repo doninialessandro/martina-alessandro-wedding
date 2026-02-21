@@ -24,7 +24,7 @@ export function FirstProjectSection() {
         </div>
 
         <h3
-          className={`text-sm tracking-[0.3em] uppercase text-[#6B6B6B] font-serif mb-6 transition-all duration-800 ${
+          className={`text-sm tracking-[0.3em] uppercase text-[#6B6B6B] font-serif mb-6 transition-all duration-[800ms] ${
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -35,7 +35,7 @@ export function FirstProjectSection() {
           href="https://brunellocucinelli.ai"
           target="_blank"
           rel="noopener noreferrer"
-          className={`inline-block text-2xl md:text-4xl font-serif text-[#1A1A1A] border-b border-[#C4A882] pb-1 transition-all duration-800 delay-200 hover:opacity-60 ${
+          className={`inline-block text-2xl md:text-4xl font-serif text-[#1A1A1A] border-b border-[#C4A882] pb-1 transition-all duration-[800ms] delay-200 hover:opacity-60 ${
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -43,7 +43,7 @@ export function FirstProjectSection() {
         </a>
 
         <div
-          className={`mt-8 transition-all duration-800 delay-400 ${
+          className={`mt-8 transition-all duration-[800ms] delay-[400ms] ${
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >

@@ -15,14 +15,14 @@ function StorySection({ title, children, id }: StorySectionProps) {
     <section id={id} ref={ref} className="py-24 md:py-36 px-6">
       <div className="max-w-3xl mx-auto">
         <h2
-          className={`text-2xl md:text-3xl font-serif font-normal text-[#1A1A1A] mb-8 md:mb-12 transition-all duration-800 ${
+          className={`text-2xl md:text-3xl font-serif font-normal text-[#1A1A1A] mb-8 md:mb-12 transition-all duration-[800ms] ${
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
           {title}
         </h2>
         <div
-          className={`transition-all duration-800 delay-200 ${
+          className={`transition-all duration-[800ms] delay-200 ${
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >

@@ -8,7 +8,7 @@ export function ShareSection() {
   return (
     <section ref={ref} className="py-16 md:py-24 px-6">
       <div
-        className={`max-w-2xl mx-auto text-center transition-all duration-800 ${
+        className={`max-w-2xl mx-auto text-center transition-all duration-[800ms] ${
           isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}
       >
