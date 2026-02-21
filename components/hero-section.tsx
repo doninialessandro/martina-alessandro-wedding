@@ -12,111 +12,72 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 bg-[#FAF9F6]" />
+    <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
 
-      {/* ——— Main hero content ——— */}
-      <div className="relative z-10 flex flex-col items-center w-full">
+      {/* ——— DESKTOP layout ——— */}
+      <div className="hidden md:flex items-center justify-between w-full px-8 lg:px-16 xl:px-24">
 
-        {/* ——— DESKTOP: Human — Flower — AI in a single row ——— */}
-        <div className="hidden md:flex items-center justify-center w-full px-10 lg:px-16">
+        {/* "Martina" — small, pushed to left edge */}
+        <span
+          className={`font-serif text-[#1A1A1A] text-sm lg:text-base tracking-[0.25em] uppercase transition-all duration-[1200ms] ease-out ${
+            loaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+          }`}
+          style={{ fontWeight: 400, lineHeight: 1 }}
+        >
+          Martina
+        </span>
 
-          {/* "Human" — pushed toward the outer left */}
-          <div className="flex-1 flex justify-end pr-10 lg:pr-16 xl:pr-20">
-            <span
-              className={`font-serif text-[#1A1A1A] text-lg lg:text-xl xl:text-2xl tracking-[0.15em] uppercase transition-all duration-1000 delay-300 ${
-                loaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
-              }`}
-              style={{ fontWeight: 400, lineHeight: 1 }}
-            >
-              Human
-            </span>
-          </div>
-
-          {/* Flower — large, centered */}
-          <div
-            className={`shrink-0 transition-opacity duration-[1800ms] ease-out ${
-              loaded ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <MonolineFlower size={220} animate={true} showThread={false} />
-          </div>
-
-          {/* "AI" — pushed toward the outer right */}
-          <div className="flex-1 flex justify-start pl-10 lg:pl-16 xl:pl-20">
-            <span
-              className={`font-serif text-[#1A1A1A] text-lg lg:text-xl xl:text-2xl tracking-[0.15em] uppercase transition-all duration-1000 delay-500 ${
-                loaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
-              }`}
-              style={{ fontWeight: 400, lineHeight: 1 }}
-            >
-              AI
-            </span>
-          </div>
+        {/* Flower — large, dominant center */}
+        <div
+          className={`shrink-0 transition-opacity duration-[2000ms] ease-out ${
+            loaded ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <MonolineFlower size={280} animate={true} showThread={false} />
         </div>
 
-        {/* ——— MOBILE: stacked — flower on top, words below ——— */}
-        <div className="flex flex-col items-center md:hidden px-6">
-
-          {/* Flower — large and prominent */}
-          <div
-            className={`mb-10 transition-opacity duration-[1800ms] ease-out ${
-              loaded ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <MonolineFlower size={160} animate={true} showThread={false} />
-          </div>
-
-          {/* "Human" left, "AI" right */}
-          <div className="flex items-center justify-center w-full gap-12">
-            <span
-              className={`font-serif text-[#1A1A1A] text-base tracking-[0.15em] uppercase transition-all duration-1000 delay-300 ${
-                loaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-6"
-              }`}
-              style={{ fontWeight: 400 }}
-            >
-              Human
-            </span>
-            <span
-              className={`font-serif text-[#1A1A1A] text-base tracking-[0.15em] uppercase transition-all duration-1000 delay-500 ${
-                loaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-6"
-              }`}
-              style={{ fontWeight: 400 }}
-            >
-              AI
-            </span>
-          </div>
-        </div>
+        {/* "Alessandro" — small, pushed to right edge */}
+        <span
+          className={`font-serif text-[#1A1A1A] text-sm lg:text-base tracking-[0.25em] uppercase transition-all duration-[1200ms] ease-out delay-200 ${
+            loaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
+          }`}
+          style={{ fontWeight: 400, lineHeight: 1 }}
+        >
+          Alessandro
+        </span>
       </div>
 
-      {/* ——— Thread line extending down from hero ——— */}
-      <div
-        className="relative z-10 mt-16 md:mt-20 flex justify-center"
-        style={{
-          opacity: loaded ? 1 : 0,
-          transition: "opacity 1s ease-out 2.5s",
-        }}
-      >
-        <svg
-          width="1"
-          height="120"
-          viewBox="0 0 1 120"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="overflow-visible"
+      {/* ——— MOBILE layout ——— */}
+      <div className="flex flex-col items-center md:hidden px-6">
+
+        {/* Flower — large */}
+        <div
+          className={`mb-10 transition-opacity duration-[2000ms] ease-out ${
+            loaded ? "opacity-100" : "opacity-0"
+          }`}
         >
-          <line
-            x1="0.5" y1="0" x2="0.5" y2="120"
-            stroke="#D5CDC2"
-            strokeWidth="1"
-            strokeLinecap="round"
-            style={{
-              strokeDasharray: 120,
-              strokeDashoffset: loaded ? 0 : 120,
-              transition: "stroke-dashoffset 2s cubic-bezier(0.33,1,0.68,1) 2.8s",
-            }}
-          />
-        </svg>
+          <MonolineFlower size={200} animate={true} showThread={false} />
+        </div>
+
+        {/* Names on either side */}
+        <div className="flex items-center justify-between w-full max-w-xs">
+          <span
+            className={`font-serif text-[#1A1A1A] text-xs tracking-[0.25em] uppercase transition-all duration-[1200ms] ease-out ${
+              loaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-6"
+            }`}
+            style={{ fontWeight: 400 }}
+          >
+            Martina
+          </span>
+          <span
+            className={`font-serif text-[#1A1A1A] text-xs tracking-[0.25em] uppercase transition-all duration-[1200ms] ease-out delay-200 ${
+              loaded ? "opacity-100 translate-x-0" : "opacity-0 translate-x-6"
+            }`}
+            style={{ fontWeight: 400 }}
+          >
+            Alessandro
+          </span>
+        </div>
       </div>
     </section>
   )

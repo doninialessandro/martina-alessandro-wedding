@@ -1,7 +1,6 @@
 "use client"
 
 import { useInView } from "@/hooks/use-in-view"
-import { ThreadLine } from "./thread-line"
 
 interface PlatformCardProps {
   name: string
@@ -51,16 +50,12 @@ function PlatformCard({ name, subtitle, description, align = "left" }: PlatformC
 export function PlatformSections() {
   return (
     <section id="platform" className="relative">
-      <ThreadLine height={90} />
-
       <PlatformCard
         name="Socrates"
         subtitle={'"I know that I know nothing"'}
         description={'The platform we have created operates thanks to an orchestra of AI-based components and agents. Among them is Socrates, our agent who reads, understands, learns, knows how to say "I don\'t know," and is tasked with seeking the truth in dialogue with visitors.'}
         align="left"
       />
-
-      <ThreadLine height={70} />
 
       <PlatformCard
         name="Demosthenes"
@@ -69,16 +64,12 @@ export function PlatformSections() {
         align="right"
       />
 
-      <ThreadLine height={80} />
-
       <PlatformCard
         name="The Dioscuri"
         subtitle="The Protection"
         description="To protect the dialogues between the website and the visitor, we have created the Dioscuri, a pair of agents that monitor the correctness of the conversations and know when to intervene."
         align="left"
       />
-
-      <ThreadLine height={70} />
 
       <PlatformCard
         name="Thamyr"
@@ -87,16 +78,12 @@ export function PlatformSections() {
         align="right"
       />
 
-      <ThreadLine height={80} />
-
       <PlatformCard
         name="Theano"
         subtitle="The Architect"
         description="Theano, named after the Pythagorean philosopher, is our architect, the one who gives order to what the other components design and create. She is the technological engine of the project and was conceived to overcome the need for manual content loading."
         align="left"
       />
-
-      <ThreadLine height={90} />
 
       <CallimacusSection />
     </section>
