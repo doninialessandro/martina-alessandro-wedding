@@ -117,8 +117,8 @@ export function MonolineFlower({
       case "stem": return "url(#flowerStemGrad)"
       case "center": return "url(#flowerCenterGrad)"
       case "petal": return "url(#flowerPetalGrad)"
-      case "detail": return "#A87A30"
-      default: return "#5C6E5A"
+      case "detail": return "#BE8520"
+      default: return "#4A6A46"
     }
   }
 
@@ -145,20 +145,20 @@ export function MonolineFlower({
       >
         <defs>
           <linearGradient id="flowerStemGrad" x1="50%" y1="100%" x2="50%" y2="0%">
-            <stop offset="0%" stopColor="#6B7E69" />
-            <stop offset="50%" stopColor="#5C6E5A" />
-            <stop offset="100%" stopColor="#4D5F4B" />
+            <stop offset="0%" stopColor="#5A7A56" />
+            <stop offset="50%" stopColor="#4A6A46" />
+            <stop offset="100%" stopColor="#3B5B38" />
           </linearGradient>
           <radialGradient id="flowerCenterGrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#D4A24C" />
-            <stop offset="50%" stopColor="#C08E3A" />
-            <stop offset="100%" stopColor="#A87A30" />
+            <stop offset="0%" stopColor="#E6AE3E" />
+            <stop offset="50%" stopColor="#D49A2C" />
+            <stop offset="100%" stopColor="#BE8520" />
           </radialGradient>
           <linearGradient id="flowerPetalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#D88A6E" />
-            <stop offset="35%" stopColor="#C87A5E" />
-            <stop offset="70%" stopColor="#B86E54" />
-            <stop offset="100%" stopColor="#A06048" />
+            <stop offset="0%" stopColor="#E8845A" />
+            <stop offset="35%" stopColor="#DC7048" />
+            <stop offset="70%" stopColor="#D0603C" />
+            <stop offset="100%" stopColor="#BA5030" />
           </linearGradient>
         </defs>
 
@@ -196,7 +196,7 @@ export function MonolineFlower({
         >
           <line
             x1="1" y1="0" x2="1" y2="120"
-            stroke="#6B7E69"
+            stroke="#5A7A56"
             strokeWidth="1.5"
             strokeLinecap="round"
             style={{

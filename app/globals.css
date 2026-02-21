@@ -4,22 +4,22 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #F5F0E3;
+  --background: #FAF8F2;
   --foreground: #1A1A1A;
-  --card: #F5F0E3;
+  --card: #FAF8F2;
   --card-foreground: #1A1A1A;
-  --popover: #F5F0E3;
+  --popover: #FAF8F2;
   --popover-foreground: #1A1A1A;
   --primary: #1A1A1A;
-  --primary-foreground: #F5F0E3;
-  --secondary: #EDE8DA;
+  --primary-foreground: #FAF8F2;
+  --secondary: #F3F0E8;
   --secondary-foreground: #1A1A1A;
-  --muted: #EDE8DA;
+  --muted: #F3F0E8;
   --muted-foreground: #4A4440;
   --accent: #8E9E8C;
   --accent-foreground: #1A1A1A;
   --destructive: #B91C1C;
-  --destructive-foreground: #F5F0E3;
+  --destructive-foreground: #FAF8F2;
   --border: #D5CCBC;
   --input: #D5CCBC;
   --ring: #8E9E8C;
@@ -72,7 +72,7 @@ html {
 /* Custom selection color */
 ::selection {
   background: #8E9E8C;
-  color: #F5F0E3;
+  color: #FAF8F2;
 }
 
 /* Hide scrollbar but allow scrolling */
@@ -127,7 +127,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #F5F0E3 inset;
+  -webkit-box-shadow: 0 0 0px 1000px #FAF8F2 inset;
   -webkit-text-fill-color: #1A1A1A;
   transition: background-color 5000s ease-in-out 0s;
 }

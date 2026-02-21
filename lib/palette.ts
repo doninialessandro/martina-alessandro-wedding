@@ -10,27 +10,27 @@
 export const palette = {
   /** Sage green – accents, subtitles, focus rings, interactive highlights */
   sage: "#8E9E8C",
-  sageDark: "#5C6E5A",
-  sageDeep: "#4D5F4B",
+  sageDark: "#4A6A46",
+  sageDeep: "#3B5B38",
 
   /** Warm amber / marigold – flower center, warm emphasis */
-  amber: "#D4A24C",
-  amberDark: "#C08E3A",
-  amberDeep: "#A87A30",
+  amber: "#E6AE3E",
+  amberDark: "#D49A2C",
+  amberDeep: "#BE8520",
 
   /** Coral / terracotta – flower petals, warm accents */
-  coral: "#D88A6E",
-  coralDark: "#C87A5E",
-  coralMid: "#B86E54",
-  coralDeep: "#A06048",
+  coral: "#E8845A",
+  coralDark: "#DC7048",
+  coralMid: "#D0603C",
+  coralDeep: "#BA5030",
 
   /** Soft peach / blush – muted states, gentle backgrounds */
   peach: "#F2C4B0",
   peachLight: "#F5D5C5",
 
   /** Cream / ivory – page background, panels, cards */
-  cream: "#F5F0E3",
-  creamDark: "#EDE8DA",
+  cream: "#FAF8F2",
+  creamDark: "#F3F0E8",
 
   /** Neutrals – text, borders, dividers */
   text: "#1A1A1A",
