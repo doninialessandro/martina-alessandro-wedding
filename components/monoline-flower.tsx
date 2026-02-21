@@ -33,66 +33,103 @@ export function MonolineFlower({
     return () => observer.disconnect()
   }, [animate])
 
-  // A refined sunflower inspired by the Pinterest reference:
-  // Organic, hand-drawn feel, single continuous-style strokes,
-  // with a natural seed-head center, layered petals, curved stem with leaves
-  const segments = [
-    // === STEM (drawn first, rising from bottom) ===
-    { id: "stem", d: "M100 198 C99 188 97 175 98 165 C99 155 101 142 100 132 C99 125 100 118 100 114", len: 88 },
-    // Left leaf
-    { id: "leaf-l", d: "M99 162 C95 157 88 153 82 154 C76 156 75 161 79 165 C83 169 92 168 99 164", len: 52 },
-    // Left leaf vein
-    { id: "vein-l", d: "M99 163 C93 160 86 158 82 159", len: 20 },
-    // Right leaf
-    { id: "leaf-r", d: "M101 146 C105 141 112 137 118 138 C124 140 125 145 121 149 C117 152 108 151 101 148", len: 52 },
-    // Right leaf vein
-    { id: "vein-r", d: "M101 147 C107 144 114 142 118 143", len: 20 },
+  /*
+    Sunflower inspired by the Pinterest monoline reference.
+    Single continuous-style line art: thin organic strokes,
+    spiral center with seed texture, elongated petals,
+    curved stem with veined leaves.
 
-    // === CENTER SEED HEAD (spiral pattern) ===
-    { id: "center-1", d: "M104 99 C106 95 103 91 99 91 C94 91 91 95 92 100 C93 105 97 108 102 108 C107 107 109 103 108 98 C107 93 103 89 98 89 C92 89 88 94 89 100", len: 110 },
-    { id: "center-2", d: "M89 100 C90 107 95 112 101 112 C108 112 113 107 113 100 C113 93 108 87 101 86 C94 86 88 90 87 97", len: 100 },
-    // Inner dots / small marks for seed texture
-    { id: "seed-1", d: "M97 96 C98 95 99 95 100 96", len: 5 },
-    { id: "seed-2", d: "M102 100 C103 99 103 98 102 97", len: 5 },
-    { id: "seed-3", d: "M98 102 C97 101 97 100 98 99", len: 5 },
+    Drawing order: stem -> leaves -> center spiral -> petals
+    This gives the illusion of one continuous hand-drawn line.
+  */
 
-    // === PETALS (radiating outward, organic uneven shapes like a real sunflower) ===
-    // Top petal
-    { id: "p1", d: "M99 86 C97 78 95 67 96 59 C97 52 99 48 101 48 C103 48 105 52 105 60 C105 68 103 78 101 86", len: 82 },
-    // Top-right petal
-    { id: "p2", d: "M107 88 C112 82 120 73 126 69 C131 66 134 66 135 68 C136 71 133 75 128 80 C122 86 114 91 109 93", len: 74 },
-    // Right petal
-    { id: "p3", d: "M113 97 C120 95 130 93 138 94 C144 95 147 98 147 100 C147 103 144 105 138 106 C130 106 120 104 113 103", len: 78 },
-    // Bottom-right petal
-    { id: "p4", d: "M110 108 C115 114 121 123 124 130 C126 136 125 139 123 140 C121 140 118 137 116 131 C113 124 111 116 109 110", len: 72 },
-    // Bottom petal
-    { id: "p5", d: "M101 113 C103 120 105 130 104 138 C103 144 101 148 100 148 C99 148 97 144 96 138 C95 130 97 120 99 113", len: 78 },
-    // Bottom-left petal
-    { id: "p6", d: "M91 109 C87 115 81 123 78 130 C76 136 77 139 79 140 C81 140 84 137 86 131 C89 124 90 116 91 110", len: 72 },
-    // Left petal
-    { id: "p7", d: "M87 103 C80 104 70 106 62 106 C56 105 53 103 53 100 C53 98 56 95 62 94 C70 93 80 95 87 97", len: 78 },
-    // Top-left petal
-    { id: "p8", d: "M91 92 C87 86 80 76 74 72 C69 69 67 69 66 71 C66 74 69 78 74 83 C80 88 87 92 91 93", len: 74 },
+  type Segment = {
+    id: string
+    d: string
+    len: number
+    group: "stem" | "center" | "petal" | "detail"
+  }
 
-    // === OUTER PETAL TIPS (thin accent lines at the tip of each petal for detail) ===
-    { id: "tip1", d: "M98 50 C100 46 102 46 104 50", len: 10 },
-    { id: "tip2", d: "M133 67 C136 65 137 67 135 70", len: 8 },
-    { id: "tip3", d: "M145 97 C149 99 149 101 145 103", len: 10 },
-    { id: "tip4", d: "M125 138 C124 142 122 142 121 138", len: 8 },
-    { id: "tip5", d: "M102 147 C100 151 98 151 96 147", len: 10 },
-    { id: "tip6", d: "M77 138 C78 142 80 142 81 138", len: 8 },
-    { id: "tip7", d: "M55 103 C51 101 51 99 55 97", len: 10 },
-    { id: "tip8", d: "M67 70 C65 68 66 66 69 68", len: 8 },
+  const segments: Segment[] = [
+    // ── STEM ──
+    { id: "stem", d: "M100 200 C99 192 98 180 98 170 C98 158 100 148 100 138 C100 130 100 122 100 115", group: "stem", len: 90 },
+
+    // ── LEAVES ──
+    { id: "leaf-l", d: "M99 168 C94 162 84 157 77 158 C70 160 68 166 72 170 C77 175 90 173 99 169", group: "stem", len: 60 },
+    { id: "vein-l", d: "M98 168 C91 165 83 162 77 163", group: "detail", len: 24 },
+    { id: "leaf-r", d: "M101 148 C106 142 116 137 123 138 C130 140 132 146 128 150 C123 154 110 153 101 149", group: "stem", len: 60 },
+    { id: "vein-r", d: "M102 148 C109 145 117 143 123 143", group: "detail", len: 24 },
+
+    // ── CENTER: double spiral for seed-head texture ──
+    { id: "spiral-1", d: "M103 98 C106 94 104 89 100 89 C95 89 92 93 93 98 C94 103 98 107 103 107 C108 107 111 103 111 98 C111 92 107 87 101 86 C94 86 89 91 89 98 C89 106 94 112 101 112", group: "center", len: 140 },
+    { id: "spiral-2", d: "M101 112 C109 112 114 106 114 98 C114 90 109 84 101 84 C92 84 86 90 86 98 C86 107 92 114 101 114", group: "center", len: 120 },
+    // Seed marks: small curved dashes inside the center
+    { id: "s1", d: "M97 94 C98 93 99 93 100 94", group: "detail", len: 5 },
+    { id: "s2", d: "M103 97 C104 96 104 95 103 94", group: "detail", len: 5 },
+    { id: "s3", d: "M100 100 C99 101 98 101 97 100", group: "detail", len: 5 },
+    { id: "s4", d: "M96 97 C95 96 95 95 96 94", group: "detail", len: 5 },
+    { id: "s5", d: "M100 96 C101 95 101 94 100 93", group: "detail", len: 4 },
+    { id: "s6", d: "M103 100 C104 101 103 102 102 101", group: "detail", len: 5 },
+
+    // ── PETALS: 12 elongated organic petals radiating outward ──
+    // Top
+    { id: "p1", d: "M100 84 C99 76 97 64 97 55 C97 47 99 42 101 42 C103 42 105 47 105 55 C105 64 103 76 101 84", group: "petal", len: 90 },
+    // Top-right 1
+    { id: "p2", d: "M108 86 C113 80 121 70 127 64 C132 60 135 59 137 61 C139 63 137 67 132 72 C126 79 117 87 112 91", group: "petal", len: 80 },
+    // Right-upper
+    { id: "p3", d: "M113 93 C120 90 131 86 140 85 C147 85 151 87 151 90 C151 93 147 95 140 96 C131 97 120 96 113 95", group: "petal", len: 84 },
+    // Right
+    { id: "p4", d: "M114 100 C122 100 133 101 142 103 C149 105 153 108 152 111 C151 114 147 114 140 113 C132 111 121 107 114 104", group: "petal", len: 82 },
+    // Bottom-right
+    { id: "p5", d: "M111 108 C116 114 123 124 127 132 C130 139 129 143 127 144 C125 145 122 142 119 135 C116 127 113 118 111 112", group: "petal", len: 78 },
+    // Bottom
+    { id: "p6", d: "M102 114 C103 122 105 133 104 142 C103 149 101 154 100 154 C99 154 97 149 96 142 C95 133 97 122 98 114", group: "petal", len: 88 },
+    // Bottom-left
+    { id: "p7", d: "M91 110 C86 116 79 125 75 133 C72 139 73 143 75 144 C77 145 80 142 83 135 C86 127 89 117 91 111", group: "petal", len: 78 },
+    // Left
+    { id: "p8", d: "M87 103 C79 105 68 108 59 108 C52 108 48 106 48 103 C48 100 52 97 59 96 C68 95 79 97 87 99", group: "petal", len: 84 },
+    // Left-upper
+    { id: "p9", d: "M88 95 C81 92 70 87 62 84 C55 81 51 79 51 76 C51 73 55 73 62 75 C70 78 81 85 88 89", group: "petal", len: 80 },
+    // Top-left
+    { id: "p10", d: "M93 87 C88 80 81 71 76 64 C72 59 70 57 68 59 C66 61 68 66 73 72 C79 79 87 87 92 91", group: "petal", len: 78 },
+    // Upper-right inner
+    { id: "p11", d: "M106 85 C108 78 112 68 115 60 C117 53 117 49 115 48 C113 47 111 51 110 58 C108 66 107 77 106 85", group: "petal", len: 72 },
+    // Lower-left inner
+    { id: "p12", d: "M94 113 C92 120 88 130 85 138 C83 144 83 148 85 149 C87 150 89 146 90 139 C92 131 93 121 94 113", group: "petal", len: 72 },
   ]
 
-  // Compute draw timings: each segment draws sequentially with overlap
+  // Sequential draw timing: each segment starts slightly before the previous finishes
   let cumulativeDelay = 0
   const timings = segments.map((seg) => {
     const delay = cumulativeDelay
-    const dur = Math.max(0.12, seg.len / 500)
-    cumulativeDelay += dur * 0.45
+    // Speed proportional to length, minimum 0.15s
+    const dur = Math.max(0.15, seg.len / 400)
+    // Overlap: next segment starts when current is ~55% done
+    cumulativeDelay += dur * 0.42
     return { delay, dur }
   })
+
+  const totalDrawTime = cumulativeDelay + 0.5
+
+  // Stroke color per group
+  function getStroke(group: string): string {
+    switch (group) {
+      case "stem": return "url(#flowerStemGrad)"
+      case "center": return "url(#flowerCenterGrad)"
+      case "petal": return "url(#flowerPetalGrad)"
+      case "detail": return "#9A8A70"
+      default: return "#6B6B6B"
+    }
+  }
+
+  // Stroke width per group
+  function getStrokeWidth(group: string): number {
+    switch (group) {
+      case "detail": return 0.7
+      case "petal": return 1.2
+      default: return 1.5
+    }
+  }
 
   return (
     <div className={`relative inline-flex flex-col items-center ${className}`}>
@@ -100,57 +137,38 @@ export function MonolineFlower({
         ref={svgRef}
         width={size}
         height={size}
-        viewBox="0 0 200 200"
+        viewBox="0 0 200 205"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
       >
         <defs>
-          {/* Warm earthy gradient for petals: gold -> terracotta -> brown */}
-          <linearGradient id="petalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#D4B896" />
-            <stop offset="40%" stopColor="#C4A882" />
-            <stop offset="75%" stopColor="#A08060" />
-            <stop offset="100%" stopColor="#8B7355" />
-          </linearGradient>
-          {/* Darker organic gradient for stem and center */}
-          <linearGradient id="stemGrad" x1="50%" y1="100%" x2="50%" y2="0%">
-            <stop offset="0%" stopColor="#6B6B6B" />
-            <stop offset="50%" stopColor="#7A6B55" />
+          <linearGradient id="flowerStemGrad" x1="50%" y1="100%" x2="50%" y2="0%">
+            <stop offset="0%" stopColor="#7A6B55" />
+            <stop offset="50%" stopColor="#6B5B45" />
             <stop offset="100%" stopColor="#5C4E3C" />
           </linearGradient>
-          {/* Rich warm brown for the seed head */}
-          <radialGradient id="centerGrad" cx="50%" cy="50%" r="50%">
+          <radialGradient id="flowerCenterGrad" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stopColor="#8B7355" />
-            <stop offset="60%" stopColor="#6B5B45" />
-            <stop offset="100%" stopColor="#4A3F30" />
+            <stop offset="50%" stopColor="#7A6545" />
+            <stop offset="100%" stopColor="#5C4E3C" />
           </radialGradient>
+          <linearGradient id="flowerPetalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#D4B896" />
+            <stop offset="35%" stopColor="#C4A882" />
+            <stop offset="70%" stopColor="#B09570" />
+            <stop offset="100%" stopColor="#8B7355" />
+          </linearGradient>
         </defs>
 
         {segments.map((seg, i) => {
           const { delay, dur } = timings[i]
-          // Choose gradient based on segment type
-          let stroke = "url(#petalGrad)"
-          if (seg.id.startsWith("stem") || seg.id.startsWith("leaf") || seg.id.startsWith("vein")) {
-            stroke = "url(#stemGrad)"
-          } else if (seg.id.startsWith("center") || seg.id.startsWith("seed")) {
-            stroke = "url(#centerGrad)"
-          } else if (seg.id.startsWith("tip")) {
-            stroke = "#C4A882"
-          }
-
-          // Thinner strokes for details
-          let sw = 1.5
-          if (seg.id.startsWith("vein") || seg.id.startsWith("seed") || seg.id.startsWith("tip")) {
-            sw = 0.8
-          }
-
           return (
             <path
               key={seg.id}
               d={seg.d}
-              stroke={stroke}
-              strokeWidth={sw}
+              stroke={getStroke(seg.group)}
+              strokeWidth={getStrokeWidth(seg.group)}
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -164,14 +182,15 @@ export function MonolineFlower({
         })}
       </svg>
 
-      {/* Thread emerging from the stem bottom, continues downward infinitely */}
+      {/* Thread continuing downward from stem, appears after flower finishes drawing */}
       {showThread && (
         <div
-          className="w-px bg-[#E0DCD5] transition-all duration-[2000ms] ease-out"
+          className="w-px bg-[#E0DCD5] origin-top"
           style={{
-            height: isVisible ? 80 : 0,
+            height: 80,
+            transform: isVisible ? "scaleY(1)" : "scaleY(0)",
             opacity: isVisible ? 1 : 0,
-            transitionDelay: `${(cumulativeDelay + 0.3).toFixed(2)}s`,
+            transition: `transform 1.5s cubic-bezier(0.33,1,0.68,1) ${totalDrawTime.toFixed(1)}s, opacity 0.8s ease ${totalDrawTime.toFixed(1)}s`,
           }}
         />
       )}
