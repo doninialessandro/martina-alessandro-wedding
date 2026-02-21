@@ -4,25 +4,25 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #FAF9F6;
+  --background: #F5F0E3;
   --foreground: #1A1A1A;
-  --card: #FAF9F6;
+  --card: #F5F0E3;
   --card-foreground: #1A1A1A;
-  --popover: #FAF9F6;
+  --popover: #F5F0E3;
   --popover-foreground: #1A1A1A;
   --primary: #1A1A1A;
-  --primary-foreground: #FAF9F6;
-  --secondary: #F0EDE8;
+  --primary-foreground: #F5F0E3;
+  --secondary: #EDE8DA;
   --secondary-foreground: #1A1A1A;
-  --muted: #F0EDE8;
-  --muted-foreground: #6B6B6B;
-  --accent: #C4A882;
+  --muted: #EDE8DA;
+  --muted-foreground: #4A4440;
+  --accent: #8E9E8C;
   --accent-foreground: #1A1A1A;
   --destructive: #B91C1C;
-  --destructive-foreground: #FAF9F6;
-  --border: #E0DCD5;
-  --input: #E0DCD5;
-  --ring: #C4A882;
+  --destructive-foreground: #F5F0E3;
+  --border: #D5CCBC;
+  --input: #D5CCBC;
+  --ring: #8E9E8C;
   --radius: 0rem;
 }
 
@@ -71,8 +71,8 @@ html {
 
 /* Custom selection color */
 ::selection {
-  background: #C4A882;
-  color: #1A1A1A;
+  background: #8E9E8C;
+  color: #F5F0E3;
 }
 
 /* Hide scrollbar but allow scrolling */
@@ -118,7 +118,7 @@ html {
   background: transparent;
 }
 .overlay-scrollbar::-webkit-scrollbar-thumb {
-  background: #C4A882;
+  background: #8E9E8C;
   border-radius: 3px;
 }
 
@@ -127,7 +127,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #FAF9F6 inset;
+  -webkit-box-shadow: 0 0 0px 1000px #F5F0E3 inset;
   -webkit-text-fill-color: #1A1A1A;
   transition: background-color 5000s ease-in-out 0s;
 }

@@ -24,7 +24,7 @@ function StorySection({ title, body, id }: StorySectionProps) {
           text={body}
           className="text-base md:text-lg leading-relaxed font-serif"
           offset={0.1}
-          mutedColor="#C0B5A6"
+          mutedColor="#D5CCBC"
           activeColor="#3A3530"
         />
       </div>

@@ -99,7 +99,7 @@ export function WordReveal({
   text,
   className = "",
   offset = 0.08,
-  mutedColor = "#C0B5A6",
+  mutedColor = "#D5CCBC",
   activeColor = "#3A3530",
 }: WordRevealProps) {
   const { ref, progress } = useScrollProgress(offset)

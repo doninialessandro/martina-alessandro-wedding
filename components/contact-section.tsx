@@ -53,7 +53,7 @@ export function ContactSection() {
                     name="firstName"
                     type="text"
                     required
-                    className="w-full bg-transparent border-b border-[#E0DCD5] pb-2 text-[#1A1A1A] font-serif text-base focus:outline-none focus:border-[#C4A882] transition-colors"
+                    className="w-full bg-transparent border-b border-[#D5CCBC] pb-2 text-[#1A1A1A] font-serif text-base focus:outline-none focus:border-[#8E9E8C] transition-colors"
                   />
                 </div>
                 <div>
@@ -65,7 +65,7 @@ export function ContactSection() {
                     name="lastName"
                     type="text"
                     required
-                    className="w-full bg-transparent border-b border-[#E0DCD5] pb-2 text-[#1A1A1A] font-serif text-base focus:outline-none focus:border-[#C4A882] transition-colors"
+                    className="w-full bg-transparent border-b border-[#D5CCBC] pb-2 text-[#1A1A1A] font-serif text-base focus:outline-none focus:border-[#8E9E8C] transition-colors"
                   />
                 </div>
               </div>
@@ -79,7 +79,7 @@ export function ContactSection() {
                   name="email"
                   type="email"
                   required
-                  className="w-full bg-transparent border-b border-[#E0DCD5] pb-2 text-[#1A1A1A] font-serif text-base focus:outline-none focus:border-[#C4A882] transition-colors"
+                  className="w-full bg-transparent border-b border-[#D5CCBC] pb-2 text-[#1A1A1A] font-serif text-base focus:outline-none focus:border-[#8E9E8C] transition-colors"
                 />
               </div>
 
@@ -91,7 +91,7 @@ export function ContactSection() {
                   id="organization"
                   name="organization"
                   type="text"
-                  className="w-full bg-transparent border-b border-[#E0DCD5] pb-2 text-[#1A1A1A] font-serif text-base focus:outline-none focus:border-[#C4A882] transition-colors"
+                  className="w-full bg-transparent border-b border-[#D5CCBC] pb-2 text-[#1A1A1A] font-serif text-base focus:outline-none focus:border-[#8E9E8C] transition-colors"
                 />
               </div>
 
@@ -104,7 +104,7 @@ export function ContactSection() {
                   name="message"
                   rows={4}
                   required
-                  className="w-full bg-transparent border-b border-[#E0DCD5] pb-2 text-[#1A1A1A] font-serif text-base focus:outline-none focus:border-[#C4A882] transition-colors resize-none"
+                  className="w-full bg-transparent border-b border-[#D5CCBC] pb-2 text-[#1A1A1A] font-serif text-base focus:outline-none focus:border-[#8E9E8C] transition-colors resize-none"
                 />
               </div>
 
@@ -117,12 +117,12 @@ export function ContactSection() {
                   className={`mt-1 w-4 h-4 border flex-shrink-0 flex items-center justify-center transition-colors ${
                     privacyAccepted
                       ? "bg-[#1A1A1A] border-[#1A1A1A]"
-                      : "bg-transparent border-[#E0DCD5]"
+                      : "bg-transparent border-[#D5CCBC]"
                   }`}
                 >
                   {privacyAccepted && (
                     <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                      <path d="M1 4L3.5 6.5L9 1" stroke="#FAF9F6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M1 4L3.5 6.5L9 1" stroke="#F5F0E3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   )}
                 </button>
@@ -132,7 +132,7 @@ export function ContactSection() {
                   By submitting this form, you agree to our{" "}
                   <button
                     type="button"
-                    className="text-[#1A1A1A] border-b border-[#C4A882] hover:opacity-60 transition-opacity"
+                    className="text-[#1A1A1A] border-b border-[#8E9E8C] hover:opacity-60 transition-opacity"
                   >
                     Privacy Policy
                   </button>
@@ -145,8 +145,8 @@ export function ContactSection() {
                   disabled={!privacyAccepted}
                   className={`text-sm tracking-[0.2em] uppercase font-serif border-b pb-0.5 transition-all ${
                     privacyAccepted
-                      ? "text-[#1A1A1A] border-[#C4A882] hover:opacity-60 cursor-pointer"
-                      : "text-[#E0DCD5] border-[#E0DCD5] cursor-not-allowed"
+                      ? "text-[#1A1A1A] border-[#8E9E8C] hover:opacity-60 cursor-pointer"
+                      : "text-[#D5CCBC] border-[#D5CCBC] cursor-not-allowed"
                   }`}
                 >
                   Send

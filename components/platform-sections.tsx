@@ -27,7 +27,7 @@ function PlatformCard({ name, subtitle, description, align = "left" }: PlatformC
           </ScrollReveal>
 
           <ScrollReveal translateY={30} start={0.05} end={0.35}>
-            <h3 className="text-lg md:text-xl font-serif italic text-[#9A7B4F] mb-8">
+            <h3 className="text-lg md:text-xl font-serif italic text-[#8E9E8C] mb-8">
               {subtitle}
             </h3>
           </ScrollReveal>
@@ -36,7 +36,7 @@ function PlatformCard({ name, subtitle, description, align = "left" }: PlatformC
             text={description}
             className="text-base md:text-lg leading-relaxed font-serif"
             offset={0.08}
-            mutedColor="#C0B5A6"
+            mutedColor="#D5CCBC"
             activeColor="#3A3530"
           />
         </div>
@@ -99,7 +99,7 @@ function CallimacusSection() {
           text="The combination of these components and the orchestra of agents they coordinate constitutes Callimacus, our platform, named after the great philologist of ancient times. Thanks to the dialogic interaction that continuously interweaves each contribution, Callimacus assists and guides all phases of website creation: it verifies, reconstructs, modifies, corrects, and optimizes the content."
           className="text-base md:text-lg leading-relaxed font-serif"
           offset={0.08}
-          mutedColor="#C0B5A6"
+          mutedColor="#D5CCBC"
           activeColor="#3A3530"
         />
       </div>

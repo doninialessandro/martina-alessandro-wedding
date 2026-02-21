@@ -11,7 +11,7 @@ export function SiteFooter() {
 
   return (
     <>
-      <footer className="border-t border-[#E0DCD5] py-16 md:py-24 px-6">
+      <footer className="border-t border-[#D5CCBC] py-16 md:py-24 px-6">
         <div className="max-w-[1400px] mx-auto">
           {/* Top section with flower */}
           <div className="flex justify-center mb-12">
@@ -33,14 +33,14 @@ export function SiteFooter() {
             >
               Privacy Policy
             </button>
-            <span className="text-[#E0DCD5]">|</span>
+            <span className="text-[#D5CCBC]">|</span>
             <button
               onClick={() => setLegalOpen(true)}
               className="text-xs tracking-[0.15em] uppercase text-[#4A4440] font-serif hover:text-[#1A1A1A] transition-colors"
             >
               Legal
             </button>
-            <span className="text-[#E0DCD5]">|</span>
+            <span className="text-[#D5CCBC]">|</span>
             <a
               href="mailto:more@solomei.ai"
               className="text-xs tracking-[0.15em] uppercase text-[#4A4440] font-serif hover:text-[#1A1A1A] transition-colors"

@@ -6,7 +6,7 @@ import { MonolineFlower } from "./monoline-flower"
 export function FirstProjectSection() {
   return (
     <section className="py-28 md:py-44 px-8 sm:px-12 md:px-16 relative">
-      <div className="absolute inset-0 bg-[#F0EDE8]/40" />
+      <div className="absolute inset-0 bg-[#EDE8DA]/40" />
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         <ScrollReveal translateY={30} scaleFrom={0.9} start={0} end={0.35} effect="slide">
@@ -26,7 +26,7 @@ export function FirstProjectSection() {
             href="https://brunellocucinelli.ai"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block text-2xl md:text-4xl font-serif text-[#1A1A1A] border-b border-[#C4A882] pb-1 hover:opacity-60 transition-opacity"
+            className="inline-block text-2xl md:text-4xl font-serif text-[#1A1A1A] border-b border-[#8E9E8C] pb-1 hover:opacity-60 transition-opacity"
           >
             brunellocucinelli.ai
           </a>
@@ -36,7 +36,7 @@ export function FirstProjectSection() {
           <div className="mt-8">
             <a
               href="#"
-              className="text-sm tracking-[0.15em] uppercase text-[#4A4440] font-serif border-b border-[#E0DCD5] pb-0.5 hover:text-[#1A1A1A] hover:border-[#C4A882] transition-all"
+              className="text-sm tracking-[0.15em] uppercase text-[#4A4440] font-serif border-b border-[#D5CCBC] pb-0.5 hover:text-[#1A1A1A] hover:border-[#8E9E8C] transition-all"
             >
               Press release
             </a>

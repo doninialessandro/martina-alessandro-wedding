@@ -30,11 +30,11 @@ export function PrivacyOverlay({ open, onClose }: PrivacyOverlayProps) {
       />
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-3xl max-h-[85vh] mx-4 bg-[#FAF9F6] overflow-y-auto overlay-scrollbar animate-fade-in-up">
+      <div className="relative z-10 w-full max-w-3xl max-h-[85vh] mx-4 bg-[#F5F0E3] overflow-y-auto overlay-scrollbar animate-fade-in-up">
         {/* Close button */}
         <button
           onClick={onClose}
-          className="sticky top-4 float-right mr-4 mt-4 z-10 w-10 h-10 flex items-center justify-center text-[#6B6B6B] hover:text-[#1A1A1A] transition-colors"
+          className="sticky top-4 float-right mr-4 mt-4 z-10 w-10 h-10 flex items-center justify-center text-[#4A4440] hover:text-[#1A1A1A] transition-colors"
           aria-label="Close privacy policy"
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -46,10 +46,10 @@ export function PrivacyOverlay({ open, onClose }: PrivacyOverlayProps) {
           <h2 className="text-3xl md:text-4xl font-serif font-normal text-[#1A1A1A] mb-8">
             Privacy Policy
           </h2>
-          <p className="text-sm leading-relaxed text-[#6B6B6B] font-serif mb-6 italic">
+          <p className="text-sm leading-relaxed text-[#4A4440] font-serif mb-6 italic">
             (Information notice on the processing of personal data pursuant to Articles 13 and 14 of EU Regulation 679/2016)
           </p>
-          <div className="space-y-6 text-sm leading-relaxed text-[#6B6B6B] font-serif">
+          <div className="space-y-6 text-sm leading-relaxed text-[#4A4440] font-serif">
             <p>
               Solomei AI S.r.l., in its capacity as Data Controller (hereinafter &quot;Solomei&quot; or &quot;Data Controller&quot;) pursuant to EU Regulation 679/2016 (hereinafter &quot;Regulation&quot;), considers privacy and the protection of personal data to be one of the main objectives of its business.
             </p>
