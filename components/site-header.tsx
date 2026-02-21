@@ -14,7 +14,6 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Lock body scroll when menu is open
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = "hidden"
@@ -51,13 +50,12 @@ export function SiteHeader() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-in-out ${
-          scrolled
-            ? "bg-[#FAF9F6]/90 backdrop-blur-md"
-            : "bg-transparent"
+          scrolled ? "bg-[#FAF9F6]/90 backdrop-blur-md" : "bg-transparent"
         }`}
       >
+        {/* Thin continuous line at the bottom of the header */}
         <div className="flex items-center justify-between px-6 md:px-10 lg:px-14 py-5 md:py-6">
-          {/* Logo - left side */}
+          {/* Logo */}
           <a
             href="#"
             className="text-[#1A1A1A] text-[13px] md:text-[14px] tracking-[0.25em] uppercase font-serif font-medium transition-opacity duration-300 hover:opacity-50"
@@ -69,25 +67,60 @@ export function SiteHeader() {
             Solomei AI
           </a>
 
-          {/* Hamburger button - always visible */}
+          {/* Desktop: no visible nav, just the logo */}
+          {/* Mobile / all sizes: thin single-line menu toggle */}
           <button
-            className="relative z-[60] flex flex-col justify-center items-center w-8 h-8 gap-[7px] group"
+            className="relative z-[60] flex items-center justify-center w-8 h-8 group"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
           >
-            <span
-              className={`block w-[22px] h-[1px] transition-all duration-500 ease-in-out origin-center ${
-                menuOpen ? "bg-[#FAF9F6] rotate-45 translate-y-[4px]" : "bg-[#1A1A1A]"
-              }`}
-            />
-            <span
-              className={`block w-[22px] h-[1px] transition-all duration-500 ease-in-out origin-center ${
-                menuOpen ? "bg-[#FAF9F6] -rotate-45 -translate-y-[4px]" : "bg-[#1A1A1A]"
-              }`}
-            />
+            {/* Single continuous line that morphs into an X */}
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              className="overflow-visible"
+            >
+              {/* Top line */}
+              <line
+                x1="2"
+                y1={menuOpen ? "12" : "8"}
+                x2="22"
+                y2={menuOpen ? "12" : "8"}
+                stroke={menuOpen ? "#FAF9F6" : "#1A1A1A"}
+                strokeWidth="1"
+                className="transition-all duration-500 ease-in-out origin-center"
+                style={{
+                  transform: menuOpen ? "rotate(45deg)" : "rotate(0deg)",
+                  transformOrigin: "center",
+                }}
+              />
+              {/* Bottom line */}
+              <line
+                x1="2"
+                y1={menuOpen ? "12" : "16"}
+                x2="22"
+                y2={menuOpen ? "12" : "16"}
+                stroke={menuOpen ? "#FAF9F6" : "#1A1A1A"}
+                strokeWidth="1"
+                className="transition-all duration-500 ease-in-out origin-center"
+                style={{
+                  transform: menuOpen ? "rotate(-45deg)" : "rotate(0deg)",
+                  transformOrigin: "center",
+                }}
+              />
+            </svg>
           </button>
         </div>
+
+        {/* Thin 1px line running across the bottom of the header */}
+        <div
+          className={`h-px transition-opacity duration-700 ${
+            scrolled ? "bg-[#E0DCD5] opacity-100" : "bg-[#E0DCD5] opacity-0"
+          }`}
+        />
       </header>
 
       {/* Full-screen overlay menu */}
@@ -98,7 +131,6 @@ export function SiteHeader() {
             : "opacity-0 pointer-events-none"
         }`}
       >
-        {/* Dark background */}
         <div
           className={`absolute inset-0 bg-[#1A1A1A] transition-opacity duration-700 ease-in-out ${
             menuOpen ? "opacity-100" : "opacity-0"
@@ -106,9 +138,8 @@ export function SiteHeader() {
           onClick={() => setMenuOpen(false)}
         />
 
-        {/* Menu content */}
         <nav
-          className="relative z-10 flex flex-col items-center justify-center h-full"
+          className="relative z-10 flex flex-col items-center justify-center h-full gap-2"
           aria-label="Main navigation"
         >
           {navItems.map((item, i) => (
