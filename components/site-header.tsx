@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false)
@@ -14,6 +14,33 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [menuOpen])
+
+  const scrollToSection = useCallback(
+    (href: string) => {
+      setMenuOpen(false)
+      if (href === "#") {
+        window.scrollTo({ top: 0, behavior: "smooth" })
+        return
+      }
+      const el = document.querySelector(href)
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" })
+      }
+    },
+    []
+  )
+
   const navItems = [
     { label: "About", href: "#about" },
     { label: "Platform", href: "#platform" },
@@ -21,77 +48,91 @@ export function SiteHeader() {
   ]
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-[#FAF9F6]/95 backdrop-blur-sm border-b border-[#E0DCD5]"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-[1400px] mx-auto flex items-center justify-between px-6 md:px-12 py-5">
-        <a
-          href="#"
-          className="text-[#1A1A1A] text-lg tracking-[0.2em] uppercase font-serif font-medium transition-opacity hover:opacity-60"
-          onClick={(e) => {
-            e.preventDefault()
-            window.scrollTo({ top: 0, behavior: "smooth" })
-          }}
-        >
-          Solomei AI
-        </a>
-
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-10" aria-label="Main navigation">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-[#1A1A1A] text-sm tracking-[0.15em] uppercase font-serif transition-opacity hover:opacity-60"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
-        >
-          <span
-            className={`block w-6 h-px bg-[#1A1A1A] transition-all duration-300 ${
-              menuOpen ? "rotate-45 translate-y-[3.5px]" : ""
-            }`}
-          />
-          <span
-            className={`block w-6 h-px bg-[#1A1A1A] transition-all duration-300 ${
-              menuOpen ? "-rotate-45 -translate-y-[3.5px]" : ""
-            }`}
-          />
-        </button>
-      </div>
-
-      {/* Mobile menu */}
-      <div
-        className={`md:hidden overflow-hidden transition-all duration-500 bg-[#FAF9F6]/98 backdrop-blur-sm ${
-          menuOpen ? "max-h-60" : "max-h-0"
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-in-out ${
+          scrolled
+            ? "bg-[#FAF9F6]/90 backdrop-blur-md"
+            : "bg-transparent"
         }`}
       >
-        <nav className="flex flex-col items-center gap-6 py-8" aria-label="Mobile navigation">
-          {navItems.map((item) => (
+        <div className="flex items-center justify-between px-6 md:px-10 lg:px-14 py-5 md:py-6">
+          {/* Logo - left side */}
+          <a
+            href="#"
+            className="text-[#1A1A1A] text-[13px] md:text-[14px] tracking-[0.25em] uppercase font-serif font-medium transition-opacity duration-300 hover:opacity-50"
+            onClick={(e) => {
+              e.preventDefault()
+              scrollToSection("#")
+            }}
+          >
+            Solomei AI
+          </a>
+
+          {/* Hamburger button - always visible */}
+          <button
+            className="relative z-[60] flex flex-col justify-center items-center w-8 h-8 gap-[7px] group"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+          >
+            <span
+              className={`block w-[22px] h-[1px] transition-all duration-500 ease-in-out origin-center ${
+                menuOpen ? "bg-[#FAF9F6] rotate-45 translate-y-[4px]" : "bg-[#1A1A1A]"
+              }`}
+            />
+            <span
+              className={`block w-[22px] h-[1px] transition-all duration-500 ease-in-out origin-center ${
+                menuOpen ? "bg-[#FAF9F6] -rotate-45 -translate-y-[4px]" : "bg-[#1A1A1A]"
+              }`}
+            />
+          </button>
+        </div>
+      </header>
+
+      {/* Full-screen overlay menu */}
+      <div
+        className={`fixed inset-0 z-[55] transition-all duration-700 ease-in-out ${
+          menuOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        {/* Dark background */}
+        <div
+          className={`absolute inset-0 bg-[#1A1A1A] transition-opacity duration-700 ease-in-out ${
+            menuOpen ? "opacity-100" : "opacity-0"
+          }`}
+          onClick={() => setMenuOpen(false)}
+        />
+
+        {/* Menu content */}
+        <nav
+          className="relative z-10 flex flex-col items-center justify-center h-full"
+          aria-label="Main navigation"
+        >
+          {navItems.map((item, i) => (
             <a
               key={item.href}
               href={item.href}
-              className="text-[#1A1A1A] text-sm tracking-[0.15em] uppercase font-serif transition-opacity hover:opacity-60"
-              onClick={() => setMenuOpen(false)}
+              className={`block text-[#FAF9F6] text-3xl md:text-4xl lg:text-5xl font-serif font-normal tracking-[0.08em] py-4 md:py-5 transition-all duration-700 ease-in-out hover:opacity-60 ${
+                menuOpen
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
+              }`}
+              style={{
+                transitionDelay: menuOpen ? `${150 + i * 100}ms` : "0ms",
+              }}
+              onClick={(e) => {
+                e.preventDefault()
+                scrollToSection(item.href)
+              }}
             >
               {item.label}
             </a>
           ))}
         </nav>
       </div>
-    </header>
+    </>
   )
 }
