@@ -1,12 +1,6 @@
-'use client'
-
-import { useScrollProgress } from '@/hooks/use-scroll-progress'
-import { NoiseRevealImage } from './noise-reveal-image'
 import { ScrollReveal } from './scroll-reveal'
 
 export function LocationSection() {
-  const { ref: villaRef, progress: villaProgress } = useScrollProgress(0.05)
-
   return (
     <section className="min-h-[100svh] flex flex-col items-center justify-center px-8 py-16 sm:px-12 md:px-16">
       <div className="mx-auto max-w-[1000px]">
@@ -18,18 +12,16 @@ export function LocationSection() {
         </ScrollReveal>
 
         {/* Full-width large image */}
-        <div
-          ref={villaRef}
-          className="mb-16 md:mb-20 w-full aspect-[16/9] relative overflow-hidden bg-[#FDFCFA]"
-        >
-          <NoiseRevealImage
-            src="https://cdn0.matrimonio.com/vendor/5512/3_2/1280/jpeg/b3eec765-ed46-4a59-b18f-907b0710d8fb_2_15512-164931398289049.webp"
-            background="#FDFCFA"
-            alt="Villa Castelbarco Pindemonte Rezzonico"
-            visible={villaProgress > 0.05}
-            className="absolute inset-0"
-          />
-        </div>
+        <ScrollReveal className="mb-16 md:mb-20" translateY={0} start={0} end={0.35} effect="slide">
+          <div className="w-full aspect-[16/9] relative overflow-hidden">
+            {/* biome-ignore lint/performance/noImgElement: decorative venue photo */}
+            <img
+              src="https://cdn0.matrimonio.com/vendor/5512/3_2/1280/jpeg/b3eec765-ed46-4a59-b18f-907b0710d8fb_2_15512-164931398289049.webp"
+              alt="Villa Castelbarco Pindemonte Rezzonico"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
+        </ScrollReveal>
 
         {/* Two-column grid: text left, map right */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-16">

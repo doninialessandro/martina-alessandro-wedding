@@ -1,5 +1,9 @@
 'use client'
 
+// NOTE: This component is currently not used in the main flow.
+// It provides a noise-based canvas dissolve reveal effect and is kept
+// here for potential future use if a more elaborate image transition is desired.
+
 import type { ReactNode } from 'react'
 import { useEffect, useRef } from 'react'
 

@@ -14,8 +14,8 @@ export function SectionDivider() {
   return (
     <div ref={ref} className="flex justify-center py-8">
       <svg
-        width="100"
-        height="25"
+        width="150"
+        height="37.5"
         viewBox="0 0 160 40"
         aria-label="Decorative mountain divider"
         className="overflow-visible"
