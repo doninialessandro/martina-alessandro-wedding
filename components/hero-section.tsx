@@ -38,7 +38,7 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-[100svh] flex items-center justify-center px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32 py-16">
+    <section className="relative min-h-[100svh] flex items-center justify-center px-8 sm:px-12 md:px-16 py-16">
       <ParallaxFade speed={0.5} className="w-full max-w-[1000px]">
         {/* Desktop: side-by-side row */}
         <div className="hidden md:flex items-center justify-center gap-12 lg:gap-16">

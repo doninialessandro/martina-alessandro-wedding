@@ -2,7 +2,6 @@
 
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react'
 import { useRef, useState } from 'react'
-import { NoiseRevealImage } from './noise-reveal-image'
 import { ScrollReveal } from './scroll-reveal'
 
 const storyBlocks = [
@@ -51,7 +50,7 @@ export function OurStorySection() {
   })
 
   return (
-    <section className="min-h-[100svh] py-16 px-8 sm:px-12 md:px-16">
+    <section className="min-h-[100svh] pt-8 pb-16 md:pb-48 px-8 sm:px-12 md:px-16">
       <div className="max-w-[1100px] mx-auto">
         {/* Mobile: stacked layout (no sticky) */}
         <div className="md:hidden">
@@ -75,13 +74,15 @@ export function OurStorySection() {
                   </p>
                 </ScrollReveal>
                 <ScrollReveal translateY={18} start={0} end={0.4} offset={0.1} effect="slide">
-                  <div className="w-full aspect-[4/5] relative bg-[#FDFCFA]">
-                    <NoiseRevealImage
-                      key={block.src || block.title}
-                      src={block.src || undefined}
-                      background="#FDFCFA"
-                      className="absolute inset-0"
-                    >
+                  <div className="w-full aspect-[4/5] relative overflow-hidden">
+                    {block.src ? (
+                      // biome-ignore lint/performance/noImgElement: decorative wedding photo
+                      <img
+                        src={block.src}
+                        alt={block.title}
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                    ) : (
                       <div
                         className="absolute inset-0 flex items-center justify-center"
                         style={{ backgroundColor: block.photoColor }}
@@ -90,7 +91,7 @@ export function OurStorySection() {
                           {block.photo}
                         </span>
                       </div>
-                    </NoiseRevealImage>
+                    )}
                   </div>
                 </ScrollReveal>
               </div>
@@ -153,14 +154,17 @@ export function OurStorySection() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
                         className="absolute inset-0"
                       >
-                        <NoiseRevealImage
-                          src={block.src || undefined}
-                          background="#FDFCFA"
-                          className="absolute inset-0"
-                        >
+                        {block.src ? (
+                          // biome-ignore lint/performance/noImgElement: decorative wedding photo
+                          <img
+                            src={block.src}
+                            alt={block.title}
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                        ) : (
                           <div
                             className="absolute inset-0 flex items-center justify-center"
                             style={{ backgroundColor: block.photoColor ?? '#F2F0EB' }}
@@ -169,7 +173,7 @@ export function OurStorySection() {
                               {block.photo}
                             </span>
                           </div>
-                        </NoiseRevealImage>
+                        )}
                       </motion.div>
                     ) : null
                   )}
