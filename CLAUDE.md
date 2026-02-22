@@ -21,7 +21,7 @@ Commits are enforced by commitlint (conventional commits) via husky. Use `feat:`
 
 Single-page Italian wedding site (Next.js 16 App Router, React 19, TypeScript, Tailwind CSS v4). No routing — `app/page.tsx` renders all sections in order: Hero → OurStory → Program → Location → RSVP → ListaNozze → Footer.
 
-**Fonts:** EB Garamond (`--font-eb-garamond`, mapped to `font-serif`) for body text; Great Vibes (`--font-great-vibes`) for decorative script headings. Both loaded via `next/font/google` in `app/layout.tsx`.
+**Fonts:** EB Garamond (`--font-eb-garamond`, mapped to `font-serif`) for all text. Loaded via `next/font/google` in `app/layout.tsx`.
 
 **Color palette** (warm parchment theme, no dark mode):
 - Background: `#FDFCFA` · Foreground: `#1A1A1A`
