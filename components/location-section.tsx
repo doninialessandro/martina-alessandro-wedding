@@ -2,8 +2,8 @@ import { ScrollReveal } from './scroll-reveal'
 
 export function LocationSection() {
   return (
-    <section className="min-h-[100svh] flex flex-col items-center justify-center px-8 py-16 sm:px-12 md:px-16">
-      <div className="mx-auto max-w-[1000px]">
+    <section className="min-h-[100svh] flex flex-col items-center justify-center px-8 pt-8 pb-16 sm:px-12 md:px-16">
+      <div className="mx-auto max-w-[1100px]">
         {/* Title */}
         <ScrollReveal translateY={20} start={0} end={0.35} effect="slide">
           <h2 className="mb-16 text-center font-serif text-[#8E9E8C] text-sm uppercase tracking-[0.3em] md:mb-20">
@@ -27,7 +27,7 @@ export function LocationSection() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-16">
           {/* Left: text */}
           <ScrollReveal translateY={18} start={0} end={0.45} offset={0.1} effect="slide">
-            <h3 className="mb-3 font-normal font-serif text-2xl text-[#1A1A1A] md:text-3xl">
+            <h3 className="mb-4 font-normal font-serif text-2xl text-[#1A1A1A] md:text-3xl">
               Villa Castelbarco Pindemonte Rezzonico
             </h3>
             <p className="mb-6 font-serif text-[#8E9E8C] text-sm uppercase tracking-[0.1em]">

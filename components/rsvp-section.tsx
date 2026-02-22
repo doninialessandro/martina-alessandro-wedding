@@ -13,7 +13,7 @@ export function RsvpSection() {
   }
 
   return (
-    <section className="min-h-[100svh] flex flex-col items-center justify-center py-16 px-8 sm:px-12 md:px-16">
+    <section className="min-h-[100svh] flex flex-col items-center justify-center pt-8 pb-16 px-8 sm:px-12 md:px-16">
       <div className="max-w-[650px] w-full mx-auto">
         <ScrollReveal translateY={18} start={0} end={0.35} effect="slide">
           <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-16 md:mb-20">

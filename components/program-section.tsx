@@ -56,7 +56,7 @@ export function ProgramSection() {
   })
 
   return (
-    <section className="min-h-[100svh] py-16 px-8 sm:px-12 md:px-16">
+    <section className="min-h-[100svh] pt-8 pb-16 px-8 sm:px-12 md:px-16">
       {/* Mobile: vertical dot timeline with clickable modal */}
       <div className="md:hidden max-w-[1100px] mx-auto">
         <ScrollReveal translateY={18} start={0} end={0.35} effect="slide">
@@ -80,7 +80,7 @@ export function ProgramSection() {
       <div className="hidden md:block">
         <div className="max-w-[1100px] mx-auto">
           <ScrollReveal translateY={20} start={0} end={0.35} effect="slide">
-            <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-16 md:mb-20">
+            <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-16 md:mb-10">
               Il programma
             </h2>
           </ScrollReveal>
@@ -89,7 +89,7 @@ export function ProgramSection() {
         <div
           ref={programmaRef}
           className="relative grid"
-          style={{ height: `${COUNT * 100}vh`, gridTemplateColumns: '1fr auto 1fr' }}
+          style={{ height: `${COUNT * 80}vh`, gridTemplateColumns: '1fr auto 1fr' }}
         >
           {/* LEFT COLUMN — EVEN titles (scrolling) + ODD descriptions (sticky overlay) */}
           <div className="relative">
@@ -98,7 +98,7 @@ export function ProgramSection() {
               {timelineItems.map((item, i) => (
                 <div
                   key={item.time}
-                  className="h-screen flex items-center justify-end pr-6 lg:pr-10"
+                  className="h-[80vh] flex items-center justify-end pr-6 lg:pr-10"
                 >
                   {i % 2 === 0 && (
                     <motion.div
@@ -119,7 +119,7 @@ export function ProgramSection() {
             </div>
             {/* Sticky description overlay for ODD items */}
             <div className="absolute inset-0 pointer-events-none">
-              <div className="sticky top-0 h-screen">
+              <div className="sticky top-0 h-[80vh]">
                 <div className="h-full flex items-center justify-end pr-6 lg:pr-10">
                   <div className="relative w-full max-w-md">
                     <p className="opacity-0 select-none pointer-events-none text-base md:text-lg leading-relaxed font-serif text-right">
@@ -146,13 +146,13 @@ export function ProgramSection() {
           {/* CENTER COLUMN — vertical line + animated dots */}
           <div className="relative flex flex-col items-center w-5">
             <div
-              className="absolute top-[50vh] bottom-[50vh] w-px bg-[#D5CCBC]"
+              className="absolute top-[40vh] bottom-[40vh] w-px bg-[#D5CCBC]"
               aria-hidden="true"
             />
             {timelineItems.map((item, i) => (
               <div
                 key={item.time}
-                className="h-screen flex items-center justify-center relative z-10"
+                className="h-[80vh] flex items-center justify-center relative z-10"
               >
                 <motion.div
                   className="w-2.5 h-2.5 rounded-full"
@@ -168,7 +168,7 @@ export function ProgramSection() {
             {/* Scrolling titles for ODD items */}
             <div className="flex flex-col">
               {timelineItems.map((item, i) => (
-                <div key={item.time} className="h-screen flex items-center pl-6 lg:pl-10">
+                <div key={item.time} className="h-[80vh] flex items-center pl-6 lg:pl-10">
                   {i % 2 === 1 && (
                     <motion.div
                       animate={{ opacity: activeIndex === i ? 1 : 0.3 }}
@@ -187,7 +187,7 @@ export function ProgramSection() {
             </div>
             {/* Sticky description overlay for EVEN items */}
             <div className="absolute inset-0 pointer-events-none">
-              <div className="sticky top-0 h-screen">
+              <div className="sticky top-0 h-[80vh]">
                 <div className="h-full flex items-center pl-6 lg:pl-10">
                   <div className="relative w-full max-w-md">
                     <p className="opacity-0 select-none pointer-events-none text-base md:text-lg leading-relaxed font-serif text-left">
@@ -266,7 +266,7 @@ function MobileTimeline() {
       <div className="relative">
         {/* Vertical line — spans only between the first and last dots */}
         <div
-          className="absolute left-1/2 -translate-x-1/2 top-[35vh] bottom-[35vh] w-px bg-[#D5CCBC]"
+          className="absolute left-1/2 -translate-x-1/2 top-[20vh] bottom-[20vh] w-px bg-[#D5CCBC]"
           aria-hidden="true"
         />
 
@@ -275,7 +275,7 @@ function MobileTimeline() {
             key={item.time}
             type="button"
             onClick={() => setSelectedItem(i)}
-            className="relative h-[70vh] flex items-center w-full"
+            className="relative h-[40vh] flex items-center w-full"
           >
             {i % 2 === 0 ? (
               /* Even — text LEFT, flower RIGHT */

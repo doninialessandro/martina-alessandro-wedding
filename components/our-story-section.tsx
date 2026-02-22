@@ -50,7 +50,7 @@ export function OurStorySection() {
   })
 
   return (
-    <section className="min-h-[100svh] py-16 px-8 sm:px-12 md:px-16">
+    <section className="min-h-[100svh] pt-8 pb-16 md:pb-48 px-8 sm:px-12 md:px-16">
       <div className="max-w-[1100px] mx-auto">
         {/* Mobile: stacked layout (no sticky) */}
         <div className="md:hidden">
