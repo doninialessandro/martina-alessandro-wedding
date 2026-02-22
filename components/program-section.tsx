@@ -141,6 +141,7 @@ export function ProgramSection() {
                 </div>
               </div>
             </div>
+          </div>
 
           {/* CENTER COLUMN — vertical line + animated dots */}
           <div className="relative flex flex-col items-center w-5">

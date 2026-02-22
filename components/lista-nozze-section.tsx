@@ -26,7 +26,7 @@ export function ListaNozzeSection() {
         </div>
 
         <ScrollReveal
-          className="md:mt-16"
+          className="mt-16 md:mt-20"
           translateY={18}
           start={0}
           end={0.4}
