@@ -27,7 +27,7 @@ export function ScrollReveal({
   className = '',
   start = 0,
   end = 0.5,
-  translateY = 24,
+  translateY = 20,
   translateX = 0,
   offset = 0.08,
   scaleFrom = 1,
@@ -37,8 +37,8 @@ export function ScrollReveal({
   const { ref, progress } = useScrollProgress(offset)
 
   const local = Math.min(1, Math.max(0, (progress - start) / (end - start)))
-  // Gentle ease-in-out cubic
-  const eased = local < 0.5 ? 4 * local * local * local : 1 - (-2 * local + 2) ** 3 / 2
+  // Ease-out cubic: snappy start, elegant settle
+  const eased = 1 - (1 - local) ** 3
 
   const y = translateY * (1 - eased)
   const x = translateX * (1 - eased)
@@ -46,7 +46,7 @@ export function ScrollReveal({
   const r = rotate * (1 - eased)
 
   if (effect === 'slide') {
-    // No clip-path — content is always fully visible, just slides into place
+    // No clip-path — content slides in with blur-in focus effect
     return (
       <div
         ref={ref}
@@ -54,7 +54,8 @@ export function ScrollReveal({
         style={{
           opacity: eased,
           transform: `translate3d(${x}px, ${y}px, 0) scale(${s}) rotate(${r}deg)`,
-          willChange: 'opacity, transform',
+          filter: `blur(${(1 - eased) * 8}px)`,
+          willChange: 'opacity, transform, filter',
         }}
       >
         {children}

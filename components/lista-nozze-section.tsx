@@ -14,7 +14,10 @@ export function ListaNozzeSection() {
 
         <ScrollReveal translateY={10} start={0.05} end={0.4} offset={0.1}>
           <p className="select-all font-serif text-[#1A1A1A] text-base tracking-[0.05em] md:text-lg">
-            [IBAN PLACEHOLDER]
+            Niente frullatori o servizi di piatti che non useremo mai. Se volete darci una mano a
+            finanziare la prossima avventura pazzesca dall’altra parte del mondo (o anche solo per
+            pagarci i danni della festa), questo è l’IBAN:{' '}
+            <strong>IT60X0542811101000000123456</strong>.
           </p>
         </ScrollReveal>
       </div>
