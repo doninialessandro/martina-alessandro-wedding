@@ -1,8 +1,7 @@
 'use client'
 
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react'
+import { motion, useMotionValueEvent, useScroll } from 'motion/react'
 import { useRef, useState } from 'react'
-import { NoiseRevealImage } from './noise-reveal-image'
 import { ScrollReveal } from './scroll-reveal'
 
 const timelineItems = [
@@ -10,41 +9,31 @@ const timelineItems = [
     time: '16:00',
     title: 'Apertura',
     description:
-      'Il ritrovo dell’equipaggio. Mettete via le mappe, prendete un drink e preparatevi mentalmente al caos bellissimo che sta per iniziare.',
-    photo: 'Foto 1',
-    photoColor: '#F2F0EB',
+      'Il momento dei saluti e degli abbracci. Mettete via gli orologi, prendete posto e preparatevi mentalmente alla bellissima e allegra confusione che sta per iniziare.',
   },
   {
     time: '16:30',
     title: 'Cerimonia',
     description:
-      'Il momento clou. Meno ingessati possibile, pronti a fare il grande salto. Fazzoletti ammessi, ma le risate sono obbligatorie.',
-    photo: 'Foto 2',
-    photoColor: '#E8EDE7',
+      'Il momento clou. Meno ingessati possibile, pronti a vivere il grande salto. I fazzoletti per le lacrime di commozione sono ammessi, ma i sorrisi e le risate sono assolutamente obbligatori.',
   },
   {
     time: '17:30',
     title: 'Cocktail',
     description:
-      'Si rompono le righe. Spritz alla mano, pancia che brontola e il momento perfetto per testare quanto reggete prima del round finale.',
-    photo: 'Foto 3',
-    photoColor: '#EDE8E4',
+      "Si rompono le righe. Spritz alla mano, chiacchiere in libertà e l'atmosfera perfetta per sciogliere la tensione e iniziare ufficialmente i festeggiamenti.",
   },
   {
     time: '19:30',
     title: 'Cena',
     description:
-      'Ora, dicono che qui si mangia di brutto. Non siamo del tutto convinti delle porzioni e speriamo di non dover chiamare la pizza di salvataggio. Ma su una cosa potete stare tranquilli: si berrà senza pietà e nessuno rimarrà sobrio. Brindisi obbligatori per l’equipaggio!',
-    photo: 'Foto 4',
-    photoColor: '#EAE7E0',
+      'Ci si accomoda a tavola per ricaricare le energie. Promettiamo ottima compagnia, discorsi emozionanti e, soprattutto, tantissimi brindisi per celebrare insieme questo traguardo speciale.',
   },
   {
-    time: '23:00',
+    time: '22:00',
     title: 'Festa',
     description:
-      'Le regole non valgono più. Si scende in trincea a fare macello, togliete i tacchi e preparatevi a sudare in pista fino all’ultimo.',
-    photo: 'Foto 5',
-    photoColor: '#E7ECE6',
+      "Da qui in poi le formalità non valgono più. Togliete i tacchi, allentate le cravatte e preparatevi a scendere in pista: la serata è tutta da ballare fino all' ultimo respiro.",
   },
 ]
 
@@ -64,116 +53,97 @@ export function ProgramSection() {
   })
 
   return (
-    <section className="py-24 md:py-40 px-8 sm:px-12 md:px-16">
+    <section className="min-h-[100svh] py-16 px-8 sm:px-12 md:px-16">
       <div className="max-w-[1100px] mx-auto">
         {/* Mobile: stacked layout (no sticky) */}
         <div className="md:hidden">
-          <ScrollReveal translateY={18} start={0} end={0.35}>
-            <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-4">
+          <ScrollReveal translateY={18} start={0} end={0.35} effect="slide">
+            <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-16 md:mb-20">
               Il programma
             </h2>
-            <p className="text-base font-serif text-[#4A4440] text-center mb-16">
-              Villa Castelbarco Pindemonte Rezzonico
-            </p>
           </ScrollReveal>
 
           <MobileTimeline />
         </div>
 
         {/*
-         * Desktop: scrollytelling.
-         * h2 + venue name centered above the grid.
-         * Grid layout: left column is sticky (photo), right column scrolls (timeline).
-         * h-[500vh] = 5 items × 100vh; sticky releases naturally when container exits.
-         * self-start prevents grid from stretching the sticky column to 500vh.
-         * offset ["start start","end end"]: progress 0→1 over 400vh of effective scroll.
+         * Desktop: scrollytelling — 3-column grid.
+         * Left: sticky description panel (fades between items).
+         * Center: vertical dot timeline (auto-width, sized to dot wrapper).
+         * Right: scrolling time + title per item.
+         * Height = COUNT × 100vh so every item gets one viewport of scroll space.
          */}
         <div className="hidden md:block">
-          {/* Centered h2 + venue name above scrollytelling */}
-          <ScrollReveal translateY={20} start={0} end={0.35}>
-            <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-4">
+          <ScrollReveal translateY={20} start={0} end={0.35} effect="slide">
+            <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-16 md:mb-20">
               Il programma
             </h2>
-            <p className="text-base font-serif text-[#4A4440] text-center mb-20">
-              Villa Castelbarco Pindemonte Rezzonico
-            </p>
           </ScrollReveal>
 
           <div
             ref={programmaRef}
-            className="grid gap-16 lg:gap-24 relative"
-            style={{ height: `${COUNT * 100}vh`, gridTemplateColumns: '380px 1fr' }}
+            className="relative grid"
+            style={{ height: `${COUNT * 100}vh`, gridTemplateColumns: '1fr auto 1fr' }}
           >
-            {/* LEFT — sticky photo */}
-            <div className="sticky top-0 h-screen self-start flex items-center">
-              <div className="relative w-full aspect-[3/4]">
-                <AnimatePresence>
-                  <motion.div
-                    key={activeIndex}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.8, ease: 'easeInOut' }}
-                    className="absolute inset-0"
-                  >
-                    <NoiseRevealImage
-                      key={activeIndex}
-                      background="#FDFCFA"
-                      className="absolute inset-0"
+            {/* LEFT — sticky description, fades between active items */}
+            <div className="sticky top-0 h-screen self-start">
+              <div className="h-full flex items-center justify-center px-8 lg:px-16">
+                <div className="relative w-full max-w-xs">
+                  {/* Invisible placeholder preserves height from the longest description */}
+                  <p className="opacity-0 select-none pointer-events-none text-base md:text-lg leading-relaxed font-serif">
+                    {timelineItems[0].description}
+                  </p>
+                  {timelineItems.map((item, i) => (
+                    <motion.p
+                      key={item.time}
+                      animate={{ opacity: activeIndex === i ? 1 : 0 }}
+                      transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+                      className="absolute inset-0 text-base md:text-lg leading-relaxed font-serif text-[#4A4440]"
                     >
-                      <div
-                        className="absolute inset-0 flex items-center justify-center"
-                        style={{
-                          backgroundColor: timelineItems[activeIndex]?.photoColor ?? '#F2F0EB',
-                        }}
-                      >
-                        <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif">
-                          {timelineItems[activeIndex]?.photo}
-                        </span>
-                      </div>
-                    </NoiseRevealImage>
-                  </motion.div>
-                </AnimatePresence>
+                      {item.description}
+                    </motion.p>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* RIGHT — scrolling timeline, centered in the column */}
-            <div className="flex flex-col items-center">
-              <div className="relative flex flex-col">
+            {/* CENTER — vertical line + dots */}
+            <div className="relative flex flex-col items-center w-5">
+              <div
+                className="absolute top-[50vh] bottom-[50vh] w-px bg-[#D5CCBC]"
+                aria-hidden="true"
+              />
+              {timelineItems.map((item, i) => (
                 <div
-                  className="absolute top-[50vh] bottom-[50vh] w-px bg-[#D5CCBC]"
-                  style={{ left: '23.5px' }}
-                  aria-hidden="true"
-                />
+                  key={item.time}
+                  className="h-screen flex items-center justify-center relative z-10"
+                >
+                  <motion.div
+                    className="w-2.5 h-2.5 rounded-full"
+                    animate={{ backgroundColor: activeIndex === i ? '#8E9E8C' : '#D5CCBC' }}
+                    transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  />
+                </div>
+              ))}
+            </div>
 
-                {timelineItems.map((item, i) => (
-                  <div key={item.time} className="h-screen flex items-center">
-                    <motion.div
-                      className="relative flex items-center gap-6"
-                      animate={{ opacity: activeIndex === i ? 1 : 0.3 }}
-                      transition={{ duration: 0.7, ease: [0.33, 1, 0.68, 1] }}
-                    >
-                      <div className="relative z-10 shrink-0 w-12 flex justify-center">
-                        <motion.div
-                          className="w-2.5 h-2.5 rounded-full"
-                          animate={{ backgroundColor: activeIndex === i ? '#8E9E8C' : '#D5CCBC' }}
-                          transition={{ duration: 0.7, ease: [0.33, 1, 0.68, 1] }}
-                        />
-                      </div>
-
-                      <div className="flex flex-col">
-                        <span className="text-xs tracking-[0.2em] uppercase text-[#8E9E8C] font-serif mb-1">
-                          {item.time}
-                        </span>
-                        <h3 className="text-xl md:text-2xl font-serif font-normal text-[#1A1A1A] mb-1">
-                          {item.title}
-                        </h3>
-                        <p className="text-sm font-serif text-[#4A4440]">{item.description}</p>
-                      </div>
-                    </motion.div>
-                  </div>
-                ))}
-              </div>
+            {/* RIGHT — time + title, one per scroll step */}
+            <div className="flex flex-col">
+              {timelineItems.map((item, i) => (
+                <div key={item.time} className="h-screen flex items-center pl-8">
+                  <motion.div
+                    animate={{ opacity: activeIndex === i ? 1 : 0.3 }}
+                    transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  >
+                    <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif mb-1 block">
+                      {item.time}
+                    </span>
+                    <h3 className="text-2xl md:text-3xl font-serif font-normal text-[#1A1A1A]">
+                      {item.title}
+                    </h3>
+                  </motion.div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -182,34 +152,25 @@ export function ProgramSection() {
   )
 }
 
-/** Mobile-only stacked timeline with image placeholders */
+/** Mobile-only stacked timeline (text only, no images) */
 function MobileTimeline() {
   return (
-    <div className="flex flex-col gap-24">
+    <div className="flex flex-col gap-16">
       {timelineItems.map((item) => (
-        <div key={item.time}>
-          <ScrollReveal translateY={14} start={0} end={0.35} offset={0.1}>
-            <span className="text-xs tracking-[0.2em] uppercase text-[#8E9E8C] font-serif mb-1 block">
-              {item.time}
-            </span>
-            <h3 className="text-2xl font-serif font-normal text-[#1A1A1A] mb-1">{item.title}</h3>
-            <p className="text-base font-serif text-[#4A4440] mb-8">{item.description}</p>
-          </ScrollReveal>
-          <ScrollReveal translateY={18} start={0} end={0.4} offset={0.1} effect="slide">
-            <div className="w-full aspect-[4/5] relative bg-[#FDFCFA]">
-              <NoiseRevealImage key={item.time} background="#FDFCFA" className="absolute inset-0">
-                <div
-                  className="absolute inset-0 flex items-center justify-center"
-                  style={{ backgroundColor: item.photoColor }}
-                >
-                  <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif">
-                    {item.photo}
-                  </span>
-                </div>
-              </NoiseRevealImage>
-            </div>
-          </ScrollReveal>
-        </div>
+        <ScrollReveal
+          key={item.time}
+          translateY={14}
+          start={0}
+          end={0.35}
+          offset={0.1}
+          effect="slide"
+        >
+          <span className="text-xs tracking-[0.2em] uppercase text-[#8E9E8C] font-serif mb-1 block">
+            {item.time}
+          </span>
+          <h3 className="text-2xl font-serif font-normal text-[#1A1A1A] mb-1">{item.title}</h3>
+          <p className="text-base font-serif text-[#4A4440]">{item.description}</p>
+        </ScrollReveal>
       ))}
     </div>
   )

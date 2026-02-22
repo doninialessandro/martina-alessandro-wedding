@@ -43,10 +43,16 @@ export function HeroSection() {
         {/* Desktop: side-by-side row */}
         <div className="hidden md:flex items-center justify-center gap-12 lg:gap-16">
           <h1
-            className={`font-serif text-[#1A1A1A] uppercase tracking-[0.2em] text-xl lg:text-2xl xl:text-3xl transition-all duration-[2000ms] ease-in-out ${
+            className={`font-serif text-[#1A1A1A] uppercase tracking-[0.2em] text-xl lg:text-2xl xl:text-3xl transition-all duration-[1200ms] ${
               loaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
             }`}
-            style={{ fontWeight: 400, lineHeight: 1.1, textAlign: 'right', flex: '1 1 0%' }}
+            style={{
+              fontWeight: 400,
+              lineHeight: 1.1,
+              textAlign: 'right',
+              flex: '1 1 0%',
+              transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            }}
           >
             Martina
           </h1>
@@ -60,10 +66,16 @@ export function HeroSection() {
           </div>
 
           <h1
-            className={`font-serif text-[#1A1A1A] uppercase tracking-[0.2em] text-xl lg:text-2xl xl:text-3xl transition-all duration-[2000ms] ease-in-out delay-300 ${
+            className={`font-serif text-[#1A1A1A] uppercase tracking-[0.2em] text-xl lg:text-2xl xl:text-3xl transition-all duration-[1200ms] delay-200 ${
               loaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
             }`}
-            style={{ fontWeight: 400, lineHeight: 1.1, textAlign: 'left', flex: '1 1 0%' }}
+            style={{
+              fontWeight: 400,
+              lineHeight: 1.1,
+              textAlign: 'left',
+              flex: '1 1 0%',
+              transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            }}
           >
             Alessandro
           </h1>
@@ -80,47 +92,52 @@ export function HeroSection() {
           </div>
 
           <h1
-            className={`font-serif text-[#1A1A1A] uppercase tracking-[0.2em] text-xl text-center transition-all duration-[2000ms] ease-in-out delay-400 ${
+            className={`font-serif text-[#1A1A1A] uppercase tracking-[0.2em] text-xl text-center transition-all duration-[1200ms] delay-300 ${
               loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
             }`}
-            style={{ fontWeight: 400, lineHeight: 1.4 }}
+            style={{
+              fontWeight: 400,
+              lineHeight: 1.4,
+              transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            }}
           >
             Martina & Alessandro
           </h1>
         </div>
       </ParallaxFade>
 
-      {/* Countdown — bottom-right, small and light */}
+      {/* Countdown — center bottom */}
       <div
-        className={`absolute bottom-8 right-8 sm:bottom-10 sm:right-10 md:bottom-12 md:right-12 flex flex-col items-center transition-opacity duration-[2800ms] ease-in-out delay-700 ${
+        className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center transition-opacity duration-[1200ms] delay-500 ${
           loaded ? 'opacity-100' : 'opacity-0'
         }`}
+        style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
       >
-        <p className="text-[8px] sm:text-[9px] tracking-[0.15em] uppercase text-[#8E9E8C] font-serif mb-1.5">
+        <p className="text-base sm:text-lg md:text-xl tracking-[0.15em] uppercase text-[#8E9E8C] font-serif mb-3">
           18 Settembre 2026
         </p>
-        <div className="flex items-end gap-2 sm:gap-2.5 font-serif text-[#4A4440]">
+        <div className="flex items-end gap-4 sm:gap-5 font-serif text-[#4A4440]">
           <span className="flex flex-col items-center">
-            <span className="text-xs tabular-nums leading-none">
+            <span className="text-xs sm:text-sm md:text-base tabular-nums leading-none">
               {String(days).padStart(2, '0')}
             </span>
-            <span className="text-[6px] sm:text-[7px] uppercase tracking-[0.1em] text-[#8E9E8C] mt-0.5">
+            <span className="text-[7px] sm:text-[8px] uppercase tracking-[0.1em] text-[#8E9E8C] mt-1">
               giorni
             </span>
           </span>
           <span className="flex flex-col items-center">
-            <span className="text-xs tabular-nums leading-none">
+            <span className="text-xs sm:text-sm md:text-base tabular-nums leading-none">
               {String(hours).padStart(2, '0')}
             </span>
-            <span className="text-[6px] sm:text-[7px] uppercase tracking-[0.1em] text-[#8E9E8C] mt-0.5">
+            <span className="text-[7px] sm:text-[8px] uppercase tracking-[0.1em] text-[#8E9E8C] mt-1">
               ore
             </span>
           </span>
           <span className="flex flex-col items-center">
-            <span className="text-xs tabular-nums leading-none">
+            <span className="text-xs sm:text-sm md:text-base tabular-nums leading-none">
               {String(minutes).padStart(2, '0')}
             </span>
-            <span className="text-[6px] sm:text-[7px] uppercase tracking-[0.1em] text-[#8E9E8C] mt-0.5">
+            <span className="text-[7px] sm:text-[8px] uppercase tracking-[0.1em] text-[#8E9E8C] mt-1">
               min
             </span>
           </span>

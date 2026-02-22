@@ -19,7 +19,6 @@ const GRAD: [number, number][] = [
   [0, -1],
 ]
 
-// Randomised Fisher-Yates permutation — unique noise pattern per reveal
 function buildPerm(): Uint8Array {
   const p = new Uint8Array(256)
   for (let i = 0; i < 256; i++) p[i] = i
@@ -76,7 +75,6 @@ function simplex2(xin: number, yin: number, perm: Uint8Array): number {
   return 70 * (n0 + n1 + n2)
 }
 
-// 6-octave fBm; v/maxAmp normalises to [-1, 1] regardless of starting amplitude
 function fbm(x: number, y: number, perm: Uint8Array): number {
   const FREQ = 1 / 160
   let v = 0
@@ -97,9 +95,23 @@ function fbm(x: number, y: number, perm: Uint8Array): number {
 // ---------------------------------------------------------------------------
 const SOFT_EDGE = 80
 const DURATION = 4000
+// T range: T_OPAQUE = all pixels opaque, T_TRANSPARENT = all pixels transparent
+const T_OPAQUE = -SOFT_EDGE
+const T_TRANSPARENT = 255 + SOFT_EDGE
+const T_RANGE = T_TRANSPARENT - T_OPAQUE
 
 function easeOutCubic(t: number): number {
   return 1 - (1 - t) ** 3
+}
+
+/** Smooth-step alpha for one noise pixel at threshold T. */
+function noiseAlpha(n: number, T: number): number {
+  const lo = T - SOFT_EDGE
+  const hi = T
+  if (n <= lo) return 0
+  if (n >= hi) return 255
+  const tt = (n - lo) / (hi - lo)
+  return Math.round(tt * tt * (3 - 2 * tt) * 255)
 }
 
 // ---------------------------------------------------------------------------
@@ -110,8 +122,16 @@ interface NoiseRevealImageProps {
   background?: string
   alt?: string
   className?: string
-  /** Rendered as the bottom layer when no src is provided (e.g. placeholder divs) */
   children?: ReactNode
+  /**
+   * Controls visibility. When true: canvas reveals (opaque→transparent).
+   * When false: canvas conceals (transparent→opaque).
+   * Animations smoothly interrupt and reverse from the current position.
+   * Defaults to true (reveal on mount).
+   */
+  visible?: boolean
+  /** Called when a conceal animation completes (visible went false → animation done). */
+  onConcealed?: () => void
 }
 
 export function NoiseRevealImage({
@@ -120,11 +140,34 @@ export function NoiseRevealImage({
   alt = '',
   className,
   children,
+  visible = true,
+  onConcealed,
 }: NoiseRevealImageProps) {
   const wrapperRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const rafRef = useRef<number>(0)
 
+  // Canvas state — populated once by the setup effect, consumed by the animation effect
+  const canvasStateRef = useRef<{
+    noiseField: Uint8Array
+    ctx: CanvasRenderingContext2D
+    imgData: ImageData
+    data: Uint8ClampedArray
+    W: number
+    H: number
+  } | null>(null)
+
+  // Current position in the T animation space. Persists across effect runs so
+  // interrupted animations resume/reverse from where they stopped.
+  const currentTRef = useRef(T_OPAQUE)
+
+  // Stable ref for the callback so the animation effect doesn't re-run on re-renders
+  const onConcealedRef = useRef(onConcealed)
+  onConcealedRef.current = onConcealed
+
+  // -------------------------------------------------------------------------
+  // Setup effect — runs once on mount
+  // -------------------------------------------------------------------------
   useEffect(() => {
     const wrapper = wrapperRef.current
     const canvas = canvasRef.current
@@ -140,22 +183,17 @@ export function NoiseRevealImage({
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    // Fill immediately with background colour before the noise computation so
-    // the content below is never visible during the (potentially slow) setup.
     ctx.fillStyle = background
     ctx.fillRect(0, 0, W, H)
 
-    // Parse background hex → [r, g, b] for ImageData use
     const hex = background.replace('#', '')
     const bgR = Number.parseInt(hex.slice(0, 2), 16)
     const bgG = Number.parseInt(hex.slice(2, 4), 16)
     const bgB = Number.parseInt(hex.slice(4, 6), 16)
 
-    // Fresh permutation + random spatial offset → unique reveal per mount
     const perm = buildPerm()
     const noiseSeed = Math.random() * 1000
 
-    // Precompute noise field (canvas stays opaque during this work)
     const noiseField = new Uint8Array(W * H)
     for (let y = 0; y < H; y++) {
       for (let x = 0; x < W; x++) {
@@ -165,43 +203,63 @@ export function NoiseRevealImage({
 
     const imgData = ctx.createImageData(W, H)
     const data = imgData.data
-    // Pre-fill RGB channels and start fully opaque
     for (let i = 0; i < W * H; i++) {
       data[4 * i] = bgR
       data[4 * i + 1] = bgG
       data[4 * i + 2] = bgB
       data[4 * i + 3] = 255
     }
+    ctx.putImageData(imgData, 0, 0)
 
+    canvasStateRef.current = { noiseField, ctx, imgData, data, W, H }
+    currentTRef.current = T_OPAQUE
+
+    return () => {
+      cancelAnimationFrame(rafRef.current)
+    }
+  }, [background])
+
+  // -------------------------------------------------------------------------
+  // Animation effect — runs whenever `visible` changes.
+  // Animates T from its current position toward the target, proportionally
+  // shortening the duration so interrupted animations don't restart at full length.
+  // -------------------------------------------------------------------------
+  useEffect(() => {
+    cancelAnimationFrame(rafRef.current)
+
+    const state = canvasStateRef.current
+    if (!state) return
+
+    const { noiseField, ctx, imgData, data, W, H } = state
+    const targetT = visible ? T_TRANSPARENT : T_OPAQUE
+    const startT = currentTRef.current
+    const distance = Math.abs(targetT - startT)
+
+    if (distance < 1) {
+      if (!visible) onConcealedRef.current?.()
+      return
+    }
+
+    const duration = DURATION * (distance / T_RANGE)
     const startTime = performance.now()
 
     function tick() {
       const elapsed = performance.now() - startTime
-      const rawT = Math.min(elapsed / DURATION, 1)
+      const rawT = Math.min(elapsed / duration, 1)
       const eased = easeOutCubic(rawT)
-      const T = -SOFT_EDGE + eased * (255 + 2 * SOFT_EDGE)
-      const lo = T - SOFT_EDGE
-      const hi = T
+      const T = startT + (targetT - startT) * eased
+      currentTRef.current = T
 
       for (let i = 0; i < W * H; i++) {
-        const n = noiseField[i]
-        let a: number
-        if (n <= lo) {
-          a = 0
-        } else if (n >= hi) {
-          a = 255
-        } else {
-          const tt = (n - lo) / (hi - lo)
-          const s = tt * tt * (3 - 2 * tt)
-          a = Math.round(s * 255)
-        }
-        data[4 * i + 3] = a
+        data[4 * i + 3] = noiseAlpha(noiseField[i], T)
       }
 
-      ctx?.putImageData(imgData, 0, 0)
+      ctx.putImageData(imgData, 0, 0)
 
       if (rawT < 1) {
         rafRef.current = requestAnimationFrame(tick)
+      } else if (targetT === T_OPAQUE) {
+        onConcealedRef.current?.()
       }
     }
 
@@ -210,7 +268,7 @@ export function NoiseRevealImage({
     return () => {
       cancelAnimationFrame(rafRef.current)
     }
-  }, [background])
+  }, [visible])
 
   return (
     <div

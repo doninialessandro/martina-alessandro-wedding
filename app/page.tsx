@@ -14,9 +14,9 @@ export default function Home() {
       <SectionDivider />
       <OurStorySection />
       <SectionDivider />
-      <ProgramSection />
-      <SectionDivider />
       <LocationSection />
+      <SectionDivider />
+      <ProgramSection />
       <SectionDivider />
       <RsvpSection />
       <SectionDivider />

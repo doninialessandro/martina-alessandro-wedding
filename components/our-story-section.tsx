@@ -7,53 +7,31 @@ import { ScrollReveal } from './scroll-reveal'
 
 const storyBlocks = [
   {
-    title: 'Il Big Bang del 2006',
-    body: 'Era il lontano 2006 e, onestamente, i dettagli sono un po’ annebbiati. Non perché sia passato un decennio, ma perché il tasso alcolemico era decisamente sopra la soglia della dignità. Ci siamo incrociati in mezzo al caos, tra un drink di troppo e battute che facevano ridere solo noi (o forse erano solo l’effetto dell’alcol). Nessun colpo di fulmine da film, solo due disperati che barcollavano nella stessa direzione. Eppure, in quel disagio etilico, abbiamo capito che i nostri due neuroni rimasti viaggiavano sulla stessa, assurda frequenza.',
-    photo: 'Foto 1',
-    photoColor: '#F2F0EB',
-    src: '',
+    title: 'La Nostra Storia',
+    body: 'Il nostro viaggio è partito nel 2006, quasi per caso: sguardi incrociati e battute complici come scintille inaspettate. Dopo anni di amicizia, in cui le nostre strade si incrociavano come in una lunga esplorazione, cinque anni dopo siamo finalmente arrivati al primo appuntamento ufficiale: emozione palpabile, sorrisi imbarazzati e il goffo tentativo di sembrare perfetti. Quella sera abbiamo tracciato le coordinate per una rotta speciale. Tappa dopo tappa, abbiamo costruito il nostro porto sicuro: prima Monza, con un divano di dubbia comodità, poi Gorgonzola, il rifugio dove tornare dopo ogni avventura.',
+    photoColor: '#EDE8DC',
+    src: 'images/our-story/la_nostra_storia.webp',
   },
   {
-    title: 'Flashback 2011: Il Disagio delle Origini',
-    body: 'Fermi tutti, facciamo un salto in avanti: era il 2011. Per qualche motivo cosmico e inspiegabile, dopo ben 5 anni dal primo incrocio alcolico, siamo finiti al nostro primissimo, vero appuntamento. Un mix letale tra ‘cosa sto facendo della mia vita?’ e il tentativo disperato di sembrare persone vagamente normali. Abbiamo sudato freddo cercando di fare i fighi in un posto che, col senno di poi, era clamorosamente sbagliato. È stato un disastro epico e imbarazzante, ma in fondo quel disagio condiviso era l’inizio di una roba pazzesca che non si è più fermata.',
-    photo: 'Foto 2',
-    photoColor: '#E8EDE7',
-    src: '',
+    title: 'I Viaggi nel Mondo',
+    body: 'La nostra passione per l’avventura ci ha spinto a solcare il mondo, riempiendo il passaporto di tappe indimenticabili: Portogallo, Islanda, Giordania, Francia, Giappone, Perù, Egitto e molte altre. Ma quando non esploriamo culture lontane, ci trovate quasi sempre su qualche sentiero di montagna: tra scarponi infangati, sveglie all’alba e vette da conquistare, ogni chilometro macinato insieme ci ha unito di più, riempiendo la valigia di ricordi che ci terranno compagnia per tutta la vita.',
+    photoColor: '#EDE8DC',
+    photo: 'Viaggi',
+    src: 'images/our-story/viaggi_nel_mondo.webp',
   },
   {
-    title: 'La Sopravvivenza in Quota',
-    body: 'Il battesimo del fuoco. Invece del classico cinema o cena pettinata, abbiamo deciso di testare subito i limiti di sopravvivenza (e di sopportazione reciproca) buttandoci su un sentiero spacca-gambe. Tra fiato corto, sudore freddo e la costante sensazione di aver fatto una cazzata clamorosa, abbiamo scoperto una cosa fondamentale: se riesci a non odiare l’altro mentre arranchi in salita imprecando contro la pendenza, allora c’è speranza. Un’avventura pazzesca che ha settato il livello di disagio per tutto quello che sarebbe venuto dopo.',
-    photo: 'Foto 3',
-    photoColor: '#E8EDE7',
-    src: '',
+    title: 'Una Proposta a 4.554 Metri',
+    body: "Niente classiche cene a lume di candela per noi: la vetta più alta del nostro itinerario è arrivata alla Capanna Margherita, a quota 4.554 metri (contati uno per uno con i polmoni in fiamme). Diciamocelo, Ale ha usato una strategia geniale: la conquista per sfinimento. Tra l'ipossia e la fatica immensa, Marti non aveva letteralmente le forze per scappare! Ma tattiche a parte, lassù, abbracciati dal silenzio assoluto e dal tetto del mondo, la fatica è sparita davanti a quella domanda. Una vetta sudata e bellissima, che ci ha tolto definitivamente quel poco di fiato rimasto.",
+    photoColor: '#EDE8DC',
+    photo: 'Proposta',
+    src: '/images/our-story/proposta.webp',
   },
   {
-    title: 'Il Salto nel Vuoto del 2017: Destinazione Monza',
-    body: 'A un certo punto, nel 2017, ci siamo guardati e abbiamo pensato: ‘Perché non testiamo se riusciamo a sopravvivere sotto lo stesso tetto senza ammazzarci?’. Così abbiamo caricato scatoloni a caso e fatto il grande salto: direzione Monza, la nostra prima vera avventura di convivenza. Un esperimento sociale fatto di mobili IKEA montati malissimo, guerre per lo spazio vitale negli armadi e la scoperta che condividere un bagno è più estremo di un trekking nel Borneo. Non avevamo idea di cosa stessimo facendo, ma tra un disastro domestico e l’altro abbiamo iniziato a costruire il nostro primo, vero quartier generale',
-    photo: 'Foto 4',
-    photoColor: '#E8EDE7',
-    src: '',
-  },
-  {
-    title: 'L’Arrivo del Maestro Jedi a Quattro Zampe',
-    body: 'L’arrivo della vera scheggia impazzita dell’equipaggio. Obi-Wan sulla carta è un Cavalier King, una razza che dovrebbe essere tutta moine e nobiltà. Invece no: lui odia l’umanità intera, abbaia a qualsiasi cosa si muova ed ha più fobie di un gatto circondato da aspirapolveri accesi. Tra passeggiate all’alba con temperature polari e le sue famigerate, letali scoregge radioattive di quando era cucciolo, ci ha addestrati lui alla sopravvivenza in trincea. Gestirlo è peggio che guidare un TukTuk bendati, ma le sue fobie allucinanti ci hanno resi ufficialmente un branco a prova di bomba.',
-    photo: 'Foto 5',
-    photoColor: '#E8EDE7',
-    src: '',
-  },
-  {
-    title: ' Campo Base Finale: Gorgonzola (Senza Formaggio)',
-    body: 'L’ultimo step prima del delirio totale. Abbiamo alzato l’asticella, fatto i bagagli per l’ennesima volta e spostato il campo base a Gorgonzola. Niente battute sul formaggio, per favore. Qui abbiamo trovato il nostro habitat naturale, un posto dove parcheggiare l’ansia e organizzare le missioni future. Traslocare è stato uno sbattimento epico, roba da farti passare la voglia di viaggiare per sei mesi, ma ora che le scatole sono (quasi) tutte svuotate, questo è ufficialmente il nostro rifugio. Pronti a ripartire, ma con un posto figo in cui tornare.',
-    photo: 'Foto 6',
-    photoColor: '#EDE8E4',
-    src: '',
-  },
-  {
-    title: 'La proposta',
-    body: 'Niente ristorantini a lume di candela o sceneggiate in ginocchio. La proposta è arrivata lassù, alla Capanna Margherita, a quota 4.554 metri esatti (contati uno per uno con i polmoni in fiamme). Diciamocelo chiaramente: l’ho presa per sfinimento. Tra l’ipossia, il freddo cane e la fatica bestia, lei non aveva più le forze per scappare o dire di no. Era l’unico modo per riuscirci, visto quanto tempo ho aspettato. Una vittoria tattica, ottenuta con sudore, fiato corto e una vista allucinante che ti toglieva quel poco di ossigeno rimasto.',
-    photo: 'Foto 6',
-    photoColor: '#EDE8E4',
-    src: '',
+    title: 'E Ora... La Prossima Destinazione!',
+    body: "Ed eccoci qui, pronti per l'inizio del viaggio più lungo! Il 18 Settembre 2026 celebriamo la partenza ufficiale per il resto della nostra vita insieme. Vogliamo festeggiare questo traguardo con tutte le persone che ci hanno accompagnato fin qui. Preparate i bagagli per il giorno più importante: andiamo a scrivere il nostro prossimo capitolo!",
+    photoColor: '#EDE8DC',
+    photo: 'Matrimonio',
+    src: '/images/our-story/prossima_destinazione.webp',
   },
 ]
 
@@ -73,11 +51,11 @@ export function OurStorySection() {
   })
 
   return (
-    <section className="py-24 md:py-40 px-8 sm:px-12 md:px-16">
+    <section className="min-h-[100svh] py-16 px-8 sm:px-12 md:px-16">
       <div className="max-w-[1100px] mx-auto">
         {/* Mobile: stacked layout (no sticky) */}
         <div className="md:hidden">
-          <ScrollReveal translateY={18} start={0} end={0.35}>
+          <ScrollReveal translateY={18} start={0} end={0.35} effect="slide">
             <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-16">
               La nostra storia
             </h2>
@@ -86,12 +64,12 @@ export function OurStorySection() {
           <div className="flex flex-col gap-24">
             {storyBlocks.map((block, _index) => (
               <div key={block.title}>
-                <ScrollReveal translateY={14} start={0} end={0.35} offset={0.1}>
+                <ScrollReveal translateY={14} start={0} end={0.35} offset={0.1} effect="slide">
                   <h3 className="text-2xl font-serif font-normal text-[#1A1A1A] mb-4">
                     {block.title}
                   </h3>
                 </ScrollReveal>
-                <ScrollReveal translateY={14} start={0.05} end={0.4} offset={0.1}>
+                <ScrollReveal translateY={14} start={0.05} end={0.4} offset={0.1} effect="slide">
                   <p className="text-base leading-relaxed font-serif text-[#4A4440] mb-8">
                     {block.body}
                   </p>
@@ -122,8 +100,8 @@ export function OurStorySection() {
 
         {/* Desktop: scrollytelling */}
         <div className="hidden md:block">
-          <ScrollReveal translateY={18} start={0} end={0.35}>
-            <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-20">
+          <ScrollReveal translateY={18} start={0} end={0.35} effect="slide">
+            <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-16 md:mb-20">
               La nostra storia
             </h2>
           </ScrollReveal>
@@ -139,7 +117,7 @@ export function OurStorySection() {
           <div
             ref={storiaRef}
             className="relative grid gap-16 lg:gap-24"
-            style={{ height: `${COUNT * 100}vh`, gridTemplateColumns: '1fr 380px' }}
+            style={{ height: `${COUNT * 100}vh`, gridTemplateColumns: '1fr 1fr' }}
           >
             {/* LEFT — text blocks scroll with the page */}
             <div className="flex flex-col">
@@ -151,7 +129,7 @@ export function OurStorySection() {
                       opacity: activeIndex === index ? 1 : 0.3,
                       scale: activeIndex === index ? 1 : 0.95,
                     }}
-                    transition={{ duration: 0.7, ease: [0.33, 1, 0.68, 1] }}
+                    transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
                   >
                     <h3 className="text-2xl md:text-3xl font-serif font-normal text-[#1A1A1A] mb-4">
                       {block.title}
@@ -164,36 +142,37 @@ export function OurStorySection() {
               ))}
             </div>
 
-            {/* RIGHT — sticky photo, crossfades on activeIndex change */}
+            {/* RIGHT — sticky photo */}
             <div className="sticky top-0 h-screen self-start flex items-center">
               <div className="relative w-full aspect-[3/4]">
                 <AnimatePresence>
-                  <motion.div
-                    key={activeIndex}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.8, ease: 'easeInOut' }}
-                    className="absolute inset-0"
-                  >
-                    <NoiseRevealImage
-                      key={activeIndex}
-                      src={storyBlocks[activeIndex]?.src || undefined}
-                      background="#FDFCFA"
-                      className="absolute inset-0"
-                    >
-                      <div
-                        className="absolute inset-0 flex items-center justify-center"
-                        style={{
-                          backgroundColor: storyBlocks[activeIndex]?.photoColor ?? '#F2F0EB',
-                        }}
+                  {storyBlocks.map((block, index) =>
+                    index === activeIndex ? (
+                      <motion.div
+                        key={block.title}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        className="absolute inset-0"
                       >
-                        <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif">
-                          {storyBlocks[activeIndex]?.photo}
-                        </span>
-                      </div>
-                    </NoiseRevealImage>
-                  </motion.div>
+                        <NoiseRevealImage
+                          src={block.src || undefined}
+                          background="#FDFCFA"
+                          className="absolute inset-0"
+                        >
+                          <div
+                            className="absolute inset-0 flex items-center justify-center"
+                            style={{ backgroundColor: block.photoColor ?? '#F2F0EB' }}
+                          >
+                            <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif">
+                              {block.photo}
+                            </span>
+                          </div>
+                        </NoiseRevealImage>
+                      </motion.div>
+                    ) : null
+                  )}
                 </AnimatePresence>
               </div>
             </div>

@@ -13,12 +13,17 @@ const ebGaramond = EB_Garamond({
 export const metadata: Metadata = {
   title: 'Martina & Alessandro — 18 Settembre 2026',
   description:
-    'Sito ufficiale del matrimonio di Martina e Alessandro, 18 Settembre 2026 — Villa Castelbarco Pindemonte Rezzonico, Imbersago (LC)',
+    'Sito del matrimonio di Martina e Alessandro, 18 Settembre 2026 — Villa Castelbarco Pindemonte Rezzonico, Imbersago (LC)',
   openGraph: {
     title: 'Martina & Alessandro — 18 Settembre 2026',
     description:
-      'Sito ufficiale del matrimonio di Martina e Alessandro, 18 Settembre 2026 — Villa Castelbarco Pindemonte Rezzonico, Imbersago (LC)',
+      'Sito del matrimonio di Martina e Alessandro, 18 Settembre 2026 — Villa Castelbarco Pindemonte Rezzonico, Imbersago (LC)',
     type: 'website',
+  },
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
   },
 }
 

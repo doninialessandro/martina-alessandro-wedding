@@ -37,8 +37,8 @@ export function ScrollReveal({
   const { ref, progress } = useScrollProgress(offset)
 
   const local = Math.min(1, Math.max(0, (progress - start) / (end - start)))
-  // Ease-out cubic: snappy start, elegant settle
-  const eased = 1 - (1 - local) ** 3
+  // Softer ease-in-out: romantic, smooth settlement
+  const eased = local < 0.5 ? 2 * local * local : 1 - (-2 * local + 2) ** 2 / 2
 
   const y = translateY * (1 - eased)
   const x = translateX * (1 - eased)
