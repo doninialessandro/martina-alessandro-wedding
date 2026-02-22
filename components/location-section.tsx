@@ -1,6 +1,8 @@
 import { ScrollReveal } from './scroll-reveal'
 
 export function LocationSection() {
+  const { ref: villaRef, progress: villaProgress } = useScrollProgress(0.05)
+
   return (
     <section className="min-h-[100svh] flex flex-col items-center justify-center px-8 pt-8 pb-16 sm:px-12 md:px-16">
       <div className="mx-auto max-w-[1100px]">
