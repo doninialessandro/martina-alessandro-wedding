@@ -1,6 +1,6 @@
-"use client"
+'use client'
 
-import { useEffect, useRef, useState, useCallback } from "react"
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 /**
  * Tracks which child element (by index) is closest to the vertical
@@ -50,10 +50,10 @@ export function useScrollytelling(count: number) {
       }
     }
 
-    window.addEventListener("scroll", onScroll, { passive: true })
+    window.addEventListener('scroll', onScroll, { passive: true })
     handleScroll() // initial check
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [count])
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return { activeIndex, setItemRef }
 }

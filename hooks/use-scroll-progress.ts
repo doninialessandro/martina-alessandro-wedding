@@ -1,6 +1,6 @@
-"use client"
+'use client'
 
-import { useEffect, useRef, useState, useCallback } from "react"
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 /**
  * High-performance scroll progress hook.
@@ -36,11 +36,11 @@ export function useScrollProgress(offset = 0.12) {
 
   useEffect(() => {
     update()
-    window.addEventListener("scroll", onScroll, { passive: true })
-    window.addEventListener("resize", onScroll, { passive: true })
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll, { passive: true })
     return () => {
-      window.removeEventListener("scroll", onScroll)
-      window.removeEventListener("resize", onScroll)
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
       cancelAnimationFrame(rafId.current)
     }
   }, [onScroll, update])

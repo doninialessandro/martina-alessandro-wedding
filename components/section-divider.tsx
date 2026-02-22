@@ -1,14 +1,14 @@
-"use client"
+'use client'
 
-import { useScrollProgress } from "@/hooks/use-scroll-progress"
+import { useScrollProgress } from '@/hooks/use-scroll-progress'
 
 export function SectionDivider() {
   const { ref, progress } = useScrollProgress(0.3)
 
   // Gentle ease-in-out for a soft expansion
   const t = Math.min(1, progress / 0.7)
-  const eased = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2
-  const width = eased * 64  // max 64px
+  const eased = t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2
+  const width = eased * 64 // max 64px
   const opacity = eased
 
   return (
@@ -18,7 +18,7 @@ export function SectionDivider() {
         style={{
           width: `${width}px`,
           opacity,
-          willChange: "width, opacity",
+          willChange: 'width, opacity',
         }}
       />
     </div>

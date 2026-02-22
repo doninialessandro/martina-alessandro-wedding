@@ -1,4 +1,4 @@
-import { MonolineFlower } from "./monoline-flower"
+import { MonolineFlower } from './monoline-flower'
 
 export function SiteFooter() {
   return (

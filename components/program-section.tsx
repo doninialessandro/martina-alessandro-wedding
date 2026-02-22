@@ -1,14 +1,14 @@
-"use client"
+'use client'
 
-import { useScrollytelling } from "@/hooks/use-scrollytelling"
-import { ScrollReveal } from "./scroll-reveal"
+import { useScrollytelling } from '@/hooks/use-scrollytelling'
+import { ScrollReveal } from './scroll-reveal'
 
 const timelineItems = [
-  { time: "16:00", title: "Apertura", description: "Accoglienza degli ospiti" },
-  { time: "16:30", title: "Cerimonia", description: "Rito nuziale" },
-  { time: "17:30", title: "Cocktail", description: "Aperitivo nel parco" },
-  { time: "19:30", title: "Cena", description: "Cena di gala" },
-  { time: "23:00", title: "Festa", description: "Cantinone & Taverna" },
+  { time: '16:00', title: 'Apertura', description: 'Accoglienza degli ospiti' },
+  { time: '16:30', title: 'Cerimonia', description: 'Rito nuziale' },
+  { time: '17:30', title: 'Cocktail', description: 'Aperitivo nel parco' },
+  { time: '19:30', title: 'Cena', description: 'Cena di gala' },
+  { time: '23:00', title: 'Festa', description: 'Cantinone & Taverna' },
 ]
 
 export function ProgramSection() {
@@ -17,7 +17,6 @@ export function ProgramSection() {
   return (
     <section className="py-24 md:py-40 px-8 sm:px-12 md:px-16">
       <div className="max-w-[1100px] mx-auto">
-
         {/* Mobile: stacked layout (no sticky) */}
         <div className="md:hidden">
           <ScrollReveal translateY={18} start={0} end={0.35}>
@@ -55,16 +54,12 @@ export function ProgramSection() {
 
             <div className="flex flex-col">
               {timelineItems.map((item, i) => (
-                <div
-                  key={i}
-                  ref={setItemRef(i)}
-                  className="min-h-[50vh] flex items-center"
-                >
+                <div key={item.time} ref={setItemRef(i)} className="min-h-[50vh] flex items-center">
                   <div
                     className="relative flex items-start gap-6 pl-0 py-6"
                     style={{
                       opacity: activeIndex === i ? 1 : 0.2,
-                      transition: "opacity 0.5s ease-in-out",
+                      transition: 'opacity 0.5s ease-in-out',
                     }}
                   >
                     {/* Dot on the line */}
@@ -72,7 +67,7 @@ export function ProgramSection() {
                       <div
                         className="w-2.5 h-2.5 rounded-full transition-colors duration-500 ease-in-out"
                         style={{
-                          backgroundColor: activeIndex === i ? "#8E9E8C" : "#D5CCBC",
+                          backgroundColor: activeIndex === i ? '#8E9E8C' : '#D5CCBC',
                         }}
                       />
                     </div>
@@ -85,9 +80,7 @@ export function ProgramSection() {
                       <h3 className="text-xl md:text-2xl font-serif font-normal text-[#1A1A1A] mb-1">
                         {item.title}
                       </h3>
-                      <p className="text-sm font-serif text-[#4A4440]">
-                        {item.description}
-                      </p>
+                      <p className="text-sm font-serif text-[#4A4440]">{item.description}</p>
                     </div>
                   </div>
                 </div>
@@ -95,7 +88,6 @@ export function ProgramSection() {
             </div>
           </div>
         </div>
-
       </div>
     </section>
   )
@@ -105,13 +97,16 @@ export function ProgramSection() {
 function MobileTimeline() {
   return (
     <div className="relative">
-      <div className="absolute left-1/2 -translate-x-px top-0 bottom-0 w-px bg-[#D5CCBC]" aria-hidden="true" />
+      <div
+        className="absolute left-1/2 -translate-x-px top-0 bottom-0 w-px bg-[#D5CCBC]"
+        aria-hidden="true"
+      />
 
       <div className="flex flex-col gap-16">
         {timelineItems.map((item, i) => {
           const isLeft = i % 2 === 0
           return (
-            <ScrollReveal key={i} translateY={14} start={0} end={0.4} offset={0.1}>
+            <ScrollReveal key={item.time} translateY={14} start={0} end={0.4} offset={0.1}>
               <div className="relative grid grid-cols-[1fr_auto_1fr] items-start gap-x-4">
                 {isLeft ? (
                   <div className="flex flex-col items-end text-right pr-1">
@@ -121,9 +116,7 @@ function MobileTimeline() {
                     <h3 className="text-xl font-serif font-normal text-[#1A1A1A] mb-1">
                       {item.title}
                     </h3>
-                    <p className="text-sm font-serif text-[#4A4440]">
-                      {item.description}
-                    </p>
+                    <p className="text-sm font-serif text-[#4A4440]">{item.description}</p>
                   </div>
                 ) : (
                   <div />
@@ -141,9 +134,7 @@ function MobileTimeline() {
                     <h3 className="text-xl font-serif font-normal text-[#1A1A1A] mb-1">
                       {item.title}
                     </h3>
-                    <p className="text-sm font-serif text-[#4A4440]">
-                      {item.description}
-                    </p>
+                    <p className="text-sm font-serif text-[#4A4440]">{item.description}</p>
                   </div>
                 ) : (
                   <div />

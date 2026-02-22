@@ -1,0 +1,18 @@
+{
+  "recommendations": [
+    "GitHub.copilot",
+    "GitHub.copilot-chat",
+    "biomejs.biome",
+    "bradlc.vscode-tailwindcss",
+    "dsznajder.es7-react-js-snippets",
+    "formulahendry.auto-rename-tag",
+    "christian-kohler.path-intellisense",
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+    "usernamehw.errorlens",
+    "streetsidesoftware.code-spell-checker",
+    "prisma.prisma",
+    "vitest.explorer",
+    "ms-playwright.playwright"
+  ]
+}

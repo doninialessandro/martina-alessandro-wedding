@@ -1,6 +1,6 @@
+import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { EB_Garamond, Great_Vibes } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 const ebGaramond = EB_Garamond({
@@ -18,10 +18,12 @@ const greatVibes = Great_Vibes({
 
 export const metadata: Metadata = {
   title: 'Martina & Alessandro — 18 Settembre 2026',
-  description: 'Sito ufficiale del matrimonio di Martina e Alessandro, 18 Settembre 2026 — Villa Castelbarco Pindemonte Rezzonico, Imbersago (LC)',
+  description:
+    'Sito ufficiale del matrimonio di Martina e Alessandro, 18 Settembre 2026 — Villa Castelbarco Pindemonte Rezzonico, Imbersago (LC)',
   openGraph: {
     title: 'Martina & Alessandro — 18 Settembre 2026',
-    description: 'Sito ufficiale del matrimonio di Martina e Alessandro, 18 Settembre 2026 — Villa Castelbarco Pindemonte Rezzonico, Imbersago (LC)',
+    description:
+      'Sito ufficiale del matrimonio di Martina e Alessandro, 18 Settembre 2026 — Villa Castelbarco Pindemonte Rezzonico, Imbersago (LC)',
     type: 'website',
   },
 }
