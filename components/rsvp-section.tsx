@@ -13,10 +13,10 @@ export function RsvpSection() {
   }
 
   return (
-    <section className="py-24 md:py-40 px-8 sm:px-12 md:px-16">
-      <div className="max-w-[480px] mx-auto">
-        <ScrollReveal translateY={18} start={0} end={0.35}>
-          <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-20 md:mb-28">
+    <section className="min-h-[100svh] flex flex-col items-center justify-center py-16 px-8 sm:px-12 md:px-16">
+      <div className="max-w-[650px] w-full mx-auto">
+        <ScrollReveal translateY={18} start={0} end={0.35} effect="slide">
+          <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-16 md:mb-20">
             RSVP
           </h2>
         </ScrollReveal>
@@ -31,7 +31,7 @@ export function RsvpSection() {
             </div>
           </ScrollReveal>
         ) : (
-          <ScrollReveal translateY={14} start={0} end={0.4} offset={0.1}>
+          <ScrollReveal translateY={14} start={0} end={0.4} offset={0.1} effect="slide">
             <form onSubmit={handleSubmit} className="flex flex-col gap-10">
               {/* Nome e Cognome */}
               <div>
@@ -122,7 +122,7 @@ export function RsvpSection() {
               {/* Submit */}
               <button
                 type="submit"
-                className="mt-4 self-start px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase border border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#FDFCFA] transition-colors"
+                className="mt-4 w-full px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase border border-[#8E9E8C] text-[#8E9E8C] hover:bg-[#8E9E8C] hover:text-[#FDFCFA] transition-colors"
               >
                 Conferma
               </button>

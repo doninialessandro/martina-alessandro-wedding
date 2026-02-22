@@ -23,7 +23,10 @@ export function useScrollProgress(offset = 0.12) {
     const start = winH * (1 - offset)
     const end = winH * offset
     const raw = (start - rect.top) / (start - end)
-    setProgress(Math.min(1, Math.max(0, raw)))
+    setProgress((prev) => {
+      const next = Math.min(1, Math.max(0, raw))
+      return next === prev ? prev : next
+    })
     ticking.current = false
   }, [offset])
 

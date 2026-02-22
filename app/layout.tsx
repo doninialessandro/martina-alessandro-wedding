@@ -1,6 +1,6 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { EB_Garamond, Great_Vibes } from 'next/font/google'
+import { EB_Garamond } from 'next/font/google'
 import './globals.css'
 
 const ebGaramond = EB_Garamond({
@@ -10,21 +10,20 @@ const ebGaramond = EB_Garamond({
   variable: '--font-eb-garamond',
 })
 
-const greatVibes = Great_Vibes({
-  subsets: ['latin'],
-  weight: '400',
-  variable: '--font-great-vibes',
-})
-
 export const metadata: Metadata = {
   title: 'Martina & Alessandro — 18 Settembre 2026',
   description:
-    'Sito ufficiale del matrimonio di Martina e Alessandro, 18 Settembre 2026 — Villa Castelbarco Pindemonte Rezzonico, Imbersago (LC)',
+    'Sito del matrimonio di Martina e Alessandro, 18 Settembre 2026 — Villa Castelbarco Pindemonte Rezzonico, Imbersago (LC)',
   openGraph: {
     title: 'Martina & Alessandro — 18 Settembre 2026',
     description:
-      'Sito ufficiale del matrimonio di Martina e Alessandro, 18 Settembre 2026 — Villa Castelbarco Pindemonte Rezzonico, Imbersago (LC)',
+      'Sito del matrimonio di Martina e Alessandro, 18 Settembre 2026 — Villa Castelbarco Pindemonte Rezzonico, Imbersago (LC)',
     type: 'website',
+  },
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
   },
 }
 
@@ -40,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="it" className={`${ebGaramond.variable} ${greatVibes.variable}`}>
+    <html lang="it" className={ebGaramond.variable}>
       <body className="font-serif antialiased">
         {children}
         <Analytics />

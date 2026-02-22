@@ -9,14 +9,14 @@ import { SiteFooter } from '@/components/site-footer'
 
 export default function Home() {
   return (
-    <main className="relative overflow-x-hidden bg-background text-foreground">
+    <main className="relative overflow-x-clip bg-background text-foreground">
       <HeroSection />
       <SectionDivider />
       <OurStorySection />
       <SectionDivider />
-      <ProgramSection />
-      <SectionDivider />
       <LocationSection />
+      <SectionDivider />
+      <ProgramSection />
       <SectionDivider />
       <RsvpSection />
       <SectionDivider />
