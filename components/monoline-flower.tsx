@@ -7,6 +7,7 @@ interface MonolineFlowerProps {
   size?: number
   animate?: boolean
   showThread?: boolean
+  loop?: boolean
 }
 
 export function MonolineFlower({
@@ -14,12 +15,13 @@ export function MonolineFlower({
   size = 200,
   animate = true,
   showThread = false,
+  loop = false,
 }: MonolineFlowerProps) {
   const svgRef = useRef<SVGSVGElement>(null)
-  const [isVisible, setIsVisible] = useState(!animate)
+  const [isVisible, setIsVisible] = useState(!animate || loop)
 
   useEffect(() => {
-    if (!animate) return
+    if (!animate || loop) return
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -31,7 +33,7 @@ export function MonolineFlower({
     )
     if (svgRef.current) observer.observe(svgRef.current)
     return () => observer.disconnect()
-  }, [animate])
+  }, [animate, loop])
 
   /*
     Sunflower inspired by the Pinterest monoline reference.
@@ -224,8 +226,28 @@ export function MonolineFlower({
     }
   }
 
+  // Total loop cycle duration
+  const loopDuration = totalDrawTime + 1.5
+
   return (
     <div className={`relative inline-flex flex-col items-center ${className}`}>
+      {loop && (
+        <style>
+          {segments
+            .map((seg, i) => {
+              const { delay, dur } = timings[i]
+              const drawStart = ((delay / loopDuration) * 100).toFixed(1)
+              const drawEnd = (((delay + dur) / loopDuration) * 100).toFixed(1)
+              const holdEnd = ((totalDrawTime / loopDuration) * 100).toFixed(1)
+              const eraseEnd = Math.min(
+                100,
+                Number(holdEnd) + Number(drawEnd) - Number(drawStart)
+              ).toFixed(1)
+              return `@keyframes loop-${seg.id}{0%{stroke-dashoffset:${seg.len}}${drawStart}%{stroke-dashoffset:${seg.len}}${drawEnd}%{stroke-dashoffset:0}${holdEnd}%{stroke-dashoffset:0}${eraseEnd}%{stroke-dashoffset:${seg.len}}100%{stroke-dashoffset:${seg.len}}}`
+            })
+            .join('')}
+        </style>
+      )}
       <svg
         ref={svgRef}
         width={size}
@@ -266,18 +288,26 @@ export function MonolineFlower({
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
-              style={{
-                strokeDasharray: seg.len,
-                strokeDashoffset: isVisible ? 0 : seg.len,
-                transition: `stroke-dashoffset ${dur.toFixed(2)}s cubic-bezier(0.33, 1, 0.68, 1) ${delay.toFixed(2)}s`,
-              }}
+              style={
+                loop
+                  ? {
+                      strokeDasharray: seg.len,
+                      strokeDashoffset: seg.len,
+                      animation: `loop-${seg.id} ${loopDuration.toFixed(1)}s cubic-bezier(0.33, 1, 0.68, 1) infinite`,
+                    }
+                  : {
+                      strokeDasharray: seg.len,
+                      strokeDashoffset: isVisible ? 0 : seg.len,
+                      transition: `stroke-dashoffset ${dur.toFixed(2)}s cubic-bezier(0.33, 1, 0.68, 1) ${delay.toFixed(2)}s`,
+                    }
+              }
             />
           )
         })}
       </svg>
 
       {/* Thin stroke line continuing from stem tip downward — bridges to the FlowingThread */}
-      {showThread && (
+      {showThread && !loop && (
         <svg
           width="2"
           height="120"
