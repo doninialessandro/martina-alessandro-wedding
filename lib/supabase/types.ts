@@ -16,6 +16,7 @@ export type Rsvp = {
   id: string
   family_id: string
   attending_members: string[]
+  declined: boolean
   notes: string | null
   created_at: string
   updated_at: string
