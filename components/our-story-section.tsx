@@ -74,7 +74,7 @@ export function OurStorySection() {
                   </p>
                 </ScrollReveal>
                 <ScrollReveal translateY={18} start={0} end={0.4} offset={0.1} effect="slide">
-                  <div className="w-full aspect-[4/5] relative overflow-hidden">
+                  <div className="w-full aspect-[4/5] relative overflow-hidden rounded-[16px] shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
                     {block.src ? (
                       // biome-ignore lint/performance/noImgElement: decorative wedding photo
                       <img
@@ -145,7 +145,7 @@ export function OurStorySection() {
 
             {/* RIGHT — sticky photo */}
             <div className="sticky top-0 h-screen self-start flex items-center">
-              <div className="relative w-full aspect-[3/4]">
+              <div className="relative w-full aspect-[3/4] overflow-hidden rounded-[16px] shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
                 <AnimatePresence>
                   {storyBlocks.map((block, index) =>
                     index === activeIndex ? (

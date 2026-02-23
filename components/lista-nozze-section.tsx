@@ -33,7 +33,7 @@ export function ListaNozzeSection() {
           offset={0.1}
           effect="slide"
         >
-          <div className="w-full aspect-[16/9] relative overflow-hidden">
+          <div className="w-full aspect-[16/9] relative overflow-hidden rounded-[16px] shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
             {/* biome-ignore lint/performance/noImgElement: decorative photo */}
             <img
               src="/images/lista_nozze/lista_nozze.webp"

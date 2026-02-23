@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import { useCallback, useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase/client'
 import type { FamilyMember, Rsvp } from '@/lib/supabase/types'
+import { ConfettiBurst } from './confetti-burst'
 import { MonolineFlower } from './monoline-flower'
 import { ScrollReveal } from './scroll-reveal'
 import { Typewriter } from './typewriter'
@@ -182,15 +183,15 @@ export function RsvpSection() {
   }
 
   return (
-    <section className="min-h-[100svh] flex flex-col items-center justify-center pt-8 pb-16 px-8 sm:px-12 md:px-16">
-      <div className="max-w-[650px] w-full mx-auto">
-        <ScrollReveal translateY={18} start={0} end={0.35} effect="slide">
-          <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-16 md:mb-20">
-            RSVP
-          </h2>
-        </ScrollReveal>
+    <section className="min-h-[100svh] flex flex-col pt-8 pb-16 px-8 sm:px-12 md:px-16">
+      <ScrollReveal translateY={18} start={0} end={0.35} effect="slide">
+        <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-16 md:mb-20">
+          RSVP
+        </h2>
+      </ScrollReveal>
 
-        <div key={fadeKey}>
+      <div className="flex-1 flex flex-col items-center justify-center">
+        <div className="max-w-[650px] w-full mx-auto" key={fadeKey}>
           {/* Search */}
           {step === 'search' && (
             <ScrollReveal translateY={14} start={0} end={0.4} offset={0.1} effect="slide">
@@ -241,7 +242,7 @@ export function RsvpSection() {
 
                 <button
                   type="submit"
-                  className="mt-4 w-full px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase border border-[#8E9E8C] text-[#8E9E8C] hover:bg-[#8E9E8C] hover:text-[#FDFCFA] transition-colors"
+                  className="mt-4 w-full px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase rounded-[50px] border border-[#8E9E8C] text-[#8E9E8C] hover:bg-[#8E9E8C] hover:text-[#FDFCFA] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(142,158,140,0.15)] active:scale-[0.97] transition-all duration-200"
                 >
                   Cerca
                 </button>
@@ -290,7 +291,7 @@ export function RsvpSection() {
                 <button
                   type="button"
                   onClick={reset}
-                  className="px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase border border-[#8E9E8C] text-[#8E9E8C] hover:bg-[#8E9E8C] hover:text-[#FDFCFA] transition-colors"
+                  className="px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase rounded-[50px] border border-[#8E9E8C] text-[#8E9E8C] hover:bg-[#8E9E8C] hover:text-[#FDFCFA] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(142,158,140,0.15)] active:scale-[0.97] transition-all duration-200"
                 >
                   Riprova
                 </button>
@@ -301,28 +302,6 @@ export function RsvpSection() {
           {/* Select family members */}
           {step === 'select' && (
             <motion.div variants={fadeIn} initial="hidden" animate="visible">
-              {existingRsvp && !existingRsvp.declined && (
-                <Typewriter
-                  text={
-                    familyMembers.length > 1
-                      ? '✅ Avete già confermato la vostra presenza ma potete modificare la risposta se ci sono delle novità.'
-                      : '✅ Hai già confermato la tua presenza ma puoi modificare la tua risposta se ci sono delle novità.'
-                  }
-                  className="text-sm font-serif text-[#8E9E8C] text-center mb-8"
-                />
-              )}
-
-              {existingRsvp?.declined && (
-                <Typewriter
-                  text={
-                    familyMembers.length > 1
-                      ? 'Avevate indicato che non potevate partecipare. Ma siete ancora in tempo per cambiare idea! 🤞'
-                      : 'Avevi indicato che non potevi partecipare. Ma sei ancora in tempo per cambiare idea! 🤞'
-                  }
-                  className="text-sm font-serif text-[#8E9E8C] text-center mb-8"
-                />
-              )}
-
               <p className="block text-xs tracking-[0.15em] uppercase text-[#8E9E8C] font-serif mb-6">
                 Chi partecipa?
                 <span className="normal-case tracking-normal text-[#4A4440] ml-2">
@@ -354,14 +333,14 @@ export function RsvpSection() {
                         )}
                       </AnimatePresence>
                       <span className="relative">
-                        <motion.span
-                          className={`w-5 h-5 border flex items-center justify-center ${
+                        <motion.div
+                          className={`w-5 h-5 rounded-[6px] flex items-center justify-center transition-colors duration-200 ${
                             checked
-                              ? 'border-[#8E9E8C] bg-[#8E9E8C]'
-                              : 'border-[#D5CCBC] group-hover:border-[#8E9E8C]'
+                              ? 'bg-[#8E9E8C] shadow-[0_1px_4px_rgba(142,158,140,0.2)]'
+                              : 'border border-[#D5CCBC] bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)] group-hover:border-[#8E9E8C] group-hover:shadow-[0_1px_4px_rgba(142,158,140,0.12)]'
                           }`}
-                          animate={checked ? { scale: [1, 1.3, 1] } : { scale: 1 }}
-                          transition={{ duration: 0.3, ease: 'easeOut' as const }}
+                          animate={checked ? { scale: [1, 1.2, 1] } : { scale: 1 }}
+                          transition={{ duration: 0.25, ease: 'easeOut' as const }}
                         >
                           {checked && (
                             <motion.svg
@@ -383,7 +362,7 @@ export function RsvpSection() {
                               />
                             </motion.svg>
                           )}
-                        </motion.span>
+                        </motion.div>
                         {/* Confetti particles on check */}
                         <AnimatePresence>
                           {checked &&
@@ -430,19 +409,35 @@ export function RsvpSection() {
                   rows={3}
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  className="w-full border border-[#D5CCBC] bg-[#FDFCFA] p-3 text-base font-serif text-[#1A1A1A] outline-none focus:border-[#8E9E8C] transition-colors resize-y min-h-[80px] placeholder:text-[#D5CCBC]"
+                  className="w-full border border-[#D5CCBC] bg-[#FDFCFA] rounded-[12px] p-3 text-base font-serif text-[#1A1A1A] outline-none focus:border-[#8E9E8C] transition-colors resize-y min-h-[80px] placeholder:text-[#D5CCBC]"
                   placeholder="Allergie, intolleranze, o altre informazioni"
                 />
               </div>
+
+              {existingRsvp && !existingRsvp.declined && (
+                <p className="text-sm font-serif text-[#8E9E8C] text-center mb-4">
+                  {familyMembers.length > 1
+                    ? '⛰ Avete già confermato la vostra presenza ma potete modificare la risposta se ci sono delle novità.'
+                    : '⛰ Hai già confermato la tua presenza ma puoi modificare la tua risposta se ci sono delle novità.'}
+                </p>
+              )}
+
+              {existingRsvp?.declined && (
+                <p className="text-sm font-serif text-[#8E9E8C] text-center mb-4">
+                  {familyMembers.length > 1
+                    ? 'Avevate indicato che non potevate partecipare. Ma siete ancora in tempo per cambiare idea! 🤞'
+                    : 'Avevi indicato che non potevi partecipare. Ma sei ancora in tempo per cambiare idea! 🤞'}
+                </p>
+              )}
 
               <button
                 type="button"
                 onClick={submit}
                 disabled={selectedIds.size === 0}
-                className={`w-full px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase border transition-colors ${
+                className={`w-full px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase rounded-[50px] border transition-all duration-200 ${
                   selectedIds.size === 0
                     ? 'border-[#D5CCBC] text-[#D5CCBC] cursor-not-allowed'
-                    : 'border-[#8E9E8C] text-[#8E9E8C] hover:bg-[#8E9E8C] hover:text-[#FDFCFA]'
+                    : 'border-[#8E9E8C] text-[#8E9E8C] hover:bg-[#8E9E8C] hover:text-[#FDFCFA] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(142,158,140,0.15)] active:scale-[0.97]'
                 }`}
               >
                 {existingRsvp ? 'Aggiorna Informazioni' : 'Conferma Presenza'}
@@ -452,10 +447,10 @@ export function RsvpSection() {
                 type="button"
                 onClick={decline}
                 disabled={existingRsvp?.declined}
-                className={`w-full mt-4 px-10 py-3 text-sm font-serif tracking-[0.15em] border transition-colors ${
+                className={`w-full mt-4 px-10 py-3 text-sm font-serif tracking-[0.15em] rounded-[50px] border transition-all duration-200 ${
                   existingRsvp?.declined
                     ? 'border-[#D5CCBC] text-[#D5CCBC] cursor-not-allowed'
-                    : 'border-[#D5CCBC] text-[#4A4440] hover:border-[#4A4440]'
+                    : 'border-[#D5CCBC] text-[#4A4440] hover:border-[#4A4440] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] active:scale-[0.97]'
                 }`}
               >
                 {familyMembers.length > 1
@@ -501,9 +496,10 @@ export function RsvpSection() {
               initial="hidden"
               animate="visible"
             >
+              <ConfettiBurst />
               <Typewriter
                 text="Grazie! 🎉"
-                className="text-xl md:text-2xl font-serif text-[#4A4440] mb-1"
+                className="text-base md:text-lg leading-relaxed font-serif text-[#4A4440] mb-1"
               />
               <Typewriter
                 text={
@@ -511,7 +507,7 @@ export function RsvpSection() {
                     ? "Non vediamo l'ora di festeggiare con voi! 🥂"
                     : "Non vediamo l'ora di festeggiare con te! 🥂"
                 }
-                className="text-xl md:text-2xl font-serif text-[#4A4440]"
+                className="text-base md:text-lg leading-relaxed font-serif text-[#4A4440]"
                 delay={0.5}
               />
               <motion.p
@@ -542,7 +538,7 @@ export function RsvpSection() {
             >
               <Typewriter
                 text={familyMembers.length > 1 ? 'Ci mancherete! 😢' : 'Ci mancherai! 😢'}
-                className="text-xl md:text-2xl font-serif text-[#4A4440] mb-1"
+                className="text-base md:text-lg leading-relaxed font-serif text-[#4A4440] mb-1"
               />
               <Typewriter
                 text={
@@ -550,7 +546,7 @@ export function RsvpSection() {
                     ? 'Speriamo di rivedervi presto ❤️'
                     : 'Speriamo di rivederti presto ❤️'
                 }
-                className="text-xl md:text-2xl font-serif text-[#4A4440]"
+                className="text-base md:text-lg leading-relaxed font-serif text-[#4A4440]"
                 delay={0.7}
               />
               <motion.p
@@ -596,7 +592,7 @@ export function RsvpSection() {
                 <button
                   type="button"
                   onClick={reset}
-                  className="px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase border border-[#8E9E8C] text-[#8E9E8C] hover:bg-[#8E9E8C] hover:text-[#FDFCFA] transition-colors"
+                  className="px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase rounded-[50px] border border-[#8E9E8C] text-[#8E9E8C] hover:bg-[#8E9E8C] hover:text-[#FDFCFA] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(142,158,140,0.15)] active:scale-[0.97] transition-all duration-200"
                 >
                   Riprova
                 </button>
