@@ -14,7 +14,7 @@ export function ListaNozzeSection() {
 
         <div className="max-w-[800px] mx-auto text-center">
           <ScrollReveal translateY={10} start={0.05} end={0.4} offset={0.1} effect="slide">
-            <p className="select-text font-serif text-[#1A1A1A] text-base tracking-[0.05em] md:text-lg">
+            <p className="select-text font-serif text-[#4A4440] text-base tracking-[0.05em] md:text-lg">
               Niente frullatori o servizi di piatti che non useremo mai. Se volete darci una mano a
               finanziare la prossima avventura pazzesca dall’altra parte del mondo (o anche solo per
               pagarci i danni della festa), questo è l’IBAN:
