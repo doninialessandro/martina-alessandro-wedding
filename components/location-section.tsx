@@ -13,7 +13,7 @@ export function LocationSection() {
 
         {/* Full-width large image */}
         <ScrollReveal className="mb-16 md:mb-20" translateY={0} start={0} end={0.35} effect="slide">
-          <div className="w-full aspect-[16/9] relative overflow-hidden">
+          <div className="w-full aspect-[16/9] relative overflow-hidden rounded-[16px] shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
             {/* biome-ignore lint/performance/noImgElement: decorative venue photo */}
             <img
               src="https://cdn0.matrimonio.com/vendor/5512/3_2/1280/jpeg/b3eec765-ed46-4a59-b18f-907b0710d8fb_2_15512-164931398289049.webp"
@@ -52,7 +52,7 @@ export function LocationSection() {
             offset={0.1}
             effect="slide"
           >
-            <div className="aspect-[4/3] w-full overflow-hidden bg-[#F2F0EB]">
+            <div className="aspect-[4/3] w-full overflow-hidden rounded-[16px] shadow-[0_2px_8px_rgba(0,0,0,0.03)] bg-[#F2F0EB]">
               <iframe
                 title="Villa Castelbarco Pindemonte Rezzonico"
                 src="https://maps.google.com/maps?q=Via+Cesare+Cantu+21%2C+23898+Imbersago+LC%2C+Italy&output=embed&z=16"
