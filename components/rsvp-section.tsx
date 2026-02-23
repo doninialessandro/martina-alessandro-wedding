@@ -30,6 +30,8 @@ export function RsvpSection() {
   const search = useCallback(async () => {
     const trimmedFirst = firstName.trim()
     const trimmedLast = lastName.trim()
+    setFirstName(trimmedFirst)
+    setLastName(trimmedLast)
     if (!trimmedFirst || !trimmedLast) return
 
     setStep('loading')
@@ -199,6 +201,7 @@ export function RsvpSection() {
                     required
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
+                    onBlur={() => setFirstName((v) => v.trim())}
                     className="w-full bg-transparent border-0 border-b border-[#D5CCBC] pb-2 text-base font-serif text-[#1A1A1A] outline-none focus:border-[#8E9E8C] transition-colors placeholder:text-[#D5CCBC]"
                     placeholder="Mario"
                   />
@@ -217,6 +220,7 @@ export function RsvpSection() {
                     required
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
+                    onBlur={() => setLastName((v) => v.trim())}
                     className="w-full bg-transparent border-0 border-b border-[#D5CCBC] pb-2 text-base font-serif text-[#1A1A1A] outline-none focus:border-[#8E9E8C] transition-colors placeholder:text-[#D5CCBC]"
                     placeholder="Rossi"
                   />
@@ -286,14 +290,14 @@ export function RsvpSection() {
             <motion.div variants={fadeIn} initial="hidden" animate="visible">
               {existingRsvp && !existingRsvp.declined && (
                 <Typewriter
-                  text="Hai già confermato la tua presenza ✅ Puoi modificare la tua risposta."
+                  text="✅ Hai già confermato la tua presenza ma puoi modificare la tua risposta se ci sono delle novità."
                   className="text-sm font-serif text-[#8E9E8C] text-center mb-8"
                 />
               )}
 
               {existingRsvp?.declined && (
                 <Typewriter
-                  text="Avevi indicato che non potevi partecipare. Puoi cambiare idea! 🤞"
+                  text="Avevi indicato che non potevi partecipare. Ma sei ancore in tempo per cambiare idea! 🤞"
                   className="text-sm font-serif text-[#8E9E8C] text-center mb-8"
                 />
               )}
@@ -358,7 +362,7 @@ export function RsvpSection() {
                   rows={3}
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  className="w-full bg-transparent border-0 border-b border-[#D5CCBC] pb-2 text-base font-serif text-[#1A1A1A] outline-none focus:border-[#8E9E8C] transition-colors resize-none placeholder:text-[#D5CCBC]"
+                  className="w-full border border-[#D5CCBC] bg-[#FDFCFA] p-3 text-base font-serif text-[#1A1A1A] outline-none focus:border-[#8E9E8C] transition-colors resize-y min-h-[80px] placeholder:text-[#D5CCBC]"
                   placeholder="Allergie, intolleranze, o altre informazioni"
                 />
               </div>
