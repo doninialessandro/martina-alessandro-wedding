@@ -20,7 +20,7 @@ export function ListaNozzeSection() {
               pagarci i danni della festa), questo è l’IBAN:
               <br />
               <br />
-              <strong>IT60X0542811101000000123456</strong>.
+              <strong>ITXXXXXXXXXXXXXXXX</strong>.
             </p>
           </ScrollReveal>
         </div>

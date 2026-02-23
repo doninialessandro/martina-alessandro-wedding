@@ -1,12 +1,22 @@
 'use client'
 
+import { motion } from 'motion/react'
 import { useCallback, useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase/client'
 import type { FamilyMember, Rsvp } from '@/lib/supabase/types'
 import { MonolineFlower } from './monoline-flower'
 import { ScrollReveal } from './scroll-reveal'
+import { Typewriter } from './typewriter'
 
-type Step = 'search' | 'loading' | 'notfound' | 'select' | 'submitting' | 'success' | 'error'
+type Step =
+  | 'search'
+  | 'loading'
+  | 'notfound'
+  | 'select'
+  | 'submitting'
+  | 'success'
+  | 'declined'
+  | 'error'
 
 export function RsvpSection() {
   const [step, setStep] = useState<Step>('search')
@@ -93,6 +103,7 @@ export function RsvpSection() {
       {
         family_id: familyId,
         attending_members: attendingMembers,
+        declined: false,
         notes: notes.trim() || null,
         updated_at: new Date().toISOString(),
       },
@@ -107,6 +118,32 @@ export function RsvpSection() {
     setStep('success')
   }, [familyMembers, selectedIds, notes])
 
+  const decline = useCallback(async () => {
+    if (familyMembers.length === 0) return
+
+    setStep('submitting')
+
+    const familyId = familyMembers[0].family_id
+
+    const { error } = await supabase.from('rsvps').upsert(
+      {
+        family_id: familyId,
+        attending_members: [],
+        declined: true,
+        notes: notes.trim() || null,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: 'family_id' }
+    )
+
+    if (error) {
+      setStep('error')
+      return
+    }
+
+    setStep('declined')
+  }, [familyMembers, notes])
+
   const reset = useCallback(() => {
     setStep('search')
     setFirstName('')
@@ -117,12 +154,17 @@ export function RsvpSection() {
     setExistingRsvp(null)
   }, [])
 
-  // Bump key on step change to re-trigger fade animation
+  // Bump key on step change to re-trigger animations
   const [fadeKey, setFadeKey] = useState(0)
-  // biome-ignore lint/correctness/useExhaustiveDependencies: step is intentionally used to trigger re-render for fade animation
+  // biome-ignore lint/correctness/useExhaustiveDependencies: step is intentionally used to trigger re-render for animation
   useEffect(() => {
     setFadeKey((k) => k + 1)
   }, [step])
+
+  const fadeIn = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.5, ease: 'easeOut' as const } },
+  }
 
   return (
     <section className="min-h-[100svh] flex flex-col items-center justify-center pt-8 pb-16 px-8 sm:px-12 md:px-16">
@@ -192,38 +234,68 @@ export function RsvpSection() {
 
           {/* Loading */}
           {step === 'loading' && (
-            <div className="flex flex-col items-center justify-center gap-6 animate-fade-in">
+            <motion.div
+              className="flex flex-col items-center justify-center gap-6"
+              variants={fadeIn}
+              initial="hidden"
+              animate="visible"
+            >
               <MonolineFlower size={120} loop />
-              <p className="text-sm font-serif text-[#4A4440] tracking-wide">Ricerca in corso...</p>
-            </div>
+              <Typewriter
+                text="Ricerca in corso... 🔍"
+                className="text-sm font-serif text-[#4A4440] tracking-wide"
+              />
+            </motion.div>
           )}
 
           {/* Not Found */}
           {step === 'notfound' && (
-            <div className="text-center animate-fade-in-up">
-              <p className="text-base font-serif text-[#1A1A1A] mb-2">
-                Non ti abbiamo trovato nella lista degli invitati.
-              </p>
-              <p className="text-sm font-serif text-[#4A4440] mb-10">
-                Controlla di aver scritto correttamente nome e cognome.
-              </p>
-              <button
-                type="button"
-                onClick={reset}
-                className="px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase border border-[#8E9E8C] text-[#8E9E8C] hover:bg-[#8E9E8C] hover:text-[#FDFCFA] transition-colors"
+            <motion.div
+              className="text-center"
+              variants={fadeIn}
+              initial="hidden"
+              animate="visible"
+            >
+              <Typewriter
+                text="Non ti abbiamo trovato nella lista degli invitati 😕"
+                className="text-base font-serif text-[#1A1A1A] mb-2"
+              />
+              <Typewriter
+                text="Controlla di aver scritto correttamente nome e cognome."
+                className="text-sm font-serif text-[#4A4440] mb-10"
+                delay={1.2}
+              />
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 2, duration: 0.4 }}
               >
-                Riprova
-              </button>
-            </div>
+                <button
+                  type="button"
+                  onClick={reset}
+                  className="px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase border border-[#8E9E8C] text-[#8E9E8C] hover:bg-[#8E9E8C] hover:text-[#FDFCFA] transition-colors"
+                >
+                  Riprova
+                </button>
+              </motion.div>
+            </motion.div>
           )}
 
           {/* Select family members */}
           {step === 'select' && (
-            <div className="animate-fade-in-up">
-              {existingRsvp && (
-                <p className="text-sm font-serif text-[#8E9E8C] text-center mb-8">
-                  Hai gia confermato la tua presenza. Puoi modificare la tua risposta.
-                </p>
+            <motion.div variants={fadeIn} initial="hidden" animate="visible">
+              {existingRsvp && !existingRsvp.declined && (
+                <Typewriter
+                  text="Hai già confermato la tua presenza ✅ Puoi modificare la tua risposta."
+                  className="text-sm font-serif text-[#8E9E8C] text-center mb-8"
+                />
+              )}
+
+              {existingRsvp?.declined && (
+                <Typewriter
+                  text="Avevi indicato che non potevi partecipare. Puoi cambiare idea! 🤞"
+                  className="text-sm font-serif text-[#8E9E8C] text-center mb-8"
+                />
               )}
 
               <p className="block text-xs tracking-[0.15em] uppercase text-[#8E9E8C] font-serif mb-6">
@@ -298,41 +370,110 @@ export function RsvpSection() {
               >
                 Conferma Presenza
               </button>
-            </div>
+
+              <button
+                type="button"
+                onClick={decline}
+                disabled={existingRsvp?.declined}
+                className={`w-full mt-4 px-10 py-3 text-sm font-serif tracking-[0.15em] border transition-colors ${
+                  existingRsvp?.declined
+                    ? 'border-[#D5CCBC] text-[#D5CCBC] cursor-not-allowed'
+                    : 'border-[#D5CCBC] text-[#4A4440] hover:border-[#4A4440]'
+                }`}
+              >
+                Purtroppo non riusciamo a partecipare 😢
+              </button>
+
+              {familyMembers.length > 1 && (
+                <p className="text-xs font-serif text-[#4A4440] text-center mt-4 leading-relaxed">
+                  Cliccando &ldquo;Purtroppo non riusciamo a partecipare&rdquo; tutti verranno
+                  segnati come assenti. Se solo alcuni partecipano, seleziona chi viene e usa
+                  &ldquo;Conferma Presenza&rdquo;.
+                </p>
+              )}
+            </motion.div>
           )}
 
           {/* Submitting */}
           {step === 'submitting' && (
-            <div className="flex flex-col items-center justify-center gap-6 animate-fade-in">
+            <motion.div
+              className="flex flex-col items-center justify-center gap-6"
+              variants={fadeIn}
+              initial="hidden"
+              animate="visible"
+            >
               <MonolineFlower size={120} loop />
-            </div>
+            </motion.div>
           )}
 
           {/* Success */}
           {step === 'success' && (
-            <div className="text-center animate-fade-in-up">
-              <p className="text-xl font-serif text-[#1A1A1A] mb-2">Grazie!</p>
-              <p className="text-base font-serif text-[#4A4440]">
-                Non vediamo l&apos;ora di festeggiare con voi!
-              </p>
-            </div>
+            <motion.div
+              className="text-center"
+              variants={fadeIn}
+              initial="hidden"
+              animate="visible"
+            >
+              <Typewriter text="Grazie! 🎉" className="text-xl font-serif text-[#1A1A1A] mb-2" />
+              <Typewriter
+                text="Non vediamo l'ora di festeggiare con voi! 🥂"
+                className="text-base font-serif text-[#4A4440]"
+                delay={0.5}
+              />
+            </motion.div>
+          )}
+
+          {/* Declined */}
+          {step === 'declined' && (
+            <motion.div
+              className="text-center"
+              variants={fadeIn}
+              initial="hidden"
+              animate="visible"
+            >
+              <Typewriter
+                text="Ci mancherete! 😢"
+                className="text-xl font-serif text-[#1A1A1A] mb-2"
+              />
+              <Typewriter
+                text="Speriamo di rivedervi presto ❤️"
+                className="text-base font-serif text-[#4A4440]"
+                delay={0.7}
+              />
+            </motion.div>
           )}
 
           {/* Error */}
           {step === 'error' && (
-            <div className="text-center animate-fade-in-up">
-              <p className="text-base font-serif text-[#1A1A1A] mb-2">Qualcosa è andato storto.</p>
-              <p className="text-sm font-serif text-[#4A4440] mb-10">
-                Per favore riprova tra qualche istante.
-              </p>
-              <button
-                type="button"
-                onClick={reset}
-                className="px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase border border-[#8E9E8C] text-[#8E9E8C] hover:bg-[#8E9E8C] hover:text-[#FDFCFA] transition-colors"
+            <motion.div
+              className="text-center"
+              variants={fadeIn}
+              initial="hidden"
+              animate="visible"
+            >
+              <Typewriter
+                text="Qualcosa è andato storto 😥"
+                className="text-base font-serif text-[#1A1A1A] mb-2"
+              />
+              <Typewriter
+                text="Per favore riprova tra qualche istante."
+                className="text-sm font-serif text-[#4A4440] mb-10"
+                delay={1}
+              />
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.8, duration: 0.4 }}
               >
-                Riprova
-              </button>
-            </div>
+                <button
+                  type="button"
+                  onClick={reset}
+                  className="px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase border border-[#8E9E8C] text-[#8E9E8C] hover:bg-[#8E9E8C] hover:text-[#FDFCFA] transition-colors"
+                >
+                  Riprova
+                </button>
+              </motion.div>
+            </motion.div>
           )}
         </div>
       </div>
