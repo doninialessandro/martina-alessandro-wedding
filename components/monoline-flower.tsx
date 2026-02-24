@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 
 interface MonolineFlowerProps {
   className?: string
@@ -17,6 +17,7 @@ export function MonolineFlower({
   showThread = false,
   loop = false,
 }: MonolineFlowerProps) {
+  const uid = useId().replace(/:/g, '')
   const svgRef = useRef<SVGSVGElement>(null)
   const [isVisible, setIsVisible] = useState(!animate || loop)
 
@@ -198,15 +199,20 @@ export function MonolineFlower({
 
   const totalDrawTime = cumulativeDelay + 0.5
 
+  // Unique gradient IDs per instance to avoid SVG ID collisions
+  const stemGradId = `stemGrad${uid}`
+  const centerGradId = `centerGrad${uid}`
+  const petalGradId = `petalGrad${uid}`
+
   // Stroke color per group
   function getStroke(group: string): string {
     switch (group) {
       case 'stem':
-        return 'url(#flowerStemGrad)'
+        return `url(#${stemGradId})`
       case 'center':
-        return 'url(#flowerCenterGrad)'
+        return `url(#${centerGradId})`
       case 'petal':
-        return 'url(#flowerPetalGrad)'
+        return `url(#${petalGradId})`
       case 'detail':
         return '#BE8520'
       default:
@@ -259,17 +265,17 @@ export function MonolineFlower({
         aria-hidden="true"
       >
         <defs>
-          <linearGradient id="flowerStemGrad" x1="50%" y1="100%" x2="50%" y2="0%">
+          <linearGradient id={stemGradId} x1="50%" y1="100%" x2="50%" y2="0%">
             <stop offset="0%" stopColor="#5A7A56" />
             <stop offset="50%" stopColor="#4A6A46" />
             <stop offset="100%" stopColor="#3B5B38" />
           </linearGradient>
-          <radialGradient id="flowerCenterGrad" cx="50%" cy="50%" r="50%">
+          <radialGradient id={centerGradId} cx="50%" cy="50%" r="50%">
             <stop offset="0%" stopColor="#E6AE3E" />
             <stop offset="50%" stopColor="#D49A2C" />
             <stop offset="100%" stopColor="#BE8520" />
           </radialGradient>
-          <linearGradient id="flowerPetalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id={petalGradId} x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#E8845A" />
             <stop offset="35%" stopColor="#DC7048" />
             <stop offset="70%" stopColor="#D0603C" />
