@@ -41,6 +41,7 @@ const timelineItems = [
 const COUNT = timelineItems.length
 
 const TRANSITION = { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] } as const
+const TRANSITION_FAST = { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] } as const
 
 export function ProgramSection() {
   const programmaRef = useRef<HTMLDivElement>(null)
@@ -60,7 +61,7 @@ export function ProgramSection() {
       {/* Mobile: vertical dot timeline with clickable modal */}
       <div className="md:hidden max-w-[1100px] mx-auto">
         <ScrollReveal translateY={18} start={0} end={0.35} effect="slide">
-          <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-16">
+          <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-20">
             Il programma
           </h2>
         </ScrollReveal>
@@ -80,7 +81,7 @@ export function ProgramSection() {
       <div className="hidden md:block">
         <div className="max-w-[1100px] mx-auto">
           <ScrollReveal translateY={20} start={0} end={0.35} effect="slide">
-            <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-16 md:mb-10">
+            <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-20 md:mb-24">
               Il programma
             </h2>
           </ScrollReveal>
@@ -130,7 +131,7 @@ export function ProgramSection() {
                         <motion.p
                           key={item.time}
                           animate={{ opacity: activeIndex === i ? 1 : 0 }}
-                          transition={TRANSITION}
+                          transition={TRANSITION_FAST}
                           className="absolute inset-0 text-base md:text-lg leading-relaxed font-serif text-[#4A4440] text-right"
                         >
                           {item.description}
@@ -198,7 +199,7 @@ export function ProgramSection() {
                         <motion.p
                           key={item.time}
                           animate={{ opacity: activeIndex === i ? 1 : 0 }}
-                          transition={TRANSITION}
+                          transition={TRANSITION_FAST}
                           className="absolute inset-0 text-base md:text-lg leading-relaxed font-serif text-[#4A4440] text-left"
                         >
                           {item.description}
@@ -226,19 +227,19 @@ function ProgramModal({ item, onClose }: { item: (typeof timelineItems)[0]; onCl
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.3 }}
-        className="fixed inset-0 bg-black/50 z-40"
+        transition={{ duration: 0.2, ease: 'easeOut' }}
+        className="fixed inset-0 bg-black/40 z-40"
         onClick={onClose}
       />
 
-      {/* Modal — spring scale + slide up */}
+      {/* Centered modal */}
       <motion.div
         key="modal"
-        initial={{ opacity: 0, scale: 0.85, y: 40 }}
+        initial={{ opacity: 0, scale: 0.9, y: 24 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.9, y: 20 }}
-        transition={{ type: 'spring', stiffness: 280, damping: 22 }}
-        className="fixed inset-x-6 top-1/2 -translate-y-1/2 z-50 bg-[#FDFCFA] p-8"
+        exit={{ opacity: 0, scale: 0.95, y: 12 }}
+        transition={{ type: 'spring', damping: 26, stiffness: 300 }}
+        className="fixed inset-x-6 top-1/2 -translate-y-1/2 z-50 bg-[#FDFCFA] rounded-[16px] p-8"
       >
         <button
           type="button"
@@ -271,42 +272,50 @@ function MobileTimeline() {
         />
 
         {timelineItems.map((item, i) => (
-          <button
+          <ScrollReveal
             key={item.time}
-            type="button"
-            onClick={() => setSelectedItem(i)}
-            className="relative h-[40vh] flex items-center w-full"
+            translateY={14}
+            start={0}
+            end={0.35}
+            offset={0.1}
+            effect="slide"
           >
-            {i % 2 === 0 ? (
-              /* Even — text LEFT, flower RIGHT */
-              <>
-                <div className="w-1/2 pr-6 text-right">
-                  <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif block">
-                    {item.time}
-                  </span>
-                  <span className="text-2xl font-serif text-[#1A1A1A]">{item.title}</span>
-                </div>
-                <div className="w-1/2 pl-2 flex items-center">
-                  <MonolineFlower size={50} animate showThread={false} />
-                </div>
-              </>
-            ) : (
-              /* Odd — flower LEFT, text RIGHT */
-              <>
-                <div className="w-1/2 pr-2 flex items-center justify-end">
-                  <MonolineFlower size={50} animate showThread={false} />
-                </div>
-                <div className="w-1/2 pl-6 text-left">
-                  <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif block">
-                    {item.time}
-                  </span>
-                  <span className="text-2xl font-serif text-[#1A1A1A]">{item.title}</span>
-                </div>
-              </>
-            )}
-            {/* Dot */}
-            <div className="absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#8E9E8C] z-10" />
-          </button>
+            <button
+              type="button"
+              onClick={() => setSelectedItem(i)}
+              className="relative h-[40vh] flex items-center w-full"
+            >
+              {i % 2 === 0 ? (
+                /* Even — text LEFT, flower RIGHT */
+                <>
+                  <div className="w-1/2 pr-6 text-right">
+                    <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif block">
+                      {item.time}
+                    </span>
+                    <span className="text-2xl font-serif text-[#1A1A1A]">{item.title}</span>
+                  </div>
+                  <div className="w-1/2 pl-2 flex items-center">
+                    <MonolineFlower size={50} animate showThread={false} />
+                  </div>
+                </>
+              ) : (
+                /* Odd — flower LEFT, text RIGHT */
+                <>
+                  <div className="w-1/2 pr-2 flex items-center justify-end">
+                    <MonolineFlower size={50} animate showThread={false} />
+                  </div>
+                  <div className="w-1/2 pl-6 text-left">
+                    <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif block">
+                      {item.time}
+                    </span>
+                    <span className="text-2xl font-serif text-[#1A1A1A]">{item.title}</span>
+                  </div>
+                </>
+              )}
+              {/* Dot */}
+              <div className="absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#8E9E8C] z-10" />
+            </button>
+          </ScrollReveal>
         ))}
       </div>
 

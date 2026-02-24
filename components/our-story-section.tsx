@@ -1,33 +1,33 @@
 'use client'
 
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react'
+import { motion, useMotionValueEvent, useScroll } from 'motion/react'
 import { useRef, useState } from 'react'
 import { ScrollReveal } from './scroll-reveal'
 
 const storyBlocks = [
   {
-    title: 'La Nostra Storia',
-    body: 'Il nostro viaggio è partito nel 2006, quasi per caso: sguardi incrociati e battute complici come scintille inaspettate. Dopo anni di amicizia, in cui le nostre strade si incrociavano come in una lunga esplorazione, cinque anni dopo siamo finalmente arrivati al primo appuntamento ufficiale: emozione palpabile, sorrisi imbarazzati e il goffo tentativo di sembrare perfetti. Quella sera abbiamo tracciato le coordinate per una rotta speciale. Tappa dopo tappa, abbiamo costruito il nostro porto sicuro: prima Monza, con un divano di dubbia comodità, poi Gorgonzola, il rifugio dove tornare dopo ogni avventura.',
+    title: "L'inizio della nostra avventura",
+    body: 'La nostra avventura è iniziata nel 2006, quasi per caso: sguardi incrociati e battute complici come scintille inaspettate. Dopo anni di amicizia, in cui le nostre strade si incrociavano come in una lunga esplorazione, cinque anni dopo siamo finalmente arrivati al primo appuntamento ufficiale: emozione palpabile, sorrisi imbarazzati e il goffo tentativo di sembrare perfetti. Quella sera abbiamo tracciato le coordinate per una rotta speciale. Tappa dopo tappa, abbiamo costruito il nostro porto sicuro: prima Monza, con un divano di dubbia comodità, poi Gorgonzola, il rifugio dove tornare dopo ogni avventura.',
     photoColor: '#EDE8DC',
     src: 'images/our-story/la_nostra_storia.webp',
   },
   {
-    title: 'I Viaggi nel Mondo',
+    title: 'I viaggi nel mondo',
     body: 'La nostra passione per l’avventura ci ha spinto a solcare il mondo, riempiendo il passaporto di tappe indimenticabili: Portogallo, Islanda, Giordania, Francia, Giappone, Perù, Egitto e molte altre. Ma quando non esploriamo culture lontane, ci trovate quasi sempre su qualche sentiero di montagna: tra scarponi infangati, sveglie all’alba e vette da conquistare, ogni chilometro macinato insieme ci ha unito di più, riempiendo la valigia di ricordi che ci terranno compagnia per tutta la vita.',
     photoColor: '#EDE8DC',
     photo: 'Viaggi',
     src: 'images/our-story/viaggi_nel_mondo.webp',
   },
   {
-    title: 'Una Proposta a 4.554 Metri',
+    title: 'Una proposta a 4.554 metri',
     body: "Niente classiche cene a lume di candela per noi: la vetta più alta del nostro itinerario è arrivata alla Capanna Margherita, a quota 4.554 metri (contati uno per uno con i polmoni in fiamme). Diciamocelo, Ale ha usato una strategia geniale: la conquista per sfinimento. Tra l'ipossia e la fatica immensa, Marti non aveva letteralmente le forze per scappare! Ma tattiche a parte, lassù, abbracciati dal silenzio assoluto e dal tetto del mondo, la fatica è sparita davanti a quella domanda. Una vetta sudata e bellissima, che ci ha tolto definitivamente quel poco di fiato rimasto.",
     photoColor: '#EDE8DC',
     photo: 'Proposta',
     src: '/images/our-story/proposta.webp',
   },
   {
-    title: 'E Ora... La Prossima Destinazione!',
-    body: "Ed eccoci qui, pronti per l'inizio del viaggio più lungo! Il 18 Settembre 2026 celebriamo la partenza ufficiale per il resto della nostra vita insieme. Vogliamo festeggiare questo traguardo con tutte le persone che ci hanno accompagnato fin qui. Preparate i bagagli per il giorno più importante: andiamo a scrivere il nostro prossimo capitolo!",
+    title: 'E ora... la prossima destinazione!',
+    body: 'Ed eccoci qui, quasi 20 anni dopo dal primo incontro (ci mettiamo un po’ a prendere le decisioni 🙈), pronti per l’inizio del viaggio più lungo! Il 18 Settembre 2026 celebriamo la partenza ufficiale per il resto della nostra vita insieme. Vogliamo festeggiare questo traguardo con tutte le persone che ci hanno accompagnato fin qui. Preparate i bagagli per il giorno più importante: andiamo a scrivere il nostro prossimo capitolo!',
     photoColor: '#EDE8DC',
     photo: 'Matrimonio',
     src: '/images/our-story/prossima_destinazione.webp',
@@ -50,12 +50,12 @@ export function OurStorySection() {
   })
 
   return (
-    <section className="min-h-[100svh] pt-8 pb-16 md:pb-48 px-8 sm:px-12 md:px-16">
+    <section className="min-h-[100svh] pt-8 pb-16 md:pb-24 px-8 sm:px-12 md:px-16">
       <div className="max-w-[1100px] mx-auto">
         {/* Mobile: stacked layout (no sticky) */}
         <div className="md:hidden">
           <ScrollReveal translateY={18} start={0} end={0.35} effect="slide">
-            <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-16">
+            <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-20">
               La nostra storia
             </h2>
           </ScrollReveal>
@@ -102,7 +102,7 @@ export function OurStorySection() {
         {/* Desktop: scrollytelling */}
         <div className="hidden md:block">
           <ScrollReveal translateY={18} start={0} end={0.35} effect="slide">
-            <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-16 md:mb-20">
+            <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-20 md:mb-24">
               La nostra storia
             </h2>
           </ScrollReveal>
@@ -146,38 +146,32 @@ export function OurStorySection() {
             {/* RIGHT — sticky photo */}
             <div className="sticky top-0 h-screen self-start flex items-center">
               <div className="relative w-full aspect-[3/4] overflow-hidden rounded-[16px] shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
-                <AnimatePresence>
-                  {storyBlocks.map((block, index) =>
-                    index === activeIndex ? (
-                      <motion.div
-                        key={block.title}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-                        className="absolute inset-0"
+                {storyBlocks.map((block, index) => (
+                  <motion.div
+                    key={block.title}
+                    animate={{ opacity: index === activeIndex ? 1 : 0 }}
+                    transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className={`absolute inset-0 ${index === activeIndex ? 'z-10' : 'z-0'}`}
+                  >
+                    {block.src ? (
+                      // biome-ignore lint/performance/noImgElement: decorative wedding photo
+                      <img
+                        src={block.src}
+                        alt={block.title}
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div
+                        className="absolute inset-0 flex items-center justify-center"
+                        style={{ backgroundColor: block.photoColor ?? '#F2F0EB' }}
                       >
-                        {block.src ? (
-                          // biome-ignore lint/performance/noImgElement: decorative wedding photo
-                          <img
-                            src={block.src}
-                            alt={block.title}
-                            className="absolute inset-0 w-full h-full object-cover"
-                          />
-                        ) : (
-                          <div
-                            className="absolute inset-0 flex items-center justify-center"
-                            style={{ backgroundColor: block.photoColor ?? '#F2F0EB' }}
-                          >
-                            <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif">
-                              {block.photo}
-                            </span>
-                          </div>
-                        )}
-                      </motion.div>
-                    ) : null
-                  )}
-                </AnimatePresence>
+                        <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif">
+                          {block.photo}
+                        </span>
+                      </div>
+                    )}
+                  </motion.div>
+                ))}
               </div>
             </div>
           </div>
