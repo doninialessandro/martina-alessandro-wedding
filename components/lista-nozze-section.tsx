@@ -4,10 +4,10 @@ import { ScrollReveal } from './scroll-reveal'
 
 export function ListaNozzeSection() {
   return (
-    <section className="min-h-[100svh] flex flex-col items-center justify-center px-8 pt-8 pb-16 sm:px-12 md:px-16 mb-16">
+    <section className="px-8 pt-8 pb-20 sm:px-12 md:pb-24 md:px-16">
       <div className="mx-auto max-w-[1100px]">
         <ScrollReveal translateY={18} start={0} end={0.35} effect="slide">
-          <h2 className="mb-16 font-serif text-[#8E9E8C] text-sm uppercase tracking-[0.3em] text-center md:mb-20">
+          <h2 className="mb-20 font-serif text-[#8E9E8C] text-sm uppercase tracking-[0.3em] text-center md:mb-24">
             Lista nozze
           </h2>
         </ScrollReveal>
@@ -26,7 +26,7 @@ export function ListaNozzeSection() {
         </div>
 
         <ScrollReveal
-          className="mt-16 md:mt-20"
+          className="mt-20 md:mt-24 max-w-[800px] mx-auto"
           translateY={18}
           start={0}
           end={0.4}

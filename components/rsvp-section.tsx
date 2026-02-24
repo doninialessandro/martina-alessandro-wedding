@@ -185,7 +185,7 @@ export function RsvpSection() {
   return (
     <section className="min-h-[100svh] flex flex-col pt-8 pb-16 px-8 sm:px-12 md:px-16">
       <ScrollReveal translateY={18} start={0} end={0.35} effect="slide">
-        <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-16 md:mb-20">
+        <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-20 md:mb-24">
           RSVP
         </h2>
       </ScrollReveal>

@@ -12,7 +12,7 @@ export function LocationSection() {
         </ScrollReveal>
 
         {/* Full-width large image */}
-        <ScrollReveal className="mb-16 md:mb-20" translateY={0} start={0} end={0.35} effect="slide">
+        <ScrollReveal className="mb-20 md:mb-24" translateY={0} start={0} end={0.35} effect="slide">
           <div className="w-full aspect-[16/9] relative overflow-hidden rounded-[16px] shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
             {/* biome-ignore lint/performance/noImgElement: decorative venue photo */}
             <img
