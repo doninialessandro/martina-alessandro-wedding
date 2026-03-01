@@ -11,6 +11,7 @@ const ebGaramond = EB_Garamond({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://martina-alessandro.wedding'),
   title: 'Martina & Alessandro — 18 Settembre 2026',
   description:
     'Sito del matrimonio di Martina e Alessandro, 18 Settembre 2026 — Villa Castelbarco Pindemonte Rezzonico, Imbersago (LC)',
@@ -18,7 +19,14 @@ export const metadata: Metadata = {
     title: 'Martina & Alessandro — 18 Settembre 2026',
     description:
       'Sito del matrimonio di Martina e Alessandro, 18 Settembre 2026 — Villa Castelbarco Pindemonte Rezzonico, Imbersago (LC)',
+    url: 'https://martina-alessandro.wedding',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Martina & Alessandro — 18 Settembre 2026',
+    description:
+      'Sito del matrimonio di Martina e Alessandro, 18 Settembre 2026 — Villa Castelbarco Pindemonte Rezzonico, Imbersago (LC)',
   },
   icons: {
     icon: '/favicon.svg',
@@ -40,6 +48,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="it" className={ebGaramond.variable}>
+      <head>
+        <noscript>
+          <style>{`[data-animate]{opacity:1!important;clip-path:none!important;transform:none!important;filter:none!important}[data-animate] path,[data-animate] line{stroke-dashoffset:0!important;animation:none!important}[data-nojs-hide]{display:none!important}[data-nojs-show]{display:block!important}`}</style>
+        </noscript>
+      </head>
       <body className="font-serif antialiased">
         {children}
         <Analytics />

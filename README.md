@@ -1,66 +1,122 @@
-# Martina & Alessandro Wedding Website
+# Martina & Alessandro — Wedding Website
 
-This repository contains a single-page wedding site built with **Next.js 16 App Router**, **React 19**, and **TypeScript**. The design is focused on a warm parchment aesthetic and scroll‑linked animations to create an elegant, story‑driven experience.
+I proposed at 4,554 meters on Capanna Margherita — Marti couldn't run away with no oxygen left. After nearly 20 years of crossing paths, countless passport stamps, and one very strategic altitude proposal, we're finally getting married on September 18, 2026. This is the website I built for the occasion, because apparently planning a marriage wasn't stressful enough, so I also had to argue over font sizes and scroll animations. Built with love, too much caffeine, and an unreasonable number of commits.
 
-## 🚀 Getting Started
+## Tech Stack
 
-Install dependencies and run the development server:
+| Technology | Version |
+|------------|---------|
+| Next.js | 16.1.6 |
+| React | 19.2.4 |
+| TypeScript | 5.7.3 |
+| Tailwind CSS | 4.2 |
+| Biome | 2.4.4 |
+| Motion (Framer) | 12.x |
+| Supabase | 2.x |
+| Vitest | 4.x |
+| Playwright | 1.58.x |
+
+## Getting Started
 
 ```bash
+git clone <repo-url>
+cd martina-alessandro-wedding
 pnpm install
+```
+
+Create a `.env.local` file with your Supabase credentials:
+
+```
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+```
+
+Start the development server:
+
+```bash
 pnpm dev
 ```
 
-Use the provided `commitlint` hooks and linting scripts before committing changes.
+## Project Structure
 
-## 📁 Project Structure
-
-- `app/` – Next.js App Router folder; `page.tsx` orchestrates the entire one‑page layout.
-- `components/` – Reusable UI sections (Hero, Our Story, Program, Location, RSVP, Lista Nozze, Footer) and animation primitives.
-- `hooks/` – Custom hooks powering scroll animations (`useScrollProgress`, `useScrollytelling`).
-- `styles/` – Tailwind and global CSS settings.
-- `public/` – Static assets.
-
-## 🎨 Design & Styles
-
-- **Colors:** Background `#FDFCFA`, Foreground `#1A1A1A`, Accent `#8E9E8C`, with muted tones for text and borders.
-- **Fonts:** EB Garamond (`font-serif`) globally via `next/font/google`.
-- **Animations:** Scroll‑linked reveals, parallax, word reveals, and a custom SVG `MonolineFlower` animation.
-
-## ✨ Animation System
-
-- `useScrollProgress(offset)` returns a ref + progress value (0→1) as an element scrolls through the viewport.
-- `ScrollReveal`, `WordReveal`, `ParallaxFade` components use this hook for clip masks or transforms.
-- `useScrollytelling(count)` tracks the active item in vertical storytelling sections.
-
-See `components/scroll-reveal.tsx` for implementation details.
-
-## 🛠 Tooling & Scripts
-
-```json
-"scripts": {
-  "dev": "next dev",
-  "build": "next build",
-  "start": "next start",
-  "lint": "pnpm biome check",
-  "lint:fix": "pnpm biome check --write --unsafe .",
-  "typecheck": "tsc --noEmit",
-  "check": "pnpm lint && pnpm typecheck"
-}
+```
+app/              Next.js App Router (layout, page, global CSS)
+components/       Shared components (scroll-reveal, section-divider, monoline-flower)
+hooks/            Custom hooks (useScrollProgress)
+lib/              Utilities and data access (Supabase client, RSVP queries)
+sections/         Page sections, each with index.tsx + copy.json
+tests/            Shared test setup and mocks
+e2e/              Playwright E2E tests
+public/           Static assets (favicon, images)
 ```
 
-Linting is powered by **Biome** with custom overrides for specific files. Commit messages follow conventional commit rules enforced via Husky.
+## Sections
 
-## 📌 Notes
+| Section | Description |
+|---------|-------------|
+| Hero | Full-viewport intro with animated sunflower, couple names, and countdown timer |
+| Our Story | Timeline of key moments with scroll-driven photo reveals |
+| Location | Venue details with embedded map |
+| Program | Wedding day schedule with expandable details |
+| RSVP | Interactive attendance form with family member selection and Supabase persistence |
+| Lista Nozze | Gift registry information |
+| Footer | Contact details and credits |
 
-- No routing; the page contains all sections in order.
-- Sharp corners (`--radius: 0rem`) and a muted color palette reflect a parchment theme.
-- UI primitives under `components/ui/` follow the shadcn/Radix pattern but are generic.
+## Scripts
 
-## ✅ Contributing
+| Command | Description |
+|---------|-------------|
+| `pnpm dev` | Start development server |
+| `pnpm build` | Production build |
+| `pnpm lint` | Run Biome linter |
+| `pnpm lint:fix` | Run Biome with auto-fix |
+| `pnpm typecheck` | TypeScript type checking |
+| `pnpm check` | Lint + typecheck combined |
+| `pnpm test` | Run all tests (unit + e2e) |
+| `pnpm test:unit` | Run unit/component tests only |
+| `pnpm test:unit:watch` | Run unit tests in watch mode |
+| `pnpm test:coverage` | Run tests with coverage report |
+| `pnpm test:e2e` | Run Playwright E2E tests only |
 
-Make sure to run `pnpm check` before committing. Use descriptive conventional commit messages (`feat:`, `fix:`, `refactor:`, etc.).
+## Testing
 
----
+### Unit & Component Tests
 
-*Created on 21 febbraio 2026.*
+Run with [Vitest](https://vitest.dev/) + [Testing Library](https://testing-library.com/). Test files are co-located next to their source files (`*.test.{ts,tsx}`). Shared test infrastructure (setup, mocks) lives in `tests/`.
+
+```bash
+pnpm test:unit         # single run
+pnpm test:unit:watch   # watch mode
+pnpm test:coverage     # with coverage report
+```
+
+### E2E Tests
+
+Run with [Playwright](https://playwright.dev/). Tests live in `e2e/` and exercise the full page against a running dev server.
+
+```bash
+pnpm test:e2e          # run all E2E tests (chromium, firefox, webkit)
+```
+
+**Structure:**
+
+| File | Tests | Description |
+|------|-------|-------------|
+| `page-smoke.spec.ts` | 7 | Each section renders key content (all browsers) |
+| `rsvp.spec.ts` | 20 | Full RSVP flow: happy path, decline, errors, update existing, form interactions (chromium only) |
+
+Supabase API calls are intercepted at the network layer via `page.route()` — no real database needed. Mock helpers and fixtures live in `e2e/helpers/` and `e2e/fixtures/`.
+
+## CI
+
+GitHub Actions runs on every push to `main` and on pull requests:
+
+1. **Lint & Typecheck** — Biome + `tsc --noEmit`
+2. **Unit & Component Tests** — Vitest
+3. **E2E Tests** — Playwright (chromium only in CI)
+
+All three jobs run in parallel. Deployment is handled by Vercel on merge to `main`.
+
+## Deployment
+
+Deployed on Vercel. Images are configured as unoptimized (`images.unoptimized: true` in `next.config.mjs`) for static export compatibility.

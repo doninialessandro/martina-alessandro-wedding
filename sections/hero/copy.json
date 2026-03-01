@@ -1,0 +1,13 @@
+{
+  "names": {
+    "person1": "Martina",
+    "person2": "Alessandro",
+    "combined": "Martina & Alessandro"
+  },
+  "date": "18 Settembre 2026",
+  "countdown": {
+    "days": "giorni",
+    "hours": "ore",
+    "minutes": "min"
+  }
+}

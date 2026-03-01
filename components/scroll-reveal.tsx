@@ -51,6 +51,7 @@ export function ScrollReveal({
       <div
         ref={ref}
         className={className}
+        data-animate
         style={{
           opacity: eased,
           transform: `translate3d(${x}px, ${y}px, 0) scale(${s}) rotate(${r}deg)`,
@@ -71,6 +72,7 @@ export function ScrollReveal({
     <div
       ref={ref}
       className={className}
+      data-animate
       style={{
         clipPath: clip,
         transform: `translate3d(${x}px, ${y}px, 0) scale(${s}) rotate(${r}deg)`,
@@ -80,82 +82,6 @@ export function ScrollReveal({
       {children}
     </div>
   )
-}
-
-/* ═══════════════════════════════════════════════════════════
-   WordReveal – each word transitions from a muted color to
-   its full color as you scroll, keeping text always readable.
-   No opacity changes — colors are always vibrant.
-   ═══════════════════════════════════════════════════════════ */
-
-interface WordRevealProps {
-  text: string
-  className?: string
-  offset?: number
-  mutedColor?: string // the starting "unrevealed" color
-  activeColor?: string // the final "revealed" color
-}
-
-export function WordReveal({
-  text,
-  className = '',
-  offset = 0.08,
-  mutedColor = '#D5CCBC',
-  activeColor = '#3A3530',
-}: WordRevealProps) {
-  const { ref, progress } = useScrollProgress(offset)
-  const words = text.split(' ')
-
-  return (
-    <p ref={ref} className={className} style={{ willChange: 'color' }}>
-      {words.map((word, i) => {
-        const wordStart = (i / words.length) * 0.5
-        const wordEnd = wordStart + 0.4
-        const wordProgress = Math.min(
-          1,
-          Math.max(0, (progress - wordStart) / (wordEnd - wordStart))
-        )
-        // Gentle ease-in-out quad
-        const eased =
-          wordProgress < 0.5
-            ? 2 * wordProgress * wordProgress
-            : 1 - (-2 * wordProgress + 2) ** 2 / 2
-
-        const color =
-          eased <= 0.01
-            ? mutedColor
-            : eased >= 0.99
-              ? activeColor
-              : interpolateColor(mutedColor, activeColor, eased)
-
-        return (
-          // biome-ignore lint/suspicious/noArrayIndexKey: composite word-index key is stable for static text splits
-          <span key={`${word}-${i}`} style={{ color, transition: 'color 0.35s ease-in-out' }}>
-            {word}{' '}
-          </span>
-        )
-      })}
-    </p>
-  )
-}
-
-/** Simple hex color interpolation */
-function interpolateColor(from: string, to: string, t: number): string {
-  const f = hexToRgb(from)
-  const tC = hexToRgb(to)
-  const r = Math.round(f.r + (tC.r - f.r) * t)
-  const g = Math.round(f.g + (tC.g - f.g) * t)
-  const b = Math.round(f.b + (tC.b - f.b) * t)
-  return `rgb(${r}, ${g}, ${b})`
-}
-
-function hexToRgb(hex: string) {
-  const h = hex.replace('#', '')
-  return {
-    r: parseInt(h.substring(0, 2), 16),
-    g: parseInt(h.substring(2, 4), 16),
-    b: parseInt(h.substring(4, 6), 16),
-  }
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -184,6 +110,7 @@ export function ParallaxFade({ children, className = '', speed = 0.35 }: Paralla
     <div
       ref={ref}
       className={className}
+      data-animate
       style={{
         opacity,
         transform: `translate3d(0, ${y}px, 0) scale(${s})`,

@@ -1,0 +1,30 @@
+{
+  "sectionTitle": "Il programma",
+  "items": [
+    {
+      "time": "16:00",
+      "title": "Apertura",
+      "description": "Il momento dei saluti e degli abbracci. Mettete via gli orologi, prendete posto e preparatevi mentalmente alla bellissima e allegra confusione che sta per iniziare."
+    },
+    {
+      "time": "16:30",
+      "title": "Cerimonia",
+      "description": "Il momento clou. Meno ingessati possibile, pronti a vivere il grande salto. I fazzoletti per le lacrime di commozione sono ammessi, ma i sorrisi e le risate sono assolutamente obbligatori."
+    },
+    {
+      "time": "17:30",
+      "title": "Cocktail",
+      "description": "Si rompono le righe. Spritz alla mano, chiacchiere in libert\u00e0 e l\u2019atmosfera perfetta per sciogliere la tensione e iniziare ufficialmente i festeggiamenti."
+    },
+    {
+      "time": "19:30",
+      "title": "Cena",
+      "description": "Ci si accomoda a tavola per ricaricare le energie. Promettiamo ottima compagnia, discorsi emozionanti e, soprattutto, tantissimi brindisi per celebrare insieme questo traguardo speciale."
+    },
+    {
+      "time": "22:00",
+      "title": "Festa",
+      "description": "Da qui in poi le formalit\u00e0 non valgono pi\u00f9. Togliete i tacchi, allentate le cravatte e preparatevi a scendere in pista: la serata \u00e8 tutta da ballare fino all\u2019 ultimo respiro."
+    }
+  ]
+}

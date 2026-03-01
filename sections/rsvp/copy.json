@@ -1,0 +1,58 @@
+{
+  "sectionTitle": "RSVP",
+  "search": {
+    "firstNameLabel": "Nome",
+    "lastNameLabel": "Cognome",
+    "firstNamePlaceholder": "Mario",
+    "lastNamePlaceholder": "Rossi",
+    "submitButton": "Cerca"
+  },
+  "loading": {
+    "message": "Ricerca in corso... \ud83d\udd0d"
+  },
+  "notFound": {
+    "title": "Non ti abbiamo trovato nella lista degli invitati \ud83d\ude15",
+    "subtitle": "Controlla di aver scritto correttamente nome e cognome.",
+    "retryButton": "Riprova"
+  },
+  "select": {
+    "label": "Chi partecipa?",
+    "hint": "(seleziona solo chi parteciper\u00e0, cos\u00ec possiamo organizzarci al meglio \u270c\ufe0f Se noti errori contattaci!)",
+    "notesLabel": "Hai qualche allergia, intolleranza, o altre informazioni che dovremmo sapere?",
+    "notesOptional": "(facoltativo)",
+    "notesPlaceholder": "Allergie, intolleranze, o altre informazioni",
+    "existingConfirmedSingular": "\u26f0 Hai gi\u00e0 confermato la tua presenza ma puoi modificare la tua risposta se ci sono delle novit\u00e0.",
+    "existingConfirmedPlural": "\u26f0 Avete gi\u00e0 confermato la vostra presenza ma potete modificare la risposta se ci sono delle novit\u00e0.",
+    "existingDeclinedSingular": "Avevi indicato che non potevi partecipare. Ma sei ancora in tempo per cambiare idea! \ud83e\udd1e",
+    "existingDeclinedPlural": "Avevate indicato che non potevate partecipare. Ma siete ancora in tempo per cambiare idea! \ud83e\udd1e",
+    "confirmButton": "Conferma Presenza",
+    "updateButton": "Aggiorna Informazioni",
+    "declineButtonSingular": "Purtroppo non riesco a partecipare \ud83d\ude22",
+    "declineButtonPlural": "Purtroppo non riusciamo a partecipare \ud83d\ude22",
+    "declineHint": "Cliccando \"Purtroppo non riusciamo a partecipare\" tutti verranno segnati come assenti. Se solo alcuni partecipano, seleziona chi viene e usa \"Conferma Presenza\".",
+    "searchAnother": "Cerca un altro nominativo"
+  },
+  "success": {
+    "title": "Grazie! \ud83c\udf89",
+    "messageSingular": "Non vediamo l\u2019ora di festeggiare con te! \ud83e\udd42",
+    "messagePlural": "Non vediamo l\u2019ora di festeggiare con voi! \ud83e\udd42",
+    "editPrompt": "Hai cambiato idea o sbagliato qualcosa? Nessun panico! ",
+    "editLink": "Modifica la tua risposta"
+  },
+  "declined": {
+    "titleSingular": "Ci mancherai! \ud83d\ude22",
+    "titlePlural": "Ci mancherete! \ud83d\ude22",
+    "messageSingular": "Speriamo di rivederti presto \u2764\ufe0f",
+    "messagePlural": "Speriamo di rivedervi presto \u2764\ufe0f",
+    "editPrompt": "Hai cambiato idea? Nessun panico! ",
+    "editLink": "Modifica la tua risposta"
+  },
+  "noJs": {
+    "message": "🫠 Per confermare la tua presenza è necessario abilitare JavaScript nel browser. Per favore abilitalo e ricarica la pagina."
+  },
+  "error": {
+    "title": "Qualcosa \u00e8 andato storto \ud83d\ude25",
+    "subtitle": "Per favore riprova tra qualche istante.",
+    "retryButton": "Riprova"
+  }
+}

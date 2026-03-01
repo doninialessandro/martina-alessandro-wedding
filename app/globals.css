@@ -1,7 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
 
 :root {
   --background: #fdfcfa;
@@ -75,55 +72,6 @@ html {
   color: #fdfcfa;
 }
 
-/* Hide scrollbar but allow scrolling */
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.6s ease forwards;
-}
-
-/* Privacy/Legal overlay */
-.overlay-scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
-.overlay-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-.overlay-scrollbar::-webkit-scrollbar-thumb {
-  background: #8e9e8c;
-  border-radius: 3px;
-}
-
 /* Form inputs */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -132,4 +80,28 @@ textarea:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px #fdfcfa inset;
   -webkit-text-fill-color: #1a1a1a;
   transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Progressive enhancement: show content when JS is disabled */
+@media (scripting: none) {
+  [data-animate] {
+    opacity: 1 !important;
+    clip-path: none !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  [data-animate] path,
+  [data-animate] line {
+    stroke-dashoffset: 0 !important;
+    animation: none !important;
+  }
+
+  [data-nojs-hide] {
+    display: none !important;
+  }
+
+  [data-nojs-show] {
+    display: block !important;
+  }
 }

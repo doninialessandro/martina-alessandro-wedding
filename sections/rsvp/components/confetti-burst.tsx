@@ -59,6 +59,7 @@ export function ConfettiBurst() {
   const elapsedRef = useRef(0)
   const aliveRef = useRef(true)
 
+  // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: particle physics simulation requires branching
   useAnimationFrame(() => {
     if (!aliveRef.current) return
     const container = containerRef.current
