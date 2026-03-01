@@ -44,7 +44,7 @@
           "level": "off",
           "options": {
             "attributes": ["className", "class"],
-            "functions": ["cn", "cva", "clsx"]
+            "functions": ["clsx"]
           }
         }
       }
@@ -79,26 +79,5 @@
       "tailwindDirectives": true
     }
   },
-  "overrides": [
-    {
-      "includes": ["components/ui/chart.tsx"],
-      "linter": {
-        "rules": {
-          "security": {
-            "noDangerouslySetInnerHtml": "off"
-          }
-        }
-      }
-    },
-    {
-      "includes": ["components/ui/slider.tsx"],
-      "linter": {
-        "rules": {
-          "suspicious": {
-            "noArrayIndexKey": "off"
-          }
-        }
-      }
-    }
-  ]
+  "overrides": []
 }

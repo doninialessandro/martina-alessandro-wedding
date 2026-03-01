@@ -1,4 +1,9 @@
-import { ScrollReveal } from './scroll-reveal'
+import { ScrollReveal } from '@/components/scroll-reveal'
+import { VenueMap } from './components/venue-map'
+import copy from './copy.json'
+
+const IMAGE_URL =
+  'https://cdn0.matrimonio.com/vendor/5512/3_2/1280/jpeg/b3eec765-ed46-4a59-b18f-907b0710d8fb_2_15512-164931398289049.webp'
 
 export function LocationSection() {
   return (
@@ -7,7 +12,7 @@ export function LocationSection() {
         {/* Title */}
         <ScrollReveal translateY={20} start={0} end={0.35} effect="slide">
           <h2 className="mb-16 text-center font-serif text-[#8E9E8C] text-sm uppercase tracking-[0.3em] md:mb-20">
-            Location
+            {copy.sectionTitle}
           </h2>
         </ScrollReveal>
 
@@ -16,8 +21,8 @@ export function LocationSection() {
           <div className="w-full aspect-[16/9] relative overflow-hidden rounded-[16px] shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
             {/* biome-ignore lint/performance/noImgElement: decorative venue photo */}
             <img
-              src="https://cdn0.matrimonio.com/vendor/5512/3_2/1280/jpeg/b3eec765-ed46-4a59-b18f-907b0710d8fb_2_15512-164931398289049.webp"
-              alt="Villa Castelbarco Pindemonte Rezzonico"
+              src={IMAGE_URL}
+              alt={copy.venue.name}
               className="absolute inset-0 w-full h-full object-cover"
             />
           </div>
@@ -28,18 +33,13 @@ export function LocationSection() {
           {/* Left: text */}
           <ScrollReveal translateY={18} start={0} end={0.45} offset={0.1} effect="slide">
             <h3 className="mb-4 font-normal font-serif text-2xl text-[#1A1A1A] md:text-3xl">
-              Villa Castelbarco Pindemonte Rezzonico
+              {copy.venue.name}
             </h3>
             <p className="mb-6 font-serif text-[#8E9E8C] text-sm uppercase tracking-[0.1em]">
-              Via Cesare Cantu 21, 23898 Imbersago (LC)
+              {copy.venue.address}
             </p>
             <p className="font-serif text-[#4A4440] text-base leading-relaxed md:text-lg">
-              Ed ecco qui la location. Una villa secentesca immersa nel verde dell’Alta Brianza,
-              talmente spettacolare che cattura lo sguardo. Niente formalità ingessate: questo parco
-              secolare e questa corte storica saranno il palcoscenico ideale del nostro matrimonio.
-              Un luogo meraviglioso dove perdersi tra gli alberi, rilassarsi dopo la cerimonia e
-              lasciarsi andare quando il sole inizia a calare. Preparate i navigatori: non vediamo
-              l’ora di accogliervi qui insieme a noi!
+              {copy.venue.description}
             </p>
           </ScrollReveal>
 
@@ -52,19 +52,7 @@ export function LocationSection() {
             offset={0.1}
             effect="slide"
           >
-            <div className="aspect-[4/3] w-full overflow-hidden rounded-[16px] shadow-[0_2px_8px_rgba(0,0,0,0.03)] bg-[#F2F0EB]">
-              <iframe
-                title="Villa Castelbarco Pindemonte Rezzonico"
-                src="https://maps.google.com/maps?q=Via+Cesare+Cantu+21%2C+23898+Imbersago+LC%2C+Italy&output=embed&z=16"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="h-full w-full"
-              />
-            </div>
+            <VenueMap venueName={copy.venue.name} />
           </ScrollReveal>
         </div>
       </div>

@@ -1,11 +1,11 @@
-import { HeroSection } from '@/components/hero-section'
-import { ListaNozzeSection } from '@/components/lista-nozze-section'
-import { LocationSection } from '@/components/location-section'
-import { OurStorySection } from '@/components/our-story-section'
-import { ProgramSection } from '@/components/program-section'
-import { RsvpSection } from '@/components/rsvp-section'
 import { SectionDivider } from '@/components/section-divider'
-import { SiteFooter } from '@/components/site-footer'
+import { SiteFooter } from '@/sections/footer'
+import { HeroSection } from '@/sections/hero'
+import { ListaNozzeSection } from '@/sections/lista-nozze'
+import { LocationSection } from '@/sections/location'
+import { OurStorySection } from '@/sections/our-story'
+import { ProgramSection } from '@/sections/program'
+import { RsvpSection } from '@/sections/rsvp'
 
 export default function Home() {
   return (
