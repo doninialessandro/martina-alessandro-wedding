@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Single-page Italian wedding website (Next.js 16, React 19, TypeScript, Tailwind CSS v4).
 
 ## Commands
 
@@ -11,46 +11,45 @@ pnpm lint         # Biome check (no auto-fix)
 pnpm lint:fix     # Biome check with safe auto-fix
 pnpm typecheck    # tsc --noEmit
 pnpm check        # lint + typecheck combined
+pnpm test          # run all tests (unit + e2e)
+pnpm test:unit     # run unit/component tests only
+pnpm test:unit:watch # run unit tests in watch mode
+pnpm test:e2e      # run Playwright E2E tests only
+pnpm test:coverage # run unit tests with coverage
 ```
 
-For unsafe Biome fixes: `pnpm biome check --write --unsafe .`
+Commits: conventional commits enforced via commitlint + husky (`feat:`, `fix:`, `refactor:`, etc.).
 
-Commits are enforced by commitlint (conventional commits) via husky. Use `feat:`, `fix:`, `refactor:`, `style:`, `chore:`, etc.
+## Critical Constraints
 
-## Architecture
+- No routing — single page renders all sections in `app/page.tsx`
+- No dark mode — warm parchment theme only
+- Italian only — all copy lives in co-located `copy.json` files
+- EB Garamond only — `font-serif`, loaded in `app/layout.tsx`
+- Sharp corners — `--radius: 0rem` everywhere
+- Scroll-linked animations only — never CSS transitions triggered by observers
+- No `components/ui/` directory — shadcn was removed
+- No `styles/` directory — CSS is in `app/globals.css`
 
-Single-page Italian wedding site (Next.js 16 App Router, React 19, TypeScript, Tailwind CSS v4). No routing — `app/page.tsx` renders all sections in order: Hero → OurStory → Program → Location → RSVP → ListaNozze → Footer.
+## Testing
 
-**Fonts:** EB Garamond (`--font-eb-garamond`, mapped to `font-serif`) for all text. Loaded via `next/font/google` in `app/layout.tsx`.
+- Co-located tests: `*.test.{ts,tsx}` files sit next to their source files
+- Shared test infra (setup, mocks) lives in `tests/`
+- E2E tests live in `e2e/`
+- Mock imports use `@/tests/mocks/*`, source imports use relative `./`
 
-**Color palette** (warm parchment theme, no dark mode):
-- Background: `#FDFCFA` · Foreground: `#1A1A1A`
-- Muted foreground: `#4A4440` · Accent (sage green): `#8E9E8C`
-- Border/muted: `#D5CCBC` · `--radius: 0rem` (sharp corners everywhere)
+## Gotchas
 
-CSS variables are defined in `app/globals.css` and exposed to Tailwind via `@theme inline`.
+- Biome 2.4.4: `{/* biome-ignore lint/... */}` in JSX children, `// biome-ignore lint/...` in TS/JS
+- `useImportType` enforced as error — always `import type` for type-only imports
+- `noUnusedImports` and `noUnusedVariables` are errors
+- `@media (scripting: none)` + `data-nojs-hide`/`data-nojs-show` for progressive enhancement
+- Path alias: `@/*` maps to repo root
 
-### Animation System
+## Rules
 
-All scroll animations are **scroll-linked** (not CSS transitions triggered by intersection):
-
-- **`useScrollProgress(offset)`** (`hooks/use-scroll-progress.ts`) — rAF-throttled hook that returns a `{ ref, progress }` where `progress` is 0→1 as the element scrolls from viewport bottom to top.
-- **`ScrollReveal`** — wraps children with a clip-path mask (effect `'clip'`) or opacity+transform (effect `'slide'`) driven by `useScrollProgress`.
-- **`WordReveal`** — animates each word from a muted hex color to its active color as the user scrolls.
-- **`ParallaxFade`** — used in the hero; drifts element upward and fades it out as the user scrolls past.
-- **`useScrollytelling(count)`** (`hooks/use-scrollytelling.ts`) — tracks which of N stacked items is closest to the viewport center; used in OurStory and Program sections to highlight the active item.
-
-All primitives live in `components/scroll-reveal.tsx`. They use inline `style` transforms with `willChange` — avoid adding CSS transitions on elements that also use these hooks.
-
-### Key Components
-
-- **`MonolineFlower`** — custom animated SVG sunflower (stroke-dashoffset draw animation, triggered by IntersectionObserver). Accepts `size`, `animate`, `showThread` props. Used as a decorative element in the hero and section dividers.
-- **`SectionDivider`** — thin decorative separator between page sections.
-- **`components/ui/`** — shadcn-style Radix UI primitives (accordion, dialog, select, etc.). These are generic and rarely need modification.
-
-### Linting (Biome 2.4.4)
-
-- `noArrayIndexKey` and `noDangerouslySetInnerHtml` cannot be suppressed inline for certain files — use `overrides` in `biome.json` instead (already done for `chart.tsx` and `slider.tsx`).
-- Use `{/* biome-ignore lint/... */}` inside JSX children; use `// biome-ignore lint/...` in TS/JS context.
-- `useImportType` is enforced as an error — always use `import type` for type-only imports.
-- `noUnusedImports` and `noUnusedVariables` are errors.
+@architecture .claude/rules/architecture.md
+@code-style .claude/rules/code-style.md
+@animations .claude/rules/animations.md
+@supabase .claude/rules/supabase.md
+@rsvp sections/rsvp/CLAUDE.md

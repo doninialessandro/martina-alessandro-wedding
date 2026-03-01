@@ -1,2 +1,2 @@
 pnpm typecheck
-pnpm test --run
+pnpm vitest run --changed

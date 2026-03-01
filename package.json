@@ -1,5 +1,5 @@
 {
-  "name": "my-project",
+  "name": "martina-alessandro-wedding",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,11 @@
     "format": "biome format --write .",
     "typecheck": "tsc --noEmit",
     "check": "pnpm lint && pnpm typecheck",
+    "test": "vitest run && playwright test",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
     "prepare": "husky"
   },
   "dependencies": {
@@ -25,15 +30,23 @@
     "@biomejs/biome": "^2.4.4",
     "@commitlint/cli": "^20.4.2",
     "@commitlint/config-conventional": "^20.4.2",
+    "@playwright/test": "^1.58.2",
     "@tailwindcss/postcss": "^4.2.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^22",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "^5.1.4",
+    "@vitest/coverage-istanbul": "^4.0.18",
     "husky": "^9.1.7",
+    "jsdom": "^28.1.0",
     "lint-staged": "^16.2.7",
     "postcss": "^8.5",
     "tailwindcss": "^4.2.0",
-    "typescript": "5.7.3"
+    "typescript": "5.7.3",
+    "vitest": "^4.0.18"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,json,css}": "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"
