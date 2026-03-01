@@ -81,3 +81,27 @@ textarea:-webkit-autofill {
   -webkit-text-fill-color: #1a1a1a;
   transition: background-color 5000s ease-in-out 0s;
 }
+
+/* Progressive enhancement: show content when JS is disabled */
+@media (scripting: none) {
+  [data-animate] {
+    opacity: 1 !important;
+    clip-path: none !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  [data-animate] path,
+  [data-animate] line {
+    stroke-dashoffset: 0 !important;
+    animation: none !important;
+  }
+
+  [data-nojs-hide] {
+    display: none !important;
+  }
+
+  [data-nojs-show] {
+    display: block !important;
+  }
+}

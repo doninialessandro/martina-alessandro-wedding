@@ -51,6 +51,7 @@ export function ScrollReveal({
       <div
         ref={ref}
         className={className}
+        data-animate
         style={{
           opacity: eased,
           transform: `translate3d(${x}px, ${y}px, 0) scale(${s}) rotate(${r}deg)`,
@@ -71,6 +72,7 @@ export function ScrollReveal({
     <div
       ref={ref}
       className={className}
+      data-animate
       style={{
         clipPath: clip,
         transform: `translate3d(${x}px, ${y}px, 0) scale(${s}) rotate(${r}deg)`,
@@ -184,6 +186,7 @@ export function ParallaxFade({ children, className = '', speed = 0.35 }: Paralla
     <div
       ref={ref}
       className={className}
+      data-animate
       style={{
         opacity,
         transform: `translate3d(0, ${y}px, 0) scale(${s})`,

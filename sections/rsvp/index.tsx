@@ -18,7 +18,15 @@ export function RsvpSection() {
         </h2>
       </ScrollReveal>
 
-      <div className="flex-1 flex flex-col items-center justify-center">
+      <noscript>
+        <div className="flex-1 flex flex-col items-center justify-center text-center">
+          <p className="text-lg font-serif text-[#4A4440] leading-relaxed max-w-md mx-auto">
+            {copy.noJs.message}
+          </p>
+        </div>
+      </noscript>
+
+      <div className="flex-1 flex flex-col items-center justify-center" data-nojs-hide>
         <div className="max-w-[650px] w-full mx-auto" key={rsvp.fadeKey}>
           {rsvp.step === 'search' && (
             <RsvpSearchForm

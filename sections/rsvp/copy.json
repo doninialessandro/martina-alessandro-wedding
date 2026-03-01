@@ -47,6 +47,9 @@
     "editPrompt": "Hai cambiato idea? Nessun panico! ",
     "editLink": "Modifica la tua risposta"
   },
+  "noJs": {
+    "message": "🫠 Per confermare la tua presenza è necessario abilitare JavaScript nel browser. Per favore abilitalo e ricarica la pagina."
+  },
   "error": {
     "title": "Qualcosa \u00e8 andato storto \ud83d\ude25",
     "subtitle": "Per favore riprova tra qualche istante.",

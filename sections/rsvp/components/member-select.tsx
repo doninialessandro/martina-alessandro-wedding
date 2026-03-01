@@ -1,3 +1,5 @@
+'use client'
+
 import { AnimatePresence, motion } from 'motion/react'
 import type { FamilyMember, Rsvp } from '@/lib/supabase/types'
 
@@ -142,6 +144,7 @@ export function RsvpMemberSelect({
                 type="checkbox"
                 checked={checked}
                 onChange={() => toggleMember(member.id)}
+                aria-label={`${member.first_name} ${member.last_name}`}
                 className="sr-only"
               />
               <span className="text-base md:text-lg font-serif text-[#1A1A1A]">

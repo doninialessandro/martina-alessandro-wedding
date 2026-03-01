@@ -12,7 +12,7 @@ export function SectionDivider() {
   const strokeOffset = (1 - eased) * 300 // Draw from right to left as it fades in
 
   return (
-    <div ref={ref} className="flex justify-center py-8">
+    <div ref={ref} className="flex justify-center py-8" data-animate>
       <svg
         width="150"
         height="37.5"

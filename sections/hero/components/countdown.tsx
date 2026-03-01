@@ -10,6 +10,7 @@ interface CountdownProps {
 export function Countdown({ loaded, days, hours, minutes, dateLabel, labels }: CountdownProps) {
   return (
     <div
+      data-animate
       className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center transition-opacity duration-[1200ms] delay-500 ${
         loaded ? 'opacity-100' : 'opacity-0'
       }`}

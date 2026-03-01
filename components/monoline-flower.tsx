@@ -236,7 +236,7 @@ export function MonolineFlower({
   const loopDuration = totalDrawTime + 1.5
 
   return (
-    <div className={`relative inline-flex flex-col items-center ${className}`}>
+    <div className={`relative inline-flex flex-col items-center ${className}`} data-animate>
       {loop && (
         <style>
           {segments

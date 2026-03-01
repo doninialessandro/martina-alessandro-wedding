@@ -1,3 +1,5 @@
+'use client'
+
 import { motion } from 'motion/react'
 import type { RefObject } from 'react'
 import { ScrollReveal } from '@/components/scroll-reveal'
@@ -27,7 +29,7 @@ export function ProgramDesktop({
   const COUNT = items.length
 
   return (
-    <div className="hidden md:block">
+    <div className="hidden md:block" data-nojs-hide>
       <div className="max-w-[1100px] mx-auto">
         <ScrollReveal translateY={20} start={0} end={0.35} effect="slide">
           <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-20 md:mb-24">

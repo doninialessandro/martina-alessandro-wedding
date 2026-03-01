@@ -1,3 +1,5 @@
+'use client'
+
 import { ScrollReveal } from '@/components/scroll-reveal'
 
 interface SearchCopy {

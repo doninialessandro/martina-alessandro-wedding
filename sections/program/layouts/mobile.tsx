@@ -16,7 +16,7 @@ export function ProgramMobile({ sectionTitle, items }: ProgramMobileProps) {
   const [selectedItem, setSelectedItem] = useState<number | null>(null)
 
   return (
-    <div className="md:hidden max-w-[1100px] mx-auto">
+    <div className="md:hidden max-w-[1100px] mx-auto" data-nojs-show>
       <ScrollReveal translateY={18} start={0} end={0.35} effect="slide">
         <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-20">
           {sectionTitle}

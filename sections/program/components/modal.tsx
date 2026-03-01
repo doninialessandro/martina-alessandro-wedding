@@ -1,3 +1,5 @@
+'use client'
+
 import { motion } from 'motion/react'
 
 interface ProgramModalProps {
@@ -31,6 +33,7 @@ export function ProgramModal({ item, onClose }: ProgramModalProps) {
         <button
           type="button"
           onClick={onClose}
+          aria-label="Chiudi"
           className="absolute top-4 right-4 text-[#4A4440] font-serif text-lg"
         >
           ✕

@@ -9,6 +9,7 @@ export function HeroMobile({ loaded, combined }: HeroMobileProps) {
   return (
     <div className="flex md:hidden flex-col items-center gap-10 w-full">
       <div
+        data-animate
         className={`transition-opacity duration-[2800ms] ease-in-out ${
           loaded ? 'opacity-100' : 'opacity-0'
         }`}
@@ -17,6 +18,7 @@ export function HeroMobile({ loaded, combined }: HeroMobileProps) {
       </div>
 
       <h1
+        data-animate
         className={`font-serif text-[#1A1A1A] uppercase tracking-[0.2em] text-xl text-center transition-all duration-[1200ms] delay-300 ${
           loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
         }`}

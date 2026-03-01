@@ -79,5 +79,16 @@
       "tailwindDirectives": true
     }
   },
-  "overrides": []
+  "overrides": [
+    {
+      "includes": ["app/globals.css"],
+      "linter": {
+        "rules": {
+          "complexity": {
+            "noImportantStyles": "off"
+          }
+        }
+      }
+    }
+  ]
 }

@@ -1,5 +1,3 @@
-'use client'
-
 import { ScrollReveal } from '@/components/scroll-reveal'
 import copy from './copy.json'
 

@@ -1,3 +1,5 @@
+'use client'
+
 import { motion } from 'motion/react'
 import { MonolineFlower } from '@/components/monoline-flower'
 import type { FamilyMember } from '@/lib/supabase/types'
@@ -61,7 +63,13 @@ export function RsvpStatusView({ copy, step, familyMembers, search, reset }: Rsv
 
   if (step === 'notfound') {
     return (
-      <motion.div className="text-center" variants={fadeIn} initial="hidden" animate="visible">
+      <motion.div
+        className="text-center"
+        aria-live="polite"
+        variants={fadeIn}
+        initial="hidden"
+        animate="visible"
+      >
         <Typewriter
           text={copy.notFound.title}
           className="text-base md:text-lg font-serif text-[#1A1A1A] mb-2"
@@ -103,7 +111,13 @@ export function RsvpStatusView({ copy, step, familyMembers, search, reset }: Rsv
 
   if (step === 'success') {
     return (
-      <motion.div className="text-center" variants={fadeIn} initial="hidden" animate="visible">
+      <motion.div
+        className="text-center"
+        aria-live="polite"
+        variants={fadeIn}
+        initial="hidden"
+        animate="visible"
+      >
         <ConfettiBurst />
         <Typewriter
           text={copy.success.title}
@@ -135,7 +149,13 @@ export function RsvpStatusView({ copy, step, familyMembers, search, reset }: Rsv
 
   if (step === 'declined') {
     return (
-      <motion.div className="text-center" variants={fadeIn} initial="hidden" animate="visible">
+      <motion.div
+        className="text-center"
+        aria-live="polite"
+        variants={fadeIn}
+        initial="hidden"
+        animate="visible"
+      >
         <Typewriter
           text={isPlural ? copy.declined.titlePlural : copy.declined.titleSingular}
           className="text-base md:text-lg leading-relaxed font-serif text-[#4A4440] mb-1"
@@ -166,7 +186,13 @@ export function RsvpStatusView({ copy, step, familyMembers, search, reset }: Rsv
 
   if (step === 'error') {
     return (
-      <motion.div className="text-center" variants={fadeIn} initial="hidden" animate="visible">
+      <motion.div
+        className="text-center"
+        aria-live="polite"
+        variants={fadeIn}
+        initial="hidden"
+        animate="visible"
+      >
         <Typewriter
           text={copy.error.title}
           className="text-base md:text-lg font-serif text-[#1A1A1A] mb-2"
