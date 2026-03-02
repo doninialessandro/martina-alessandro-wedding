@@ -2,13 +2,14 @@
 
 import { ParallaxFade } from '@/components/scroll-reveal'
 import { Countdown } from './components/countdown'
+import { ScrollHint } from './components/scroll-hint'
 import copy from './copy.json'
 import { HeroDesktop } from './layouts/desktop'
 import { HeroMobile } from './layouts/mobile'
 import { useSectionData } from './use-section-data'
 
 export function HeroSection() {
-  const { loaded, days, hours, minutes } = useSectionData()
+  const { loaded, showScrollHint, days, hours, minutes } = useSectionData()
 
   return (
     <section className="relative min-h-[100svh] flex items-center justify-center px-8 sm:px-12 md:px-16 py-16">
@@ -24,6 +25,7 @@ export function HeroSection() {
         dateLabel={copy.date}
         labels={copy.countdown}
       />
+      <ScrollHint visible={showScrollHint} />
     </section>
   )
 }

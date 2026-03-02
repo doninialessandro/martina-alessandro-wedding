@@ -63,4 +63,35 @@ describe('hero useSectionData', () => {
 
     expect(clearIntervalSpy).toHaveBeenCalled()
   })
+
+  it('showScrollHint starts as false', () => {
+    const { result } = renderHook(() => useSectionData())
+    expect(result.current.showScrollHint).toBe(false)
+  })
+
+  it('showScrollHint becomes true after 5 seconds', () => {
+    const { result } = renderHook(() => useSectionData())
+
+    expect(result.current.showScrollHint).toBe(false)
+
+    act(() => {
+      vi.advanceTimersByTime(5_000)
+    })
+
+    expect(result.current.showScrollHint).toBe(true)
+  })
+
+  it('showScrollHint hides on scroll', () => {
+    const { result } = renderHook(() => useSectionData())
+
+    act(() => {
+      vi.advanceTimersByTime(5_000)
+    })
+    expect(result.current.showScrollHint).toBe(true)
+
+    act(() => {
+      window.dispatchEvent(new Event('scroll'))
+    })
+    expect(result.current.showScrollHint).toBe(false)
+  })
 })

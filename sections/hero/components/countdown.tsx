@@ -11,7 +11,7 @@ export function Countdown({ loaded, days, hours, minutes, dateLabel, labels }: C
   return (
     <div
       data-animate
-      className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center transition-opacity duration-[1200ms] delay-500 ${
+      className={`absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center transition-opacity duration-[1200ms] delay-500 ${
         loaded ? 'opacity-100' : 'opacity-0'
       }`}
       style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
