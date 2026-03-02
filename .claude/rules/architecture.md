@@ -12,7 +12,7 @@ lib/              # Utilities and data access
 sections/         # Page sections, each in its own folder
   hero/           #   index.tsx, copy.json, use-section-data.ts, components/, layouts/
   our-story/      #   index.tsx, copy.json, use-section-data.ts, components/, layouts/
-  location/       #   index.tsx, copy.json, components/
+  location/       #   index.tsx, copy.json, components/ (venue-map with Mapbox GL)
   program/        #   index.tsx, copy.json, use-section-data.ts, components/, layouts/
   rsvp/           #   index.tsx, copy.json, use-section-data.ts, components/
   lista-nozze/    #   index.tsx, copy.json
@@ -63,6 +63,10 @@ sections/rsvp/
     member-select.test.tsx
     status-view.tsx
     status-view.test.tsx
+sections/location/
+  components/
+    venue-map.tsx
+    venue-map.test.tsx
 sections/hero/
   use-section-data.ts
   use-section-data.test.ts
