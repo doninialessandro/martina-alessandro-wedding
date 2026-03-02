@@ -13,5 +13,11 @@
   },
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "cSpell.words": ["ilike", "rsvps", "supabase"]
+  "cSpell.words": [
+    "ilike",
+    "mapbox",
+    "mapboxgl",
+    "rsvps",
+    "supabase"
+  ]
 }

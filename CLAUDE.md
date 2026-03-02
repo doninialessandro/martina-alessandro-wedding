@@ -45,6 +45,8 @@ Commits: conventional commits enforced via commitlint + husky (`feat:`, `fix:`, 
 - `noUnusedImports` and `noUnusedVariables` are errors
 - `@media (scripting: none)` + `data-nojs-hide`/`data-nojs-show` for progressive enhancement
 - Path alias: `@/*` maps to repo root
+- Mapbox GL JS is dynamically imported inside `useEffect` to avoid SSR issues — `vi.mock` cannot intercept dynamic imports in vitest, so map init tests are not possible in jsdom
+- `NEXT_PUBLIC_MAPBOX_TOKEN` env var required for the location map
 
 ## Rules
 
