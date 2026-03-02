@@ -30,15 +30,6 @@ const STYLE_OVERRIDES: [layer: string, prop: string, value: string][] = [
   ['tunnel-simple', 'line-color', '#D4C4A8'],
 ]
 
-function createEmojiMarker(emoji: string): HTMLDivElement {
-  const el = document.createElement('div')
-  el.style.fontSize = '32px'
-  el.style.lineHeight = '1'
-  el.style.cursor = 'default'
-  el.textContent = emoji
-  return el
-}
-
 function GoogleMapsIframe({ venueName }: { venueName: string }) {
   return (
     <iframe
@@ -86,7 +77,7 @@ export function VenueMap({ venueName }: { venueName: string }) {
         doubleClickZoom: false,
         keyboard: false,
         pitchWithRotate: false,
-        attributionControl: true,
+        attributionControl: false,
       })
 
       map.on('error', () => {
@@ -107,9 +98,7 @@ export function VenueMap({ venueName }: { venueName: string }) {
         }
       })
 
-      new mapboxgl.Marker({ element: createEmojiMarker('💍') })
-        .setLngLat([VENUE_LNG, VENUE_LAT])
-        .addTo(map)
+      new mapboxgl.Marker({ color: '#E8845A' }).setLngLat([VENUE_LNG, VENUE_LAT]).addTo(map)
 
       mapInstanceRef.current = map
     }
@@ -149,7 +138,7 @@ export function VenueMap({ venueName }: { venueName: string }) {
           target="_blank"
           rel="noopener noreferrer"
           data-nojs-hide
-          className="absolute bottom-3 left-3 z-10 flex items-center gap-1.5 rounded-[50px] border border-[#D5CCBC] bg-[#FDFCFA]/90 px-4 py-2 font-serif text-xs text-[#4A4440] backdrop-blur-sm transition-opacity hover:opacity-80"
+          className="absolute bottom-[10px] right-[10px] z-10 flex items-center gap-1.5 rounded-[50px] border border-[#8E9E8C] bg-[#FDFCFA]/90 px-4 py-2 font-serif text-xs text-[#4A4440] backdrop-blur-sm transition-all duration-200 hover:bg-[#8E9E8C] hover:text-[#FDFCFA] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(142,158,140,0.15)] active:scale-[0.97]"
         >
           <svg
             width="14"
