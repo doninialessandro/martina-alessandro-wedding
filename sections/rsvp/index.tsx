@@ -13,14 +13,14 @@ export function RsvpSection() {
   return (
     <section className="min-h-[100svh] flex flex-col pt-8 pb-16 px-8 sm:px-12 md:px-16">
       <ScrollReveal translateY={18} start={0} end={0.35} effect="slide">
-        <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-20 md:mb-24">
+        <h2 className="text-sm tracking-[0.3em] uppercase text-accent font-serif text-center mb-20 md:mb-24">
           {copy.sectionTitle}
         </h2>
       </ScrollReveal>
 
       <noscript>
         <div className="flex-1 flex flex-col items-center justify-center text-center">
-          <p className="text-lg font-serif text-[#4A4440] leading-relaxed max-w-md mx-auto">
+          <p className="text-lg font-serif text-muted-foreground leading-relaxed max-w-md mx-auto">
             {copy.noJs.message}
           </p>
         </div>

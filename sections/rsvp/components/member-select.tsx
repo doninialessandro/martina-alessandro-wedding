@@ -65,9 +65,9 @@ export function RsvpMemberSelect({
 
   return (
     <motion.div variants={fadeIn} initial="hidden" animate="visible">
-      <p className="block text-xs tracking-[0.15em] uppercase text-[#8E9E8C] font-serif mb-6">
+      <p className="block text-xs tracking-[0.15em] uppercase text-accent font-serif mb-6">
         {copy.label}
-        <span className="normal-case tracking-normal text-[#4A4440] ml-2">{copy.hint}</span>
+        <span className="normal-case tracking-normal text-muted-foreground ml-2">{copy.hint}</span>
       </p>
 
       <div className="flex flex-col gap-4 mb-10">
@@ -96,8 +96,8 @@ export function RsvpMemberSelect({
                 <motion.div
                   className={`w-5 h-5 rounded-[6px] flex items-center justify-center transition-colors duration-200 ${
                     checked
-                      ? 'bg-[#8E9E8C] shadow-[0_1px_4px_rgba(142,158,140,0.2)]'
-                      : 'border border-[#D5CCBC] bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)] group-hover:border-[#8E9E8C] group-hover:shadow-[0_1px_4px_rgba(142,158,140,0.12)]'
+                      ? 'bg-accent shadow-[0_1px_4px_rgba(142,158,140,0.2)]'
+                      : 'border border-border bg-background shadow-[0_1px_2px_rgba(0,0,0,0.04)] group-hover:border-accent group-hover:shadow-[0_1px_4px_rgba(142,158,140,0.12)]'
                   }`}
                   animate={checked ? { scale: [1, 1.2, 1] } : { scale: 1 }}
                   transition={{ duration: 0.25, ease: 'easeOut' as const }}
@@ -115,7 +115,8 @@ export function RsvpMemberSelect({
                     >
                       <path
                         d="M2 6L5 9L10 3"
-                        stroke="#FDFCFA"
+                        stroke="currentColor"
+                        className="text-background"
                         strokeWidth="1.5"
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -147,7 +148,7 @@ export function RsvpMemberSelect({
                 aria-label={`${member.first_name} ${member.last_name}`}
                 className="sr-only"
               />
-              <span className="text-base md:text-lg font-serif text-[#1A1A1A]">
+              <span className="text-base md:text-lg font-serif text-foreground">
                 {member.first_name} {member.last_name}
               </span>
             </label>
@@ -158,31 +159,29 @@ export function RsvpMemberSelect({
       <div className="mb-10">
         <label
           htmlFor="rsvp-notes"
-          className="block text-xs tracking-[0.15em] uppercase text-[#8E9E8C] font-serif mb-3"
+          className="block text-xs tracking-[0.15em] uppercase text-accent font-serif mb-3"
         >
           {copy.notesLabel}
-          <span className="normal-case tracking-normal text-[#D5CCBC] ml-2">
-            {copy.notesOptional}
-          </span>
+          <span className="normal-case tracking-normal text-border ml-2">{copy.notesOptional}</span>
         </label>
         <textarea
           id="rsvp-notes"
           rows={3}
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
-          className="w-full border border-[#D5CCBC] bg-[#FDFCFA] rounded-[12px] p-3 text-base font-serif text-[#1A1A1A] outline-none focus:border-[#8E9E8C] transition-colors resize-y min-h-[80px] placeholder:text-[#D5CCBC]"
+          className="w-full border border-border bg-background rounded-[12px] p-3 text-base font-serif text-foreground outline-none focus:border-accent transition-colors resize-y min-h-[80px] placeholder:text-border"
           placeholder={copy.notesPlaceholder}
         />
       </div>
 
       {existingRsvp && !existingRsvp.declined && (
-        <p className="text-sm font-serif text-[#8E9E8C] text-center mb-4">
+        <p className="text-sm font-serif text-accent text-center mb-4">
           {isPlural ? copy.existingConfirmedPlural : copy.existingConfirmedSingular}
         </p>
       )}
 
       {existingRsvp?.declined && (
-        <p className="text-sm font-serif text-[#8E9E8C] text-center mb-4">
+        <p className="text-sm font-serif text-accent text-center mb-4">
           {isPlural ? copy.existingDeclinedPlural : copy.existingDeclinedSingular}
         </p>
       )}
@@ -193,8 +192,8 @@ export function RsvpMemberSelect({
         disabled={selectedIds.size === 0}
         className={`w-full px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase rounded-[50px] border transition-all duration-200 ${
           selectedIds.size === 0
-            ? 'border-[#D5CCBC] text-[#D5CCBC] cursor-not-allowed'
-            : 'border-[#8E9E8C] text-[#8E9E8C] hover:bg-[#8E9E8C] hover:text-[#FDFCFA] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(142,158,140,0.15)] active:scale-[0.97]'
+            ? 'border-border text-border cursor-not-allowed'
+            : 'border-accent text-accent hover:bg-accent hover:text-background hover:-translate-y-0.5 hover:shadow-hover active:scale-[0.97]'
         }`}
       >
         {existingRsvp ? copy.updateButton : copy.confirmButton}
@@ -206,15 +205,15 @@ export function RsvpMemberSelect({
         disabled={existingRsvp?.declined}
         className={`w-full mt-4 px-10 py-3 text-sm font-serif tracking-[0.15em] rounded-[50px] border transition-all duration-200 ${
           existingRsvp?.declined
-            ? 'border-[#D5CCBC] text-[#D5CCBC] cursor-not-allowed'
-            : 'border-[#D5CCBC] text-[#4A4440] hover:border-[#4A4440] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] active:scale-[0.97]'
+            ? 'border-border text-border cursor-not-allowed'
+            : 'border-border text-muted-foreground hover:border-muted-foreground hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(0,0,0,0.06)] active:scale-[0.97]'
         }`}
       >
         {isPlural ? copy.declineButtonPlural : copy.declineButtonSingular}
       </button>
 
       {isPlural && (
-        <p className="text-xs font-serif text-[#4A4440] text-center mt-4 leading-relaxed">
+        <p className="text-xs font-serif text-muted-foreground text-center mt-4 leading-relaxed">
           {copy.declineHint}
         </p>
       )}
@@ -222,7 +221,7 @@ export function RsvpMemberSelect({
       <button
         type="button"
         onClick={reset}
-        className="block mx-auto mt-8 text-xs font-serif text-[#8E9E8C] underline underline-offset-2 hover:text-[#4A4440] transition-colors"
+        className="block mx-auto mt-8 text-xs font-serif text-accent underline underline-offset-2 hover:text-muted-foreground transition-colors"
       >
         {copy.searchAnother}
       </button>

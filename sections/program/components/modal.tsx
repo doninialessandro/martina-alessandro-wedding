@@ -28,21 +28,23 @@ export function ProgramModal({ item, onClose }: ProgramModalProps) {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 12 }}
         transition={{ type: 'spring', damping: 26, stiffness: 300 }}
-        className="fixed inset-x-6 top-1/2 -translate-y-1/2 z-50 bg-[#FDFCFA] rounded-[16px] p-8"
+        className="fixed inset-x-6 top-1/2 -translate-y-1/2 z-50 bg-card rounded-[16px] p-8"
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Chiudi"
-          className="absolute top-4 right-4 text-[#4A4440] font-serif text-lg"
+          className="absolute top-4 right-4 text-muted-foreground font-serif text-lg"
         >
           ✕
         </button>
-        <span className="text-xs tracking-[0.2em] uppercase text-[#8E9E8C] font-serif block mb-1">
+        <span className="text-xs tracking-[0.2em] uppercase text-accent font-serif block mb-1">
           {item.time}
         </span>
-        <h3 className="text-2xl font-serif font-normal text-[#1A1A1A] mb-4">{item.title}</h3>
-        <p className="text-base font-serif text-[#4A4440] leading-relaxed">{item.description}</p>
+        <h3 className="text-2xl font-serif font-normal text-foreground mb-4">{item.title}</h3>
+        <p className="text-base font-serif text-muted-foreground leading-relaxed">
+          {item.description}
+        </p>
       </motion.div>
     </>
   )

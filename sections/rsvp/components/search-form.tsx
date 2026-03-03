@@ -39,7 +39,7 @@ export function RsvpSearchForm({
         <div>
           <label
             htmlFor="rsvp-first-name"
-            className="block text-xs tracking-[0.15em] uppercase text-[#8E9E8C] font-serif mb-3"
+            className="block text-xs tracking-[0.15em] uppercase text-accent font-serif mb-3"
           >
             {copy.firstNameLabel}
           </label>
@@ -50,7 +50,7 @@ export function RsvpSearchForm({
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             onBlur={() => setFirstName(firstName.trim())}
-            className="w-full bg-transparent border-0 border-b border-[#D5CCBC] pb-2 text-base md:text-lg font-serif text-[#1A1A1A] outline-none focus:border-[#8E9E8C] transition-colors placeholder:text-[#D5CCBC]"
+            className="w-full bg-transparent border-0 border-b border-border pb-2 text-base md:text-lg font-serif text-foreground outline-none focus:border-accent transition-colors placeholder:text-border"
             placeholder={copy.firstNamePlaceholder}
           />
         </div>
@@ -58,7 +58,7 @@ export function RsvpSearchForm({
         <div>
           <label
             htmlFor="rsvp-last-name"
-            className="block text-xs tracking-[0.15em] uppercase text-[#8E9E8C] font-serif mb-3"
+            className="block text-xs tracking-[0.15em] uppercase text-accent font-serif mb-3"
           >
             {copy.lastNameLabel}
           </label>
@@ -69,14 +69,14 @@ export function RsvpSearchForm({
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             onBlur={() => setLastName(lastName.trim())}
-            className="w-full bg-transparent border-0 border-b border-[#D5CCBC] pb-2 text-base md:text-lg font-serif text-[#1A1A1A] outline-none focus:border-[#8E9E8C] transition-colors placeholder:text-[#D5CCBC]"
+            className="w-full bg-transparent border-0 border-b border-border pb-2 text-base md:text-lg font-serif text-foreground outline-none focus:border-accent transition-colors placeholder:text-border"
             placeholder={copy.lastNamePlaceholder}
           />
         </div>
 
         <button
           type="submit"
-          className="mt-4 w-full px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase rounded-[50px] border border-[#8E9E8C] text-[#8E9E8C] hover:bg-[#8E9E8C] hover:text-[#FDFCFA] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(142,158,140,0.15)] active:scale-[0.97] transition-all duration-200"
+          className="mt-4 w-full px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase rounded-[50px] border border-accent text-accent hover:bg-accent hover:text-background hover:-translate-y-0.5 hover:shadow-hover active:scale-[0.97] transition-all duration-200"
         >
           {copy.submitButton}
         </button>

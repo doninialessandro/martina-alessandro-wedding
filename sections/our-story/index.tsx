@@ -6,12 +6,20 @@ import { OurStoryMobile } from './layouts/mobile'
 import { useSectionData } from './use-section-data'
 
 const STORY_IMAGES = [
-  { src: '/images/our-story/la_nostra_storia.webp', photoColor: '#EDE8DC' },
-  { src: '/images/our-story/viaggi_nel_mondo.webp', photoColor: '#EDE8DC', photoLabel: 'Viaggi' },
-  { src: '/images/our-story/proposta.webp', photoColor: '#EDE8DC', photoLabel: 'Proposta' },
+  { src: '/images/our-story/la_nostra_storia.webp', photoColor: 'var(--photo-placeholder)' },
+  {
+    src: '/images/our-story/viaggi_nel_mondo.webp',
+    photoColor: 'var(--photo-placeholder)',
+    photoLabel: 'Viaggi',
+  },
+  {
+    src: '/images/our-story/proposta.webp',
+    photoColor: 'var(--photo-placeholder)',
+    photoLabel: 'Proposta',
+  },
   {
     src: '/images/our-story/prossima_destinazione.webp',
-    photoColor: '#EDE8DC',
+    photoColor: 'var(--photo-placeholder)',
     photoLabel: 'Matrimonio',
   },
 ]

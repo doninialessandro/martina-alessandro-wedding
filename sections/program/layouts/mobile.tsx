@@ -18,7 +18,7 @@ export function ProgramMobile({ sectionTitle, items }: ProgramMobileProps) {
   return (
     <div className="md:hidden max-w-[1100px] mx-auto" data-nojs-show>
       <ScrollReveal translateY={18} start={0} end={0.35} effect="slide">
-        <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-20">
+        <h2 className="text-sm tracking-[0.3em] uppercase text-accent font-serif text-center mb-20">
           {sectionTitle}
         </h2>
       </ScrollReveal>
@@ -26,7 +26,7 @@ export function ProgramMobile({ sectionTitle, items }: ProgramMobileProps) {
       <div className="relative">
         {/* Vertical line — spans only between the first and last dots */}
         <div
-          className="absolute left-1/2 -translate-x-1/2 top-[20vh] bottom-[20vh] w-px bg-[#D5CCBC]"
+          className="absolute left-1/2 -translate-x-1/2 top-[20vh] bottom-[20vh] w-px bg-border"
           aria-hidden="true"
         />
 
@@ -48,10 +48,10 @@ export function ProgramMobile({ sectionTitle, items }: ProgramMobileProps) {
                 /* Even — text LEFT, flower RIGHT */
                 <>
                   <div className="w-1/2 pr-6 text-right">
-                    <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif block">
+                    <span className="text-sm tracking-[0.2em] uppercase text-accent font-serif block">
                       {item.time}
                     </span>
-                    <span className="text-2xl font-serif text-[#1A1A1A]">{item.title}</span>
+                    <span className="text-2xl font-serif text-foreground">{item.title}</span>
                   </div>
                   <div className="w-1/2 pl-2 flex items-center">
                     <MonolineFlower size={50} animate showThread={false} />
@@ -64,15 +64,15 @@ export function ProgramMobile({ sectionTitle, items }: ProgramMobileProps) {
                     <MonolineFlower size={50} animate showThread={false} />
                   </div>
                   <div className="w-1/2 pl-6 text-left">
-                    <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif block">
+                    <span className="text-sm tracking-[0.2em] uppercase text-accent font-serif block">
                       {item.time}
                     </span>
-                    <span className="text-2xl font-serif text-[#1A1A1A]">{item.title}</span>
+                    <span className="text-2xl font-serif text-foreground">{item.title}</span>
                   </div>
                 </>
               )}
               {/* Dot */}
-              <div className="absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#8E9E8C] z-10" />
+              <div className="absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-accent z-10" />
             </button>
           </ScrollReveal>
         ))}

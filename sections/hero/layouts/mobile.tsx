@@ -3,9 +3,10 @@ import { MonolineFlower } from '@/components/monoline-flower'
 interface HeroMobileProps {
   loaded: boolean
   combined: string
+  onFlowerClick?: () => void
 }
 
-export function HeroMobile({ loaded, combined }: HeroMobileProps) {
+export function HeroMobile({ loaded, combined, onFlowerClick }: HeroMobileProps) {
   return (
     <div className="flex md:hidden flex-col items-center gap-10 w-full">
       <div
@@ -14,12 +15,18 @@ export function HeroMobile({ loaded, combined }: HeroMobileProps) {
           loaded ? 'opacity-100' : 'opacity-0'
         }`}
       >
-        <MonolineFlower size={160} animate={true} showThread={false} />
+        <MonolineFlower
+          size={160}
+          animate={true}
+          showThread={false}
+          onClick={onFlowerClick}
+          ariaLabel="Cambia tema"
+        />
       </div>
 
       <h1
         data-animate
-        className={`font-serif text-[#1A1A1A] uppercase tracking-[0.2em] text-xl text-center transition-all duration-[1200ms] delay-300 ${
+        className={`font-serif text-foreground uppercase tracking-[0.2em] text-xl text-center transition-all duration-[1200ms] delay-300 ${
           loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
         }`}
         style={{

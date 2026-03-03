@@ -23,7 +23,7 @@ Commits: conventional commits enforced via commitlint + husky (`feat:`, `fix:`, 
 ## Critical Constraints
 
 - No routing — single page renders all sections in `app/page.tsx`
-- No dark mode — warm parchment theme only
+- Warm parchment theme — light by default, secret dark mode easter egg via `data-theme` attribute
 - Italian only — all copy lives in co-located `copy.json` files
 - EB Garamond only — `font-serif`, loaded in `app/layout.tsx`
 - Sharp corners — `--radius: 0rem` everywhere

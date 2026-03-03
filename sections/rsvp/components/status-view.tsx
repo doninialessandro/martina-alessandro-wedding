@@ -2,10 +2,10 @@
 
 import { motion } from 'motion/react'
 import { MonolineFlower } from '@/components/monoline-flower'
+import { Typewriter } from '@/components/typewriter'
 import type { FamilyMember } from '@/lib/supabase/types'
 import type { Step } from '../use-section-data'
 import { ConfettiBurst } from './confetti-burst'
-import { Typewriter } from './typewriter'
 
 interface StatusCopy {
   loading: { message: string }
@@ -55,7 +55,7 @@ export function RsvpStatusView({ copy, step, familyMembers, search, reset }: Rsv
         <MonolineFlower size={120} loop />
         <Typewriter
           text={copy.loading.message}
-          className="text-sm font-serif text-[#4A4440] tracking-wide"
+          className="text-sm font-serif text-muted-foreground tracking-wide"
         />
       </motion.div>
     )
@@ -72,11 +72,11 @@ export function RsvpStatusView({ copy, step, familyMembers, search, reset }: Rsv
       >
         <Typewriter
           text={copy.notFound.title}
-          className="text-base md:text-lg font-serif text-[#1A1A1A] mb-2"
+          className="text-base md:text-lg font-serif text-foreground mb-2"
         />
         <Typewriter
           text={copy.notFound.subtitle}
-          className="text-sm font-serif text-[#4A4440] mb-10"
+          className="text-sm font-serif text-muted-foreground mb-10"
           delay={1.2}
         />
         <motion.div
@@ -87,7 +87,7 @@ export function RsvpStatusView({ copy, step, familyMembers, search, reset }: Rsv
           <button
             type="button"
             onClick={reset}
-            className="px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase rounded-[50px] border border-[#8E9E8C] text-[#8E9E8C] hover:bg-[#8E9E8C] hover:text-[#FDFCFA] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(142,158,140,0.15)] active:scale-[0.97] transition-all duration-200"
+            className="px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase rounded-[50px] border border-accent text-accent hover:bg-accent hover:text-background hover:-translate-y-0.5 hover:shadow-hover active:scale-[0.97] transition-all duration-200"
           >
             {copy.notFound.retryButton}
           </button>
@@ -121,15 +121,15 @@ export function RsvpStatusView({ copy, step, familyMembers, search, reset }: Rsv
         <ConfettiBurst />
         <Typewriter
           text={copy.success.title}
-          className="text-base md:text-lg leading-relaxed font-serif text-[#4A4440] mb-1"
+          className="text-base md:text-lg leading-relaxed font-serif text-muted-foreground mb-1"
         />
         <Typewriter
           text={isPlural ? copy.success.messagePlural : copy.success.messageSingular}
-          className="text-base md:text-lg leading-relaxed font-serif text-[#4A4440]"
+          className="text-base md:text-lg leading-relaxed font-serif text-muted-foreground"
           delay={0.5}
         />
         <motion.p
-          className="text-sm font-serif text-[#4A4440] mt-8"
+          className="text-sm font-serif text-muted-foreground mt-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 0.4 }}
@@ -138,7 +138,7 @@ export function RsvpStatusView({ copy, step, familyMembers, search, reset }: Rsv
           <button
             type="button"
             onClick={search}
-            className="underline underline-offset-2 text-[#8E9E8C] hover:text-[#4A4440] transition-colors"
+            className="underline underline-offset-2 text-accent hover:text-muted-foreground transition-colors"
           >
             {copy.success.editLink}
           </button>
@@ -158,15 +158,15 @@ export function RsvpStatusView({ copy, step, familyMembers, search, reset }: Rsv
       >
         <Typewriter
           text={isPlural ? copy.declined.titlePlural : copy.declined.titleSingular}
-          className="text-base md:text-lg leading-relaxed font-serif text-[#4A4440] mb-1"
+          className="text-base md:text-lg leading-relaxed font-serif text-muted-foreground mb-1"
         />
         <Typewriter
           text={isPlural ? copy.declined.messagePlural : copy.declined.messageSingular}
-          className="text-base md:text-lg leading-relaxed font-serif text-[#4A4440]"
+          className="text-base md:text-lg leading-relaxed font-serif text-muted-foreground"
           delay={0.7}
         />
         <motion.p
-          className="text-sm font-serif text-[#4A4440] mt-8"
+          className="text-sm font-serif text-muted-foreground mt-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 0.4 }}
@@ -175,7 +175,7 @@ export function RsvpStatusView({ copy, step, familyMembers, search, reset }: Rsv
           <button
             type="button"
             onClick={search}
-            className="underline underline-offset-2 text-[#8E9E8C] hover:text-[#4A4440] transition-colors"
+            className="underline underline-offset-2 text-accent hover:text-muted-foreground transition-colors"
           >
             {copy.declined.editLink}
           </button>
@@ -195,11 +195,11 @@ export function RsvpStatusView({ copy, step, familyMembers, search, reset }: Rsv
       >
         <Typewriter
           text={copy.error.title}
-          className="text-base md:text-lg font-serif text-[#1A1A1A] mb-2"
+          className="text-base md:text-lg font-serif text-foreground mb-2"
         />
         <Typewriter
           text={copy.error.subtitle}
-          className="text-sm font-serif text-[#4A4440] mb-10"
+          className="text-sm font-serif text-muted-foreground mb-10"
           delay={1}
         />
         <motion.div
@@ -210,7 +210,7 @@ export function RsvpStatusView({ copy, step, familyMembers, search, reset }: Rsv
           <button
             type="button"
             onClick={reset}
-            className="px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase rounded-[50px] border border-[#8E9E8C] text-[#8E9E8C] hover:bg-[#8E9E8C] hover:text-[#FDFCFA] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(142,158,140,0.15)] active:scale-[0.97] transition-all duration-200"
+            className="px-10 py-3 text-sm font-serif tracking-[0.2em] uppercase rounded-[50px] border border-accent text-accent hover:bg-accent hover:text-background hover:-translate-y-0.5 hover:shadow-hover active:scale-[0.97] transition-all duration-200"
           >
             {copy.error.retryButton}
           </button>

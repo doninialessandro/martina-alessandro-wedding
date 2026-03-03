@@ -28,7 +28,7 @@ export function SectionDivider() {
         <path
           d="M 0 40 L 12 28 L 20 22 L 28 26 L 35 14 L 42 18 L 48 12 L 54 8 L 58 6 L 62 10 L 68 4 L 72 8 L 78 2 L 85 6 L 92 14 L 100 10 L 108 18 L 118 12 L 128 20 L 138 16 L 148 24 L 160 40"
           fill="none"
-          stroke="#8E9E8C"
+          className="stroke-accent"
           strokeWidth="1.2"
           strokeLinecap="round"
           strokeLinejoin="round"

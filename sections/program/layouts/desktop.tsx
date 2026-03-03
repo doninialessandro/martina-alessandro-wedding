@@ -32,7 +32,7 @@ export function ProgramDesktop({
     <div className="hidden md:block" data-nojs-hide>
       <div className="max-w-[1100px] mx-auto">
         <ScrollReveal translateY={20} start={0} end={0.35} effect="slide">
-          <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-20 md:mb-24">
+          <h2 className="text-sm tracking-[0.3em] uppercase text-accent font-serif text-center mb-20 md:mb-24">
             {sectionTitle}
           </h2>
         </ScrollReveal>
@@ -55,10 +55,10 @@ export function ProgramDesktop({
                     transition={TRANSITION}
                     className="text-right"
                   >
-                    <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif mb-1 block">
+                    <span className="text-sm tracking-[0.2em] uppercase text-accent font-serif mb-1 block">
                       {item.time}
                     </span>
-                    <h3 className="text-2xl md:text-3xl font-serif font-normal text-[#1A1A1A]">
+                    <h3 className="text-2xl md:text-3xl font-serif font-normal text-foreground">
                       {item.title}
                     </h3>
                   </motion.div>
@@ -80,7 +80,7 @@ export function ProgramDesktop({
                         key={item.time}
                         animate={{ opacity: activeIndex === i ? 1 : 0 }}
                         transition={TRANSITION_FAST}
-                        className="absolute inset-0 text-base md:text-lg leading-relaxed font-serif text-[#4A4440] text-right"
+                        className="absolute inset-0 text-base md:text-lg leading-relaxed font-serif text-muted-foreground text-right"
                       >
                         {item.description}
                       </motion.p>
@@ -94,16 +94,16 @@ export function ProgramDesktop({
 
         {/* CENTER COLUMN — vertical line + animated dots */}
         <div className="relative flex flex-col items-center w-5">
-          <div className="absolute top-[40vh] bottom-[40vh] w-px bg-[#D5CCBC]" aria-hidden="true" />
+          <div className="absolute top-[40vh] bottom-[40vh] w-px bg-border" aria-hidden="true" />
           {items.map((item, i) => (
             <div
               key={item.time}
               className="h-[80vh] flex items-center justify-center relative z-10"
             >
-              <motion.div
-                className="w-2.5 h-2.5 rounded-full"
-                animate={{ backgroundColor: activeIndex === i ? '#8E9E8C' : '#D5CCBC' }}
-                transition={TRANSITION}
+              <div
+                className={`w-2.5 h-2.5 rounded-full transition-colors duration-700 ${
+                  activeIndex === i ? 'bg-accent' : 'bg-border'
+                }`}
               />
             </div>
           ))}
@@ -120,10 +120,10 @@ export function ProgramDesktop({
                     animate={{ opacity: activeIndex === i ? 1 : 0.3 }}
                     transition={TRANSITION}
                   >
-                    <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif mb-1 block">
+                    <span className="text-sm tracking-[0.2em] uppercase text-accent font-serif mb-1 block">
                       {item.time}
                     </span>
-                    <h3 className="text-2xl md:text-3xl font-serif font-normal text-[#1A1A1A]">
+                    <h3 className="text-2xl md:text-3xl font-serif font-normal text-foreground">
                       {item.title}
                     </h3>
                   </motion.div>
@@ -145,7 +145,7 @@ export function ProgramDesktop({
                         key={item.time}
                         animate={{ opacity: activeIndex === i ? 1 : 0 }}
                         transition={TRANSITION_FAST}
-                        className="absolute inset-0 text-base md:text-lg leading-relaxed font-serif text-[#4A4440] text-left"
+                        className="absolute inset-0 text-base md:text-lg leading-relaxed font-serif text-muted-foreground text-left"
                       >
                         {item.description}
                       </motion.p>

@@ -11,14 +11,14 @@ export function LocationSection() {
       <div className="mx-auto max-w-[1100px]">
         {/* Title */}
         <ScrollReveal translateY={20} start={0} end={0.35} effect="slide">
-          <h2 className="mb-16 text-center font-serif text-[#8E9E8C] text-sm uppercase tracking-[0.3em] md:mb-20">
+          <h2 className="mb-16 text-center font-serif text-accent text-sm uppercase tracking-[0.3em] md:mb-20">
             {copy.sectionTitle}
           </h2>
         </ScrollReveal>
 
         {/* Full-width large image */}
         <ScrollReveal className="mb-20 md:mb-24" translateY={0} start={0} end={0.35} effect="slide">
-          <div className="w-full aspect-[16/9] relative overflow-hidden rounded-[16px] shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
+          <div className="w-full aspect-[16/9] relative overflow-hidden rounded-[16px] shadow-subtle">
             {/* biome-ignore lint/performance/noImgElement: decorative venue photo */}
             <img
               src={IMAGE_URL}
@@ -32,13 +32,13 @@ export function LocationSection() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-16">
           {/* Left: text */}
           <ScrollReveal translateY={18} start={0} end={0.45} offset={0.1} effect="slide">
-            <h3 className="mb-4 font-normal font-serif text-2xl text-[#1A1A1A] md:text-3xl">
+            <h3 className="mb-4 font-normal font-serif text-2xl text-foreground md:text-3xl">
               {copy.venue.name}
             </h3>
-            <p className="mb-6 font-serif text-[#8E9E8C] text-sm uppercase tracking-[0.1em]">
+            <p className="mb-6 font-serif text-accent text-sm uppercase tracking-[0.1em]">
               {copy.venue.address}
             </p>
-            <p className="font-serif text-[#4A4440] text-base leading-relaxed md:text-lg">
+            <p className="font-serif text-muted-foreground text-base leading-relaxed md:text-lg">
               {copy.venue.description}
             </p>
           </ScrollReveal>

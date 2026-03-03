@@ -12,14 +12,14 @@ vi.mock('@/components/monoline-flower', () => ({
 }))
 
 // Mock Typewriter to render text immediately
-vi.mock('@/sections/rsvp/components/typewriter', () => ({
+vi.mock('@/components/typewriter', () => ({
   Typewriter: ({ text, className }: { text: string; className?: string }) => (
     <p className={className}>{text}</p>
   ),
 }))
 
 // Mock ConfettiBurst
-vi.mock('@/sections/rsvp/components/confetti-burst', () => ({
+vi.mock('./confetti-burst', () => ({
   ConfettiBurst: () => <div data-testid="confetti-burst" />,
 }))
 

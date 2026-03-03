@@ -53,8 +53,18 @@ Suppress syntax:
 
 ## Color Palette
 
+Light theme (default):
 - Background: `#FDFCFA` / Foreground: `#1A1A1A`
 - Muted foreground: `#4A4440`
 - Accent (sage green): `#8E9E8C`
 - Border/muted: `#D5CCBC`
+
+Dark theme (`data-theme="dark"` on `:root`):
+- Background: `#1C1714` / Foreground: `#F0EBE3`
+- Muted foreground: `#B8AFA5`
+- Accent (sage green): `#A4B4A2`
+- Border/muted: `#3D342C`
+
+Additional variables: `--photo-placeholder`, `--map-placeholder`, `--shadow-subtle`, `--shadow-hover`
 - CSS variables defined in `app/globals.css`, exposed via `@theme inline`
+- All component colors must use CSS variables (no hardcoded hex values)

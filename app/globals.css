@@ -2,6 +2,7 @@
 @import "mapbox-gl/dist/mapbox-gl.css";
 
 :root {
+  color-scheme: light;
   --background: #fdfcfa;
   --foreground: #1a1a1a;
   --card: #fdfcfa;
@@ -22,6 +23,37 @@
   --input: #d5ccbc;
   --ring: #8e9e8c;
   --radius: 0rem;
+  --photo-placeholder: #ede8dc;
+  --map-placeholder: #f2f0eb;
+  --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.03);
+  --shadow-hover: 0 4px 12px rgba(142, 158, 140, 0.15);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #1c1714;
+  --foreground: #f0ebe3;
+  --card: #241d17;
+  --card-foreground: #f0ebe3;
+  --popover: #2a231d;
+  --popover-foreground: #f0ebe3;
+  --primary: #f0ebe3;
+  --primary-foreground: #1c1714;
+  --secondary: #2a231d;
+  --secondary-foreground: #f0ebe3;
+  --muted: #2a231d;
+  --muted-foreground: #b8afa5;
+  --accent: #a4b4a2;
+  --accent-foreground: #1c1714;
+  --destructive: #dc4444;
+  --destructive-foreground: #1c1714;
+  --border: #3d342c;
+  --input: #3d342c;
+  --ring: #a4b4a2;
+  --photo-placeholder: #2a231d;
+  --map-placeholder: #2a231d;
+  --shadow-subtle: none;
+  --shadow-hover: 0 4px 12px rgba(164, 180, 162, 0.1);
 }
 
 @theme inline {
@@ -47,6 +79,10 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-photo-placeholder: var(--photo-placeholder);
+  --color-map-placeholder: var(--map-placeholder);
+  --shadow-subtle: var(--shadow-subtle);
+  --shadow-hover: var(--shadow-hover);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -59,6 +95,9 @@
   }
   body {
     @apply bg-background text-foreground;
+    transition:
+      background-color 0.6s ease,
+      color 0.6s ease;
   }
 }
 
@@ -69,8 +108,8 @@ html {
 
 /* Custom selection color */
 ::selection {
-  background: #8e9e8c;
-  color: #fdfcfa;
+  background: var(--accent);
+  color: var(--background);
 }
 
 /* Form inputs */
@@ -78,8 +117,8 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #fdfcfa inset;
-  -webkit-text-fill-color: #1a1a1a;
+  -webkit-box-shadow: 0 0 0px 1000px var(--background) inset;
+  -webkit-text-fill-color: var(--foreground);
   transition: background-color 5000s ease-in-out 0s;
 }
 
@@ -111,8 +150,8 @@ textarea:-webkit-autofill {
 .mapboxgl-ctrl-group {
   border-radius: 8px !important;
   box-shadow: none !important;
-  border: 1px solid #d5ccbc !important;
-  background: #fdfcfa !important;
+  border: 1px solid var(--border) !important;
+  background: var(--background) !important;
   overflow: hidden !important;
 }
 
@@ -124,7 +163,7 @@ textarea:-webkit-autofill {
 }
 
 .mapboxgl-ctrl-group button + button {
-  border-top: 1px solid #d5ccbc !important;
+  border-top: 1px solid var(--border) !important;
 }
 
 .mapboxgl-ctrl-zoom-in .mapboxgl-ctrl-icon,
@@ -137,7 +176,7 @@ textarea:-webkit-autofill {
 .mapboxgl-ctrl-zoom-out::after {
   font-family: var(--font-eb-garamond), "Georgia", serif;
   font-size: 20px;
-  color: #4a4440;
+  color: var(--muted-foreground);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -156,7 +195,7 @@ textarea:-webkit-autofill {
 }
 
 .mapboxgl-ctrl-group button:hover {
-  background-color: #f8f7f4 !important;
+  background-color: var(--secondary) !important;
 }
 
 .mapboxgl-ctrl-attrib {

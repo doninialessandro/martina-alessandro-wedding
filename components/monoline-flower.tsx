@@ -8,6 +8,8 @@ interface MonolineFlowerProps {
   animate?: boolean
   showThread?: boolean
   loop?: boolean
+  onClick?: () => void
+  ariaLabel?: string
 }
 
 export function MonolineFlower({
@@ -16,6 +18,8 @@ export function MonolineFlower({
   animate = true,
   showThread = false,
   loop = false,
+  onClick,
+  ariaLabel,
 }: MonolineFlowerProps) {
   const uid = useId().replace(/:/g, '')
   const svgRef = useRef<SVGSVGElement>(null)
@@ -236,7 +240,24 @@ export function MonolineFlower({
   const loopDuration = totalDrawTime + 1.5
 
   return (
-    <div className={`relative inline-flex flex-col items-center ${className}`} data-animate>
+    <div
+      className={`relative inline-flex flex-col items-center ${onClick ? 'cursor-pointer' : ''} ${className}`}
+      data-animate
+      {...(onClick
+        ? {
+            role: 'button',
+            tabIndex: 0,
+            'aria-label': ariaLabel,
+            onClick,
+            onKeyDown: (e: React.KeyboardEvent) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                onClick()
+              }
+            },
+          }
+        : {})}
+    >
       {loop && (
         <style>
           {segments
