@@ -30,17 +30,30 @@ export function useSectionData() {
   }, [])
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowScrollHint(true), 5_000)
-    return () => clearTimeout(timer)
-  }, [])
+    let scrolledBeforeShow = false
 
-  useEffect(() => {
-    function hideOnScroll() {
-      setShowScrollHint(false)
-      window.removeEventListener('scroll', hideOnScroll)
+    function onScroll() {
+      scrolledBeforeShow = true
     }
-    window.addEventListener('scroll', hideOnScroll, { passive: true })
-    return () => window.removeEventListener('scroll', hideOnScroll)
+    window.addEventListener('scroll', onScroll, { passive: true })
+
+    const showTimer = setTimeout(() => {
+      window.removeEventListener('scroll', onScroll)
+      if (scrolledBeforeShow || window.scrollY > 100) return
+
+      setShowScrollHint(true)
+
+      function hideOnScroll() {
+        setShowScrollHint(false)
+        window.removeEventListener('scroll', hideOnScroll)
+      }
+      window.addEventListener('scroll', hideOnScroll, { passive: true })
+    }, 5_000)
+
+    return () => {
+      clearTimeout(showTimer)
+      window.removeEventListener('scroll', onScroll)
+    }
   }, [])
 
   return { loaded, showScrollHint, ...timeLeft }

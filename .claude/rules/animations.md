@@ -35,11 +35,19 @@ All scroll animations use `useScrollProgress` (rAF-throttled), NOT CSS transitio
 
 ## Framer Motion (`motion/react`)
 
-Used in: OurStory, Program, RSVP (member-select, status-view, confetti-burst, typewriter)
+Used in: Hero (typewriter, emoji-burst), OurStory, Program, RSVP (member-select, status-view, confetti-burst)
 - `motion.div` with `variants`, `initial="hidden"`, `animate="visible"`
 - Easing: `[0.25, 0.46, 0.45, 0.94]` (soft cubic-bezier) for Framer variants
 - `AnimatePresence` for enter/exit transitions
-- `useAnimationFrame` for confetti physics
+- `useAnimationFrame` for particle physics (confetti-burst, emoji-burst)
+
+### `Typewriter` — `components/typewriter.tsx`
+- Shared grapheme-aware (`Intl.Segmenter`) text reveal using staggered `motion.span` children
+- Used in Hero (quote) and RSVP (status-view messages)
+
+### `EmojiBurst` — `sections/hero/components/emoji-burst.tsx`
+- Emoji particle burst triggered on dark mode toggle (ghost for dark, heart for light)
+- Uses `useAnimationFrame` for float/wobble/fade physics
 
 ## Rules
 

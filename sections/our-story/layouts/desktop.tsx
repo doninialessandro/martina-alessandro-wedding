@@ -30,7 +30,7 @@ export function OurStoryDesktop({
   return (
     <div className="hidden md:block">
       <ScrollReveal translateY={18} start={0} end={0.35} effect="slide">
-        <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-20 md:mb-24">
+        <h2 className="text-sm tracking-[0.3em] uppercase text-accent font-serif text-center mb-20 md:mb-24">
           {sectionTitle}
         </h2>
       </ScrollReveal>
@@ -52,10 +52,10 @@ export function OurStoryDesktop({
                 }}
                 transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
-                <h3 className="text-2xl md:text-3xl font-serif font-normal text-[#1A1A1A] mb-4">
+                <h3 className="text-2xl md:text-3xl font-serif font-normal text-foreground mb-4">
                   {block.title}
                 </h3>
-                <p className="text-base md:text-lg leading-relaxed font-serif text-[#4A4440]">
+                <p className="text-base md:text-lg leading-relaxed font-serif text-muted-foreground">
                   {block.body}
                 </p>
               </motion.div>
@@ -65,7 +65,7 @@ export function OurStoryDesktop({
 
         {/* RIGHT — sticky photo */}
         <div className="sticky top-0 h-screen self-start flex items-center">
-          <div className="relative w-full aspect-[3/4] overflow-hidden rounded-[16px] shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
+          <div className="relative w-full aspect-[3/4] overflow-hidden rounded-[16px] shadow-subtle">
             {stories.map((block, index) => (
               <motion.div
                 key={block.title}
@@ -83,9 +83,9 @@ export function OurStoryDesktop({
                 ) : (
                   <div
                     className="absolute inset-0 flex items-center justify-center"
-                    style={{ backgroundColor: block.photoColor ?? '#F2F0EB' }}
+                    style={{ backgroundColor: block.photoColor ?? 'var(--map-placeholder)' }}
                   >
-                    <span className="text-sm tracking-[0.2em] uppercase text-[#8E9E8C] font-serif">
+                    <span className="text-sm tracking-[0.2em] uppercase text-accent font-serif">
                       {block.photoLabel}
                     </span>
                   </div>

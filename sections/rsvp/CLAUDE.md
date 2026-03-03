@@ -26,9 +26,8 @@ Manages all RSVP state and Supabase interactions:
 
 - **`search-form.tsx`**: first/last name inputs with HTML5 required validation, trim-on-blur
 - **`member-select.tsx`**: checkbox list of family members, notes textarea, confirm/decline/reset buttons. Singular vs plural copy variants based on `familyMembers.length > 1`.
-- **`status-view.tsx`**: renders UI for loading, notfound, submitting, success, declined, error steps. Uses `Typewriter` for text reveal, `MonolineFlower` for loading spinners, `ConfettiBurst` on success.
+- **`status-view.tsx`**: renders UI for loading, notfound, submitting, success, declined, error steps. Uses `Typewriter` (shared `@/components/typewriter`) for text reveal, `MonolineFlower` for loading spinners, `ConfettiBurst` on success.
 - **`confetti-burst.tsx`**: 300-particle physics simulation via `useAnimationFrame` (gravity, decay, wobble, tilt)
-- **`typewriter.tsx`**: grapheme-aware (`Intl.Segmenter`) text reveal using Framer Motion staggered children
 
 ## Copy Variants
 

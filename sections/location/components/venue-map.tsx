@@ -9,7 +9,7 @@ const DIRECTIONS_URL =
 const GMAPS_EMBED_URL =
   'https://maps.google.com/maps?q=Via+Cesare+Cantu+21%2C+23898+Imbersago+LC%2C+Italy&output=embed&z=16'
 
-const STYLE_OVERRIDES: [layer: string, prop: string, value: string][] = [
+const STYLE_OVERRIDES_LIGHT: [layer: string, prop: string, value: string][] = [
   // Land — warm parchment
   ['land', 'background-color', '#FDFCFA'],
   // Parks/greenery — muted stem green (#5A7A56 family, lightened)
@@ -28,6 +28,27 @@ const STYLE_OVERRIDES: [layer: string, prop: string, value: string][] = [
   ['bridge-simple', 'line-color', '#D4C4A8'],
   ['bridge-case-simple', 'line-color', '#D4C4A8'],
   ['tunnel-simple', 'line-color', '#D4C4A8'],
+]
+
+const STYLE_OVERRIDES_DARK: [layer: string, prop: string, value: string][] = [
+  // Land — warm cocoa base
+  ['land', 'background-color', '#1C1714'],
+  // Parks/greenery — deep forest green
+  ['landuse', 'fill-color', '#2A3A28'],
+  ['national-park', 'fill-color', '#2A3A28'],
+  // Water — dark green tint
+  ['water', 'fill-color', '#1E2E1D'],
+  ['waterway', 'line-color', '#1E2E1D'],
+  // Buildings — elevated surface
+  ['building', 'fill-color', '#241D17'],
+  ['land-structure-polygon', 'fill-color', '#241D17'],
+  // Roads — warm dark border tone
+  ['road-simple', 'line-color', '#3D342C'],
+  ['road-path', 'line-color', '#3D342C'],
+  ['road-pedestrian', 'line-color', '#3D342C'],
+  ['bridge-simple', 'line-color', '#3D342C'],
+  ['bridge-case-simple', 'line-color', '#3D342C'],
+  ['tunnel-simple', 'line-color', '#3D342C'],
 ]
 
 function GoogleMapsIframe({ venueName }: { venueName: string }) {
@@ -66,9 +87,13 @@ export function VenueMap({ venueName }: { venueName: string }) {
 
       mapboxgl.accessToken = token ?? ''
 
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark'
+      const baseStyle = isDark ? 'dark-v11' : 'light-v11'
+      const styleOverrides = isDark ? STYLE_OVERRIDES_DARK : STYLE_OVERRIDES_LIGHT
+
       const map = new mapboxgl.Map({
         container: containerRef.current,
-        style: 'mapbox://styles/mapbox/light-v11',
+        style: `mapbox://styles/mapbox/${baseStyle}`,
         center: [VENUE_LNG, VENUE_LAT],
         zoom: 16,
         scrollZoom: false,
@@ -91,7 +116,7 @@ export function VenueMap({ venueName }: { venueName: string }) {
       map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-right')
 
       map.on('style.load', () => {
-        for (const [layer, prop, value] of STYLE_OVERRIDES) {
+        for (const [layer, prop, value] of styleOverrides) {
           if (!map.getLayer(layer)) continue
           // biome-ignore lint/suspicious/noExplicitAny: Mapbox paint property names vary by layer type
           map.setPaintProperty(layer, prop as any, value)
@@ -118,7 +143,7 @@ export function VenueMap({ venueName }: { venueName: string }) {
   const useGoogleMaps = !hasToken || fallback
 
   return (
-    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[16px] shadow-[0_2px_8px_rgba(0,0,0,0.03)] bg-[#F2F0EB]">
+    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[16px] shadow-subtle bg-map-placeholder">
       {useGoogleMaps ? (
         <GoogleMapsIframe venueName={venueName} />
       ) : (
@@ -138,7 +163,7 @@ export function VenueMap({ venueName }: { venueName: string }) {
           target="_blank"
           rel="noopener noreferrer"
           data-nojs-hide
-          className="absolute bottom-[10px] right-[10px] z-10 flex items-center gap-1.5 rounded-[50px] border border-[#8E9E8C] bg-[#FDFCFA]/90 px-4 py-2 font-serif text-xs text-[#4A4440] backdrop-blur-sm transition-all duration-200 hover:bg-[#8E9E8C] hover:text-[#FDFCFA] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(142,158,140,0.15)] active:scale-[0.97]"
+          className="absolute bottom-[10px] right-[10px] z-10 flex items-center gap-1.5 rounded-[50px] border border-accent bg-background/90 px-4 py-2 font-serif text-xs text-muted-foreground backdrop-blur-sm transition-all duration-200 hover:bg-accent hover:text-background hover:-translate-y-0.5 hover:shadow-hover active:scale-[0.97]"
         >
           <svg
             width="14"
@@ -166,7 +191,7 @@ export function VenueMap({ venueName }: { venueName: string }) {
             href={DIRECTIONS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-serif text-sm text-[#8E9E8C] underline"
+            className="font-serif text-sm text-accent underline"
           >
             Apri in Google Maps
           </a>

@@ -11,7 +11,7 @@ export function OurStoryMobile({ sectionTitle, stories }: OurStoryMobileProps) {
   return (
     <div className="md:hidden">
       <ScrollReveal translateY={18} start={0} end={0.35} effect="slide">
-        <h2 className="text-sm tracking-[0.3em] uppercase text-[#8E9E8C] font-serif text-center mb-20">
+        <h2 className="text-sm tracking-[0.3em] uppercase text-accent font-serif text-center mb-20">
           {sectionTitle}
         </h2>
       </ScrollReveal>
@@ -20,10 +20,12 @@ export function OurStoryMobile({ sectionTitle, stories }: OurStoryMobileProps) {
         {stories.map((block) => (
           <div key={block.title}>
             <ScrollReveal translateY={14} start={0} end={0.35} offset={0.1} effect="slide">
-              <h3 className="text-2xl font-serif font-normal text-[#1A1A1A] mb-4">{block.title}</h3>
+              <h3 className="text-2xl font-serif font-normal text-foreground mb-4">
+                {block.title}
+              </h3>
             </ScrollReveal>
             <ScrollReveal translateY={14} start={0.05} end={0.4} offset={0.1} effect="slide">
-              <p className="text-base leading-relaxed font-serif text-[#4A4440] mb-8">
+              <p className="text-base leading-relaxed font-serif text-muted-foreground mb-8">
                 {block.body}
               </p>
             </ScrollReveal>

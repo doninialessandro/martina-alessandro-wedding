@@ -17,13 +17,13 @@ describe('SectionDivider', () => {
     expect(svg?.getAttribute('aria-label')).toBe('Decorative mountain divider')
   })
 
-  it('renders a path element', () => {
+  it('renders a path element with stroke-accent class', () => {
     mockBoundingClientRect({ top: 400 })
     const { container } = render(<SectionDivider />)
 
     const path = container.querySelector('path')
     expect(path).toBeInTheDocument()
-    expect(path?.getAttribute('stroke')).toBe('#8E9E8C')
+    expect(path?.classList.contains('stroke-accent')).toBe(true)
   })
 
   it('sets data-animate on the wrapper', () => {

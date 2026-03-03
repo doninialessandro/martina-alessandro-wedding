@@ -4,13 +4,13 @@
 
 ```
 app/              # Next.js App Router — layout.tsx, page.tsx, globals.css
-components/       # Shared components (scroll-reveal, section-divider, monoline-flower)
+components/       # Shared components (scroll-reveal, section-divider, monoline-flower, typewriter)
 hooks/            # Custom hooks (use-scroll-progress)
 lib/              # Utilities and data access
   rsvp/           #   queries.ts — Supabase RSVP queries
   supabase/       #   client.ts, types.ts — Supabase client and type definitions
 sections/         # Page sections, each in its own folder
-  hero/           #   index.tsx, copy.json, use-section-data.ts, components/, layouts/
+  hero/           #   index.tsx, copy.json, use-section-data.ts, components/ (countdown, scroll-hint, emoji-burst), layouts/
   our-story/      #   index.tsx, copy.json, use-section-data.ts, components/, layouts/
   location/       #   index.tsx, copy.json, components/ (venue-map with Mapbox GL)
   program/        #   index.tsx, copy.json, use-section-data.ts, components/, layouts/
@@ -78,6 +78,7 @@ components/
   scroll-reveal.test.tsx
   section-divider.tsx
   section-divider.test.tsx
+  typewriter.tsx
 ```
 
 Shared test infrastructure stays in `tests/`:
